@@ -10,7 +10,4 @@ import gritbus.hipchonbackend.Domain.Place;
 
 public interface CityRepository extends JpaRepository<City,Long> {
 	Optional<City> findById(Long id);
-
-
-
 }
