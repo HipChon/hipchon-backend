@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import javax.persistence.Embeddable;
 
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access=AccessLevel.PROTECTED)
 public class Gps {
 
-	private double latitude;
-	private double longitude;
+	private Double latitude;
+	private Double longitude;
 
 }

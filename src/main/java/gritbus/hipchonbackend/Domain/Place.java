@@ -1,7 +1,8 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,9 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 public class Place {
 	@Id @GeneratedValue
 	@Column(name= "place_id")
@@ -26,8 +29,6 @@ public class Place {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "city_id")
 	private City city;
-
-
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
@@ -58,8 +59,21 @@ public class Place {
 	private Long viewCnt;
 	private Long like_cnt;
 
-	private boolean animal;
+	private Boolean animal;
 	private Long people;
 
-	private boolean hiple;
+	private Boolean hiple;
+
+	public boolean containHashtag(Long hashtagId){
+		List<Long> idList = placeHashtagList.stream()
+			.map(PlaceHashtag::getHashtag)
+			.map(Hashtag::getId)
+			.collect(Collectors.toList());
+		for(Long id : idList){
+			if (id.equals(hashtagId)){
+				return true;
+			}
+		}
+		return false;
+	}
 }

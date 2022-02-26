@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +14,14 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class KeywordReview {
+public class City {
 	@Id @GeneratedValue
-	@Column(name = "keyword_review_id")
+	@Column(name = "city_id")
 	private Long id;
 
-	@OneToMany(mappedBy = "keywordReview", cascade = CascadeType.ALL)
-	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
+	private String name;
 
-	private String keyword;
-
+	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+	private List<Place> placeList = new ArrayList<>();
 
 }

@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

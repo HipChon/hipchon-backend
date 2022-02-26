@@ -1,9 +1,10 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,13 +14,15 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class Hashtag {
+public class KeywordReview {
 	@Id @GeneratedValue
+	@Column(name = "keyword_review_id")
 	private Long id;
 
-	private String name;
+	@OneToMany(mappedBy = "keywordReview", cascade = CascadeType.ALL)
+	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "hashtag", cascade = CascadeType.ALL)
-	private List<PlaceHashtag> placeHashtagList = new ArrayList<>();
+	private String keyword;
+
 
 }

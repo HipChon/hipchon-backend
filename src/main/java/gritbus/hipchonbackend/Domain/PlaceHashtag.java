@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,10 +33,10 @@ public class PlaceHashtag {
 		place.getPlaceHashtagList().add(this);
 	}
 
-	public static PlaceHashtag createPlaceHashtag(Place place, Hashtag hashtag){
-		PlaceHashtag placeHashtag = new PlaceHashtag();
-		placeHashtag.setPlace(place);
-		placeHashtag.setHashtag(hashtag);
-		return placeHashtag;
-	}
+	// public static PlaceHashtag createPlaceHashtag(Place place, Hashtag hashtag){
+	// 	PlaceHashtag placeHashtag = new PlaceHashtag();
+	// 	placeHashtag.setPlace(place);
+	// 	placeHashtag.setHashtag(hashtag);
+	// 	return placeHashtag;
+	// }
 }

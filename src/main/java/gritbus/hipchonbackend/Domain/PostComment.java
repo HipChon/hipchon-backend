@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.domain;
+package gritbus.hipchonbackend.Domain;
 
 import java.time.LocalDateTime;
 
