@@ -8,22 +8,29 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
 
 @Entity
 @Getter
-public class Category {
-
+public class User {
 	@Id @GeneratedValue
-	@Column(name = "category_id")
+	@Column(name = "user_id")
 	private Long id;
 
 	private String name;
+	private String email;
 
-	@OneToMany(mappedBy ="category",cascade = CascadeType.ALL)
-	private List<Place> placeList = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Post> postList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Myplace> myplaceList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<PostComment> postCommentList = new ArrayList<>();
+
+
 
 }

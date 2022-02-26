@@ -23,13 +23,12 @@ public class Place {
 	@Column(name= "place_id")
 	private Long id;
 
-	private String name;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "city_id")
 	private City city;
 
-	private String address;
+
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
 	private Category category;
@@ -40,6 +39,12 @@ public class Place {
 	@Embedded
 	private Gps gps;
 
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+	private List<Myplace> myplaceList = new ArrayList<>();
+
+
+	private String name;
+	private String address;
 	private String placeImage;
 	private String markerImage;
 
@@ -51,7 +56,7 @@ public class Place {
 	private String oneLineIntro;
 
 	private Long viewCnt;
-	private Long like;
+	private Long like_cnt;
 
 	private boolean animal;
 	private Long people;

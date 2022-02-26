@@ -8,22 +8,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
 
 @Entity
 @Getter
-public class Category {
-
+public class KeywordReview {
 	@Id @GeneratedValue
-	@Column(name = "category_id")
+	@Column(name = "keyword_review_id")
 	private Long id;
 
-	private String name;
+	@OneToMany(mappedBy = "keywordReview", cascade = CascadeType.ALL)
+	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
 
-	@OneToMany(mappedBy ="category",cascade = CascadeType.ALL)
-	private List<Place> placeList = new ArrayList<>();
+	private String keyword;
+
 
 }
