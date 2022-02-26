@@ -1,5 +1,9 @@
 package gritbus.hipchonbackend.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -30,6 +34,9 @@ public class Place {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+	private List<PlaceHashtag> placeHashtagList = new ArrayList<>();
+
 	@Embedded
 	private Gps gps;
 
@@ -41,7 +48,7 @@ public class Place {
 	private String introduction;
 	private String holiday;
 	private String guide;
-	private String oneline;
+	private String oneLineIntro;
 
 	private Long viewCnt;
 	private Long like;
