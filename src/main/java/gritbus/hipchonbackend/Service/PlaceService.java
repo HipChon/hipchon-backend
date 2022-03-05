@@ -28,6 +28,15 @@ public class PlaceService {
 	private final HashtagRepository hashtagRepository;
 	private final PlaceHashtagRepository placeHashtagRepository;
 
+	public List<PlaceDto> findByHashtag(Long hashtagId){
+		Optional<Hashtag> hashtag = hashtagRepository.findById(hashtagId);
+		List<PlaceHashtag> allByHashtag = placeHashtagRepository.findAllByHashtag(hashtag.get());
+		return allByHashtag.stream()
+			.map(PlaceHashtag::getPlace)
+			.map(place -> PlaceDto.of(place))
+			.collect(Collectors.toList());
+	}
+
 	public List<PlaceDto> fastSearch(Long people, Boolean animal, Long cityId, Long hashtagId){
 		List<Place> filtered = placeRepository.findByPeopleGreaterThanEqual(people);
 		filtered = filterByAnimal(filtered,animal);

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gritbus.hipchonbackend.Service.PlaceService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,6 +22,11 @@ public class PlaceApiController {
 			@PathVariable("city_id") Long cityId,
 			@PathVariable("hashtag_id") Long hashtagId){
 		return new Result(placeService.fastSearch(people,animal,cityId,hashtagId));
+	}
+
+	@GetMapping("/api/place/{hashtag_id")
+	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId){
+		return new Result(placeService.findByHashtag(hashtagId));
 	}
 
 	@Data
