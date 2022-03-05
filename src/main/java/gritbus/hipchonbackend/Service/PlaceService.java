@@ -1,6 +1,7 @@
 package gritbus.hipchonbackend.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,6 +54,7 @@ public class PlaceService {
 		filtered = filterByHashtagId(filtered, hashtagId);
 
 		return filtered.stream()
+			.sorted(Comparator.comparing(Place::getPostCount).reversed())
 			.map(place -> PlaceDto.of(place,userId))
 			.collect(Collectors.toList());
 	}
