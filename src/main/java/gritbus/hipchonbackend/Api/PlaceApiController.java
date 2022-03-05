@@ -24,7 +24,7 @@ public class PlaceApiController {
 		return new Result(placeService.fastSearch(people,animal,cityId,hashtagId));
 	}
 
-	@GetMapping("/api/place/{hashtag_id")
+	@GetMapping("/api/place/{hashtag_id}")
 	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId){
 		return new Result(placeService.findByHashtag(hashtagId));
 	}
