@@ -15,6 +15,7 @@ public class PlaceDto {
 	private Long id;
 	private String name;
 	private String category;
+	private String city;
 	private String address;
 	private Double latitude;
 	private Double longitude;
@@ -38,6 +39,7 @@ public class PlaceDto {
 			p.getId(),
 			p.getName(),
 			p.getCategory().getName(),
+			p.getCity().getName(),
 			p.getAddress(),
 			p.getGps().getLatitude(),
 			p.getGps().getLongitude(),

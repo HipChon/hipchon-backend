@@ -14,6 +14,8 @@ public interface PlaceRepository extends JpaRepository<Place,Long> {
 	Optional<Place> findById(Long id);
 	Optional<Place> findByName(String name);
 	List<Place> findByPeopleGreaterThanEqual(Long people);
+	List<Place> findAllByHiple(Boolean is);
+
 
 
 }

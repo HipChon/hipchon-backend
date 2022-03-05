@@ -29,6 +29,11 @@ public class PlaceApiController {
 		return new Result(placeService.findByHashtag(hashtagId));
 	}
 
+	@GetMapping("/api/place/{hiple}/{user_id}")
+	public Result findAllByHiple(@PathVariable("hiple") String hiple ,@PathVariable("user_id") Long userId){
+		return new Result(placeService.findAllByHiple(hiple,userId));
+	}
+
 	@Data
 	@AllArgsConstructor
 	static class Result<T>{

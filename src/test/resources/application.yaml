@@ -1,9 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/hipchon;
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:

@@ -12,6 +12,7 @@ import gritbus.hipchonbackend.Domain.City;
 import gritbus.hipchonbackend.Domain.Hashtag;
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Domain.PlaceHashtag;
+import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceDto;
 import gritbus.hipchonbackend.Repository.CityRepository;
 import gritbus.hipchonbackend.Repository.HashtagRepository;
@@ -27,6 +28,14 @@ public class PlaceService {
 	private final CityRepository cityRepository;
 	private final HashtagRepository hashtagRepository;
 	private final PlaceHashtagRepository placeHashtagRepository;
+
+	public List<HipleDto> findAllByHiple(String hiple,Long userId){
+		Boolean is = Boolean.valueOf(hiple);
+		List<Place> allByHiple = placeRepository.findAllByHiple(is);
+		return allByHiple.stream()
+			.map(place -> HipleDto.of(place,userId))
+			.collect(Collectors.toList());
+	}
 
 	public List<PlaceDto> findByHashtag(Long hashtagId){
 		Optional<Hashtag> hashtag = hashtagRepository.findById(hashtagId);
