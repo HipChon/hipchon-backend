@@ -16,20 +16,21 @@ public class PlaceApiController {
 
 	private final PlaceService placeService;
 
-	@GetMapping("/api/place/{people}/{animal}/{city_id}/{hashtag_id}")
-	public Result fastSearch(@PathVariable("people") Long people,
+	@GetMapping("/api/place/{user_id}/{people}/{animal}/{city_id}/{hashtag_id}")
+	public Result fastSearch(@PathVariable("user_id") Long userId,
+			@PathVariable("people") Long people,
 			@PathVariable("animal") Boolean animal,
 			@PathVariable("city_id") Long cityId,
 			@PathVariable("hashtag_id") Long hashtagId){
-		return new Result(placeService.fastSearch(people,animal,cityId,hashtagId));
+		return new Result(placeService.fastSearch(userId,people,animal,cityId,hashtagId));
 	}
 
-	@GetMapping("/api/place/{hashtag_id}")
-	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId){
-		return new Result(placeService.findByHashtag(hashtagId));
+	@GetMapping("/api/place/{user_id}/{hashtag_id}")
+	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId,@PathVariable("user_id") Long userId){
+		return new Result(placeService.findByHashtag(hashtagId,userId));
 	}
 
-	@GetMapping("/api/place/{hiple}/{user_id}")
+	@GetMapping("/api/place/{user_id}/{hiple}")
 	public Result findAllByHiple(@PathVariable("hiple") String hiple ,@PathVariable("user_id") Long userId){
 		return new Result(placeService.findAllByHiple(hiple,userId));
 	}

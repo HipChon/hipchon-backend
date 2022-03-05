@@ -33,8 +33,9 @@ public class PlaceDto {
 	private String guide;
 	private String introduction;
 	private List<String> hashtag;
+	private Boolean isMyplace;
 
-	public static PlaceDto of (Place p){
+	public static PlaceDto of (Place p,Long userId){
 		return new PlaceDto(
 			p.getId(),
 			p.getName(),
@@ -59,7 +60,8 @@ public class PlaceDto {
 			p.getPlaceHashtagList().stream()
 				.map(PlaceHashtag::getHashtag)
 				.map(Hashtag::getName)
-				.collect(Collectors.toList())
+				.collect(Collectors.toList()),
+			p.isMyplace(userId)
 		);
 	}
 

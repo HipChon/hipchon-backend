@@ -37,23 +37,23 @@ public class PlaceService {
 			.collect(Collectors.toList());
 	}
 
-	public List<PlaceDto> findByHashtag(Long hashtagId){
+	public List<PlaceDto> findByHashtag(Long hashtagId,Long userId){
 		Optional<Hashtag> hashtag = hashtagRepository.findById(hashtagId);
 		List<PlaceHashtag> allByHashtag = placeHashtagRepository.findAllByHashtag(hashtag.get());
 		return allByHashtag.stream()
 			.map(PlaceHashtag::getPlace)
-			.map(place -> PlaceDto.of(place))
+			.map(place -> PlaceDto.of(place,userId))
 			.collect(Collectors.toList());
 	}
 
-	public List<PlaceDto> fastSearch(Long people, Boolean animal, Long cityId, Long hashtagId){
+	public List<PlaceDto> fastSearch(Long userId,Long people, Boolean animal, Long cityId, Long hashtagId){
 		List<Place> filtered = placeRepository.findByPeopleGreaterThanEqual(people);
 		filtered = filterByAnimal(filtered,animal);
 		filtered = filterByCityId(filtered, cityId);
 		filtered = filterByHashtagId(filtered, hashtagId);
 
 		return filtered.stream()
-			.map(place -> PlaceDto.of(place))
+			.map(place -> PlaceDto.of(place,userId))
 			.collect(Collectors.toList());
 	}
 
