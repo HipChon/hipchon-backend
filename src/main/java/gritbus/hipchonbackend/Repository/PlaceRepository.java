@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import gritbus.hipchonbackend.Domain.Place;
+import gritbus.hipchonbackend.Repository.custom.PlaceRepositoryCustom;
 import lombok.RequiredArgsConstructor;
 
-public interface PlaceRepository extends JpaRepository<Place,Long> {
+public interface PlaceRepository extends JpaRepository<Place,Long>, PlaceRepositoryCustom {
 	Optional<Place> findById(Long id);
 	Optional<Place> findByName(String name);
 	List<Place> findByPeopleGreaterThanEqual(Long people);
