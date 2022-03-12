@@ -24,14 +24,12 @@ public class PlaceDto {
 	private String contact;
 	private String homepage;
 	private String holiday;
+	private String openTime;
 	private Long viewCnt;
-	private Long likeCnt;
 	private Boolean hiple;
-	private Long people;
 	private Boolean animal;
 	private String oneLineIntro;
-	private String guide;
-	private String introduction;
+
 	private List<String> hashtag;
 	private Boolean isMyplace;
 
@@ -49,14 +47,11 @@ public class PlaceDto {
 			p.getContact(),
 			p.getHomepage(),
 			p.getHoliday(),
+			p.getOpenTime(),
 			p.getViewCnt(),
-			p.getLike_cnt(),
 			p.getHiple(),
-			p.getPeople(),
 			p.getAnimal(),
 			p.getOneLineIntro(),
-			p.getGuide(),
-			p.getIntroduction(),
 			p.getPlaceHashtagList().stream()
 				.map(PlaceHashtag::getHashtag)
 				.map(Hashtag::getName)

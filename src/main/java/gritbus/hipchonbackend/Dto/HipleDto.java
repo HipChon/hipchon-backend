@@ -17,7 +17,6 @@ public class HipleDto {
 	private String name;
 	private String city;
 	private String placeImage;
-	private Long people;
 	private Long myplaceCnt;
 	private Long postCnt;
 	private Boolean isMyplace;
@@ -28,9 +27,8 @@ public class HipleDto {
 			p.getName(),
 			p.getCity().getName(),
 			p.getPlaceImage(),
-			p.getPeople(),
 			Long.valueOf(p.getMyplaceCount()),
-			Long.valueOf(p.getMyplaceCount()),
+			Long.valueOf(p.getPostCount()),
 			p.isMyplace(userId)
 		);
 	}

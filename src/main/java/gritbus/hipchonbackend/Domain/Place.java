@@ -37,34 +37,29 @@ public class Place {
 	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
 	private List<PlaceHashtag> placeHashtagList = new ArrayList<>();
 
-	@Embedded
-	private Gps gps;
-
 	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
 	private List<Myplace> myplaceList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "place" , cascade = CascadeType.ALL)
 	private List<Post> postList = new ArrayList<>();
 
+	@Embedded
+	private Gps gps;
 
 	private String name;
 	private String address;
+
 	private String placeImage;
 	private String markerImage;
 
 	private String contact;
 	private String homepage;
-	private String introduction;
 	private String holiday;
-	private String guide;
+	private String openTime;
 	private String oneLineIntro;
+	private Boolean animal;
 
 	private Long viewCnt;
-	private Long like_cnt;
-
-	private Boolean animal;
-	private Long people;
-
 	private Boolean hiple;
 
 	public boolean containHashtag(Long hashtagId){
