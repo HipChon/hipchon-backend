@@ -1,9 +1,12 @@
 package gritbus.hipchonbackend.Service;
 
+import static java.util.Comparator.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -50,11 +53,15 @@ public class PlaceService {
 			.collect(Collectors.toList());
 	}
 
-	public List<PlaceListDto> fastSearch(Long userId,Long cityId, Long categoryId){
+	public List<PlaceListDto> fastSearch(Long userId,Long cityId, Long categoryId,String order){
 		System.out.println("service");
 		System.out.println("cityId = " + cityId);
 		System.out.println("categoryId = " + categoryId);
 		List<PlaceListDto> placeList = placeRepository.fastSearch(new PlaceFastSearchCondition(userId,cityId,categoryId));
+
+		return orderPlaceList(placeList,order);
+
+		//느린버전
 		// Optional<City> city = cityRepository.findById(cityId);
 		// Optional<Category> category = categoryRepository.findById(categoryId);
 		// List<Place> byCategoryAndCity = placeRepository.findByCategoryAndCity(category.get(), city.get());
@@ -63,9 +70,20 @@ public class PlaceService {
 		// 	.sorted(Comparator.comparing(Place::getPostCount).reversed()) // 후기순으로 정렬 여기서도 쿼리 날린다
 		// 	.map(place -> PlaceListDto.of(place,userId))
 		// 	.collect(Collectors.toList());
-		return placeList;
 	}
 
+	private List<PlaceListDto> orderPlaceList(List<PlaceListDto> placeList, String order) {
+		return placeList.stream()
+			.sorted(comparing(orderBy(order)).reversed())
+			.collect(Collectors.toList());
+	}
+
+	private Function<PlaceListDto,Long> orderBy(String order){
+		if (order.equals("myplace")){
+			return PlaceListDto::getMyplaceCnt;
+		}
+		return PlaceListDto::getPostCnt;
+	}
 	// private List<Place> filterByAnimal(List<Place> filtered, Boolean animal){
 	// 	filtered = filtered.stream()
 	// 		.filter(place -> place.getAnimal().equals(animal))

@@ -16,13 +16,13 @@ public class PlaceApiController {
 
 	private final PlaceService placeService;
 
-	@GetMapping("/api/place/{user_id}/{city_id}/{hashtag_id}")
-	public Result fastSearch(@PathVariable("user_id") Long userId,
-			@PathVariable("people") Long people,
-			@PathVariable("animal") Boolean animal,
+	@GetMapping("/api/place/{user_id}/{city_id}/{category_id}/{order}")
+	public Result fastSearch(
+			@PathVariable("user_id") Long userId,
 			@PathVariable("city_id") Long cityId,
-			@PathVariable("hashtag_id") Long hashtagId){
-		return new Result(placeService.fastSearch(userId,cityId,hashtagId));
+			@PathVariable("category_id") Long categoryId,
+			@PathVariable("order") String order){
+		return new Result(placeService.fastSearch(userId,cityId,categoryId,order));
 	}
 
 	@GetMapping("/api/place/{user_id}/{hashtag_id}")
