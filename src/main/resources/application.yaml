@@ -12,9 +12,10 @@ spring:
       hibernae:
         #얘는 sys out으로 찍음 - 운영시 안쓴다
 #        show_sql: true
-        format_sql: true
+#        format_sql: true
 logging:
   level:
     #logger로 찍음
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+
