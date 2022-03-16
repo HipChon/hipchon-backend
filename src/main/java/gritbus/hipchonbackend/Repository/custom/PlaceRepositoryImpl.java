@@ -80,10 +80,5 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom{
 		}
 		return city.id.eq(cityId);
 	}
-	private BooleanExpression userEq(Long userId) {
-		if (userId==null){
-			return null;
-		}
-		return user.id.eq(userId);
-	}
+
 }

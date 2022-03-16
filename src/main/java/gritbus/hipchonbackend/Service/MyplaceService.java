@@ -1,12 +1,14 @@
 package gritbus.hipchonbackend.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import gritbus.hipchonbackend.Cond.MyplaceCondition;
 import gritbus.hipchonbackend.Domain.Myplace;
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Domain.User;
@@ -37,4 +39,7 @@ public class MyplaceService {
 		return save.getId();
 	}
 
+	public Long getMyplaceCntByUser(Long userId){
+		return Long.valueOf(myplaceRepository.findAllBy(new MyplaceCondition(userId, null)).size());
+	}
 }
