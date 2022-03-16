@@ -54,7 +54,7 @@ public class PlaceTest {
 		String is="true";
 		Long userId = 1L;
 		//when
-		List<HipleDto> allByHiple = placeService.findAllByHiple(is, userId);
+		List<HipleDto> allByHiple = placeService.findAllByHiple(userId);
 		for (HipleDto hipleDto : allByHiple) {
 			System.out.println("hipleDto.getName() = " + hipleDto.getName());
 		}

@@ -1,25 +1,22 @@
 package gritbus.hipchonbackend.Repository.custom;
 
+import static com.querydsl.jpa.JPAExpressions.*;
 import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QCity.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QPost.*;
-import static gritbus.hipchonbackend.Domain.QPostKeywordReview.*;
-import static gritbus.hipchonbackend.Domain.QUser.*;
 
 import java.util.List;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.NumberPath;
-import com.querydsl.jpa.JPAExpressions;
+import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import gritbus.hipchonbackend.Cond.PlaceFastSearchCondition;
-import gritbus.hipchonbackend.Domain.QPlace;
+import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
+import gritbus.hipchonbackend.Dto.QHipleDto;
 import gritbus.hipchonbackend.Dto.QPlaceListDto;
 
 public class PlaceRepositoryImpl implements PlaceRepositoryCustom{
@@ -39,32 +36,62 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom{
 					category.name,
 					city.name,
 					place.placeImage,
-					JPAExpressions
-						.select(post.place.count())
-						.from(post)
-						.where(post.place.eq(place)),
-					JPAExpressions
-						.select(myplace.place.count())
-						.from(myplace)
-						.where(myplace.place.eq(place)),
+					getPostCnt(),
+					getMyplaceCnt(),
 					place.name.append(" 임시키워드입니다"),
-					JPAExpressions
-						.select(myplace)
-						.from(myplace)
-						.where(
-							myplace.user.id.eq(condition.getUserId()),
-							myplace.place.eq(place))
-						.exists()
+					isMyplace(condition.getUserId())
 				)
 			)
 			.from(place)
 			.join(place.category,category)
 			.join(place.city,city)
-			//일단 이거되느지 확인 하고 하기
 			.where(
 				cityEq(condition.getCityId()),
 				categoryEq(condition.getCategoryId()))
 			.fetch();
+	}
+
+	@Override
+	public List<HipleDto> findAllByHiple(Long userId){
+		return queryFactory
+			.select(new QHipleDto(
+					place.id,
+					place.name,
+					category.name,
+					city.name,
+					place.placeImage,
+					getPostCnt(),
+					getMyplaceCnt(),
+					isMyplace(userId)
+				)
+			)
+			.from(place)
+			.join(place.category,category)
+			.join(place.city,city)
+			.where(
+				place.hiple.eq(true))
+			.fetch();
+	}
+
+	private JPQLQuery<Long> getPostCnt(){
+		return select(post.place.count())
+			.from(post)
+			.where(post.place.eq(place));
+	}
+
+	private JPQLQuery<Long> getMyplaceCnt(){
+		return select(myplace.place.count())
+			.from(myplace)
+			.where(myplace.place.eq(place));
+	}
+
+	private BooleanExpression isMyplace(Long userId){
+		return select(myplace)
+			.from(myplace)
+			.where(
+				myplace.user.id.eq(userId),
+				myplace.place.eq(place))
+			.exists();
 	}
 
 	private BooleanExpression categoryEq(Long categoryId) {

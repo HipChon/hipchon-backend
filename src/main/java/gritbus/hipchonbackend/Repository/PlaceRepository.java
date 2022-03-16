@@ -18,7 +18,7 @@ public interface PlaceRepository extends JpaRepository<Place,Long>, PlaceReposit
 	Optional<Place> findByName(String name);
 
 	// List<Place> findByCategoryAndCity(Category category, City city); 되긴하는데 성능 최적화 안됨 postList같은거 다 불러온다
-	List<Place> findAllByHiple(Boolean is);
+
 
 
 

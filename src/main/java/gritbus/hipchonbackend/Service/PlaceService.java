@@ -37,12 +37,8 @@ public class PlaceService {
 	private final CategoryRepository categoryRepository;
 	private final PlaceHashtagRepository placeHashtagRepository;
 
-	public List<HipleDto> findAllByHiple(String hiple,Long userId){
-		Boolean is = Boolean.valueOf(hiple);
-		List<Place> allByHiple = placeRepository.findAllByHiple(is);
-		return allByHiple.stream()
-			.map(place -> HipleDto.of(place,userId))
-			.collect(Collectors.toList());
+	public List<HipleDto> findAllByHiple(Long userId){
+		return placeRepository.findAllByHiple(userId);
 	}
 
 	public List<PlaceDto> findByHashtag(Long hashtagId,Long userId){
