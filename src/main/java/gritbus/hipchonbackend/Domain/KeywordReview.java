@@ -19,10 +19,13 @@ public class KeywordReview {
 	@Column(name = "keyword_review_id")
 	private Long id;
 
+	private String keyword;
+	private String category;
+
 	@OneToMany(mappedBy = "keywordReview", cascade = CascadeType.ALL)
 	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
 
-	private String keyword;
+
 
 
 }
