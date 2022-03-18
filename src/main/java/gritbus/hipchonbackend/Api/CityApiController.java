@@ -1,6 +1,7 @@
 package gritbus.hipchonbackend.Api;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Dto.CityDto;
@@ -12,10 +13,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class CityApiController {
 	private final CityService cityService;
 
-	@GetMapping("/api/city/all")
+	@GetMapping("/city/all")
 	public Result findAll(){
 		return new Result(cityService.findAll());
 	}

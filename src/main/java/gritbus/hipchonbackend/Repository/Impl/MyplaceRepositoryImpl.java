@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Repository.custom;
+package gritbus.hipchonbackend.Repository.Impl;
 
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
@@ -15,8 +15,9 @@ import gritbus.hipchonbackend.Domain.Myplace;
 import gritbus.hipchonbackend.Domain.QMyplace;
 import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Domain.User;
+import gritbus.hipchonbackend.Repository.custom.MyplaceRepositoryCustom;
 
-public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom{
+public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 
 	private final JPAQueryFactory queryFactory;
 

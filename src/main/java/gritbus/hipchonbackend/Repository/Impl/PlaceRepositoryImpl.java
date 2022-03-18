@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Repository.custom;
+package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
 import static gritbus.hipchonbackend.Domain.QCategory.*;
@@ -18,8 +18,9 @@ import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Dto.QHipleDto;
 import gritbus.hipchonbackend.Dto.QPlaceListDto;
+import gritbus.hipchonbackend.Repository.custom.PlaceRepositoryCustom;
 
-public class PlaceRepositoryImpl implements PlaceRepositoryCustom{
+public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 
 	private final JPAQueryFactory queryFactory;
 
