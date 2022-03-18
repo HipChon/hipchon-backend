@@ -21,6 +21,11 @@ public class KeywordReviewController {
 		return new Result(keywordReviewService.getTop3(placeId));
 	}
 
+	@GetMapping("/top1/{place_id}")
+	public Result getTop1(@PathVariable("place_id") Long placeId){
+		return new Result(keywordReviewService.getTop1(placeId));
+	}
+
 	@Data
 	@AllArgsConstructor
 	static class Result<T>{
