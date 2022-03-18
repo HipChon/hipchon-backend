@@ -43,6 +43,11 @@ public class PlaceService {
 	private final PlaceHashtagRepository placeHashtagRepository;
 	private final KeywordReviewRepository keywordReviewRepository;
 
+	public PlaceDto findById(Long placeId,Long userId){
+		Optional<Place> byId = placeRepository.findById(placeId);
+		return PlaceDto.of(byId.get(),userId);
+	}
+
 	public List<HipleDto> findAllByHiple(Long userId){
 		return placeRepository.findAllByHiple(userId);
 	}

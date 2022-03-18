@@ -12,51 +12,63 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class PlaceDto {
+	//상세페이지
+	// 맨 위 정보 화면
 	private Long id;
+	private String placeImage;
 	private String name;
+	private String contact;
+	private int postCnt;
+	private int myplaceCnt;
+	private Boolean isMyplace;
 	private String category;
-	private String city;
-	private String address;
+	private String openTime;
+	private String holiday;
+	private String oneLineIntro;
+	private String homepage;
+
+	// 메뉴 들어가야 함
+
+	//지도
+	private String markerImage; //이거 필요한거 맞나?
 	private Double latitude;
 	private Double longitude;
-	private String placeImage;
-	private String markerImage;
-	private String contact;
-	private String homepage;
-	private String holiday;
-	private String openTime;
-	private Long viewCnt;
+	private String address;
+
+	// 미정
+	private String city;
 	private Boolean hiple;
 	private Boolean animal;
-	private String oneLineIntro;
-
 	private List<String> hashtag;
-	private Boolean isMyplace;
+
 
 	public static PlaceDto of (Place p,Long userId){
 		return new PlaceDto(
 			p.getId(),
+			p.getPlaceImage(),
 			p.getName(),
+			p.getContact(),
+			p.getPostCount(),
+			p.getMyplaceCount(),
+			p.isMyplace(userId),
 			p.getCategory().getName(),
-			p.getCity().getName(),
-			p.getAddress(),
+			p.getOpenTime(),
+			p.getHoliday(),
+			p.getOneLineIntro(),
+			p.getHomepage(),
+			//메뉴 추가 필요
+			p.getMarkerImage(),
 			p.getGps().getLatitude(),
 			p.getGps().getLongitude(),
-			p.getPlaceImage(),
-			p.getMarkerImage(),
-			p.getContact(),
-			p.getHomepage(),
-			p.getHoliday(),
-			p.getOpenTime(),
-			p.getViewCnt(),
+			p.getAddress(),
+			
+			p.getCity().getName(),
 			p.getHiple(),
 			p.getAnimal(),
-			p.getOneLineIntro(),
 			p.getPlaceHashtagList().stream()
 				.map(PlaceHashtag::getHashtag)
 				.map(Hashtag::getName)
-				.collect(Collectors.toList()),
-			p.isMyplace(userId)
+				.collect(Collectors.toList())
 		);
 	}
 

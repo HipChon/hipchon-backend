@@ -18,6 +18,13 @@ public class PlaceController {
 
 	private final PlaceService placeService;
 
+	@GetMapping("/{user_id}/{place_id}")
+	public Result findById(
+		@PathVariable("user_id") Long userId,
+		@PathVariable("place_id") Long placeId){
+		return new Result(placeService.findById(userId,placeId));
+	}
+
 	@GetMapping("/{user_id}/{city_id}/{category_id}/{order}")
 	public Result fastSearch(
 			@PathVariable("user_id") Long userId,
