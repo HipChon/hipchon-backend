@@ -30,7 +30,8 @@ public class KeywordReviewRepositoryImpl implements KeywordReviewRepositoryCusto
 			.select(new QKeywordDto(
 				keywordReview.id,
 				keywordReview.keyword,
-				// keywordReview.category,
+				keywordReview.category,
+				keywordReview.emoji,
 				postKeywordReview.count().as(cnt)
 			))
 			.from(postKeywordReview)

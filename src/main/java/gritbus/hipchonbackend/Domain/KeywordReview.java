@@ -21,6 +21,8 @@ public class KeywordReview {
 
 	private String keyword;
 	private String category;
+	private String emoji;
+
 
 	@OneToMany(mappedBy = "keywordReview", cascade = CascadeType.ALL)
 	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();

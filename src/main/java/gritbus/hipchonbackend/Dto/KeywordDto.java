@@ -10,14 +10,16 @@ import lombok.Getter;
 public class KeywordDto {
 	private Long id;
 	private String keyword;
-	// private String category;
+	private String category;
+	private String emoji;
 	private Long postCnt;
 
 	@QueryProjection
-	public KeywordDto(Long id, String keyword,  Long postCnt) {
+	public KeywordDto(Long id, String keyword, String category,String emoji, Long postCnt) {
 		this.id = id;
 		this.keyword = keyword;
-		// this.category = category;
+		this.category = category;
+		this.emoji = emoji;
 		this.postCnt = postCnt;
 	}
 }

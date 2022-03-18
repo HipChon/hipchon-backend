@@ -34,17 +34,4 @@ public class PlaceListDto {
 		this.isMyplace = isMyplace;
 	}
 
-	public static PlaceListDto of (Place p,Long userId){
-		return new PlaceListDto(
-			p.getId(),
-			p.getName(),
-			p.getCategory().getName(),
-			p.getCity().getName(),
-			p.getPlaceImage(),
-			Long.valueOf(p.getPostCount()),
-			Long.valueOf(p.getMyplaceCount()),
-			"임시키워드",
-			p.isMyplace(userId)
-		);
-	}
 }
