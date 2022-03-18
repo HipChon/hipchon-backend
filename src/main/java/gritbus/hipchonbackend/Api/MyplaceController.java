@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Service.MyplaceService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -15,7 +17,13 @@ public class MyplaceController {
 	private final MyplaceService myplaceService;
 
 	@PostMapping("/myplace/{user_id}/{place_id}")
-	public Long addMyplace(@PathVariable("user_id") Long userId, @PathVariable("place_id")Long placeId){
-		return myplaceService.add(userId,placeId);
+	public Result addMyplace(@PathVariable("user_id") Long userId, @PathVariable("place_id")Long placeId){
+		return new Result(myplaceService.add(userId,placeId));
+	}
+
+	@Data
+	@AllArgsConstructor
+	static class Result<T>{
+		private T data;
 	}
 }
