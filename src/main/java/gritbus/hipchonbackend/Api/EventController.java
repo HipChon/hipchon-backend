@@ -11,11 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/event")
 public class EventController {
 	private final EventService eventService;
 
-	@GetMapping("/event")
+	@GetMapping("")
 	public Result findAll(){
 		return new Result(eventService.findAll());
 	}

@@ -13,12 +13,12 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/place")
 public class PlaceController {
 
 	private final PlaceService placeService;
 
-	@GetMapping("/place/{user_id}/{city_id}/{category_id}/{order}")
+	@GetMapping("/{user_id}/{city_id}/{category_id}/{order}")
 	public Result fastSearch(
 			@PathVariable("user_id") Long userId,
 			@PathVariable("city_id") Long cityId,
@@ -27,12 +27,12 @@ public class PlaceController {
 		return new Result(placeService.fastSearch(userId,cityId,categoryId,order));
 	}
 
-	@GetMapping("/place/hashtag/{user_id}/{hashtag_id}")
+	@GetMapping("/hashtag/{user_id}/{hashtag_id}")
 	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId,@PathVariable("user_id") Long userId){
 		return new Result(placeService.findByHashtag(hashtagId,userId));
 	}
 
-	@GetMapping("/place/hiple/{user_id}")
+	@GetMapping("/hiple/{user_id}")
 	public Result findAllByHiple(@PathVariable("user_id") Long userId){
 		return new Result(placeService.findAllByHiple(userId));
 	}

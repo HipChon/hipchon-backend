@@ -12,11 +12,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/myplace")
 public class MyplaceController {
 	private final MyplaceService myplaceService;
 
-	@PostMapping("/myplace/{user_id}/{place_id}")
+	@PostMapping("/{user_id}/{place_id}")
 	public Result addMyplace(@PathVariable("user_id") Long userId, @PathVariable("place_id")Long placeId){
 		return new Result(myplaceService.add(userId,placeId));
 	}

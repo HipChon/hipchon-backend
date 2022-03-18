@@ -11,11 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/hashtag")
 public class HashtagController {
 	private final HashtagService hashtagService;
 
-	@GetMapping("/hashtag/all")
+	@GetMapping("/all")
 	public Result findAll(){
 		return new Result(hashtagService.findAll());
 	}

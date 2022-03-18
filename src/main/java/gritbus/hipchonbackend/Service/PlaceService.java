@@ -57,9 +57,6 @@ public class PlaceService {
 	}
 
 	public List<PlaceListDto> fastSearch(Long userId,Long cityId, Long categoryId,String order){
-		System.out.println("service");
-		System.out.println("cityId = " + cityId);
-		System.out.println("categoryId = " + categoryId);
 		List<PlaceListDto> placeList = placeRepository.fastSearch(new PlaceFastSearchCondition(userId,cityId,categoryId));
 		//성능 개선 꼭 하기!!
 		for (PlaceListDto p : placeList) {

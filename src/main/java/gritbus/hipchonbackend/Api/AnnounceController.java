@@ -11,11 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/announce")
 public class AnnounceController {
 	private final AnnounceService announceService;
 
-	@GetMapping("/announce")
+	@GetMapping("")
 	public Result findAll(){
 		return new Result(announceService.findAll());
 	}

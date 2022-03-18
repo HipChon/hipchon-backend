@@ -13,11 +13,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/city/")
 public class CityApiController {
 	private final CityService cityService;
 
-	@GetMapping("/city/all")
+	@GetMapping("/all")
 	public Result findAll(){
 		return new Result(cityService.findAll());
 	}
