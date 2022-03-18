@@ -18,11 +18,13 @@ public class PlaceListDto {
 	private Long postCnt;
 	private Long myplaceCnt;
 	private String keyword;
+	private String keywordEmoji;
+	private String keywordCategory;
 	private Boolean isMyplace;
 
 	@QueryProjection
 	public PlaceListDto(Long id, String name, String category, String city, String placeImage, Long postCnt,
-		Long myplaceCnt, String keyword,Boolean isMyplace) {
+		Long myplaceCnt,Boolean isMyplace) {
 		this.id = id;
 		this.name = name;
 		this.category = category;
@@ -30,7 +32,9 @@ public class PlaceListDto {
 		this.placeImage = placeImage;
 		this.postCnt = postCnt;
 		this.myplaceCnt = myplaceCnt;
-		this.keyword = keyword;
+		this.keyword = "키워드 리뷰가 없습니다!";
+		this.keywordEmoji = "";
+		this.keywordCategory = "";
 		this.isMyplace = isMyplace;
 	}
 

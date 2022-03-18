@@ -78,16 +78,19 @@ public class PlaceTest {
 		//when
 		List<PlaceListDto> placeListDtos = placeService.fastSearch(userId, cityId, categoryId,order);
 		for (PlaceListDto place : placeListDtos) {
-			System.out.print("place.getName() = " + place.getName());
-			System.out.print(" postCnt = " + place.getPostCnt());
-			System.out.print(" place.getIsMyplace() = " + place.getIsMyplace());
-			System.out.println(" place.getMyplaceCnt() = " + place.getMyplaceCnt());;
+			System.out.print("getName() = " + place.getName());
+			System.out.print(" /getId() = " + place.getId());
+			System.out.print(" /postCnt = " + place.getPostCnt());
+			System.out.print(" /getIsMyplace() = " + place.getIsMyplace());
+			System.out.print(" /getMyplaceCnt() = " + place.getMyplaceCnt());;
+			System.out.print(" /getKeyword() = " + place.getKeyword());
+			System.out.println(" /place.getKeywordEmoji() = " + place.getKeywordEmoji());
 
 		}
 		//then
 		//then
 		assertThat(placeListDtos.get(0).getMyplaceCnt())
-			.isEqualTo(1);
+			.isEqualTo(3);
 		assertThat(placeListDtos.size())
 			.isEqualTo(3);
 		assertThat(placeListDtos.stream()

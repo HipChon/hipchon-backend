@@ -39,7 +39,6 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 					place.placeImage,
 					getPostCnt(),
 					getMyplaceCnt(),
-					place.name.append(" 임시키워드입니다"),
 					isMyplace(condition.getUserId())
 				)
 			)

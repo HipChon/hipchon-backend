@@ -37,6 +37,25 @@ public class KeywordTest {
 		//then
 		assertThat(top3.size())
 			.isEqualTo(3);
+	}
 
+	@Test
+	@DisplayName("get top 1 keyword")
+	public void getTop1() throws Exception{
+
+		//given
+		Long placeId=1L;
+
+		//when
+		List<KeywordDto> top1 = keywordReviewRepository.getTop1(placeId);
+		System.out.println(top1.size());
+		for (KeywordDto keywordDto : top1) {
+			System.out.print("keyword = " + keywordDto.getKeyword());
+			System.out.println("  postCnt = " + keywordDto.getPostCnt());
+		}
+
+		//then
+		assertThat(top1.size())
+			.isEqualTo(1);
 	}
 }

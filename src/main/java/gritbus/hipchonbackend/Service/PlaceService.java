@@ -21,11 +21,13 @@ import gritbus.hipchonbackend.Domain.Hashtag;
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Domain.PlaceHashtag;
 import gritbus.hipchonbackend.Dto.HipleDto;
+import gritbus.hipchonbackend.Dto.KeywordDto;
 import gritbus.hipchonbackend.Dto.PlaceDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Repository.CategoryRepository;
 import gritbus.hipchonbackend.Repository.CityRepository;
 import gritbus.hipchonbackend.Repository.HashtagRepository;
+import gritbus.hipchonbackend.Repository.KeywordReviewRepository;
 import gritbus.hipchonbackend.Repository.PlaceHashtagRepository;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +41,7 @@ public class PlaceService {
 	private final HashtagRepository hashtagRepository;
 	private final CategoryRepository categoryRepository;
 	private final PlaceHashtagRepository placeHashtagRepository;
+	private final KeywordReviewRepository keywordReviewRepository;
 
 	public List<HipleDto> findAllByHiple(Long userId){
 		return placeRepository.findAllByHiple(userId);
@@ -58,7 +61,15 @@ public class PlaceService {
 		System.out.println("cityId = " + cityId);
 		System.out.println("categoryId = " + categoryId);
 		List<PlaceListDto> placeList = placeRepository.fastSearch(new PlaceFastSearchCondition(userId,cityId,categoryId));
-
+		//성능 개선 꼭 하기!!
+		for (PlaceListDto p : placeList) {
+			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getId());
+			if (top1.size() > 0 ){
+				p.setKeyword(top1.get(0).getKeyword());
+				p.setKeywordCategory(top1.get(0).getCategory());
+				p.setKeywordEmoji(top1.get(0).getEmoji());
+			}
+		}
 		return orderPlaceList(placeList,order);
 
 		//느린버전
