@@ -27,7 +27,7 @@ public class PlaceController {
 		return new Result(placeService.fastSearch(userId,cityId,categoryId,order));
 	}
 
-	@GetMapping("/place/{user_id}/{hashtag_id}")
+	@GetMapping("/place/hashtag/{user_id}/{hashtag_id}")
 	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId,@PathVariable("user_id") Long userId){
 		return new Result(placeService.findByHashtag(hashtagId,userId));
 	}
