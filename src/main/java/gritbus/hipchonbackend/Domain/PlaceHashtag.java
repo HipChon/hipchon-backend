@@ -33,10 +33,10 @@ public class PlaceHashtag {
 		place.getPlaceHashtagList().add(this);
 	}
 
-	// public static PlaceHashtag createPlaceHashtag(Place place, Hashtag hashtag){
-	// 	PlaceHashtag placeHashtag = new PlaceHashtag();
-	// 	placeHashtag.setPlace(place);
-	// 	placeHashtag.setHashtag(hashtag);
-	// 	return placeHashtag;
-	// }
+	public static PlaceHashtag createPlaceHashtag(Place place, Hashtag hashtag){
+		PlaceHashtag placeHashtag = new PlaceHashtag();
+		placeHashtag.setPlace(place);
+		placeHashtag.setHashtag(hashtag);
+		return placeHashtag;
+	}
 }

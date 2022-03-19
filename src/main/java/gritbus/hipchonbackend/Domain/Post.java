@@ -45,7 +45,8 @@ public class Post {
 	private String detail;
 	private LocalDateTime postTime;
 	private Long rate;
-	private Long like_cnt;
+	private Long likeCnt;
 
+	private Boolean isBest;
 
 }

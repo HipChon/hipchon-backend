@@ -18,6 +18,7 @@ public class Hashtag {
 	private Long id;
 
 	private String name;
+	private String image;
 
 	@OneToMany(mappedBy = "hashtag", cascade = CascadeType.ALL)
 	private List<PlaceHashtag> placeHashtagList = new ArrayList<>();
