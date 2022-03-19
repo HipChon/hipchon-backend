@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/hipchon;
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url:  jdbc:mariadb://127.0.0.1:3306/hipchon
+    username: hipchon
+    password: hipchon
+    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: none
