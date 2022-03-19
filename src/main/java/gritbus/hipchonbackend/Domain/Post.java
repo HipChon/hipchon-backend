@@ -32,7 +32,7 @@ public class Post {
 	private User user;
 
 	@OneToMany(mappedBy = "post" , cascade = CascadeType.ALL)
-	private List<PostComment> postCommentList = new ArrayList<>();
+	private List<Comment> commentList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post" , cascade = CascadeType.ALL)
 	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
