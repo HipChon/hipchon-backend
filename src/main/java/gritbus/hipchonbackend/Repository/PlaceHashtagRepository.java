@@ -12,7 +12,6 @@ import gritbus.hipchonbackend.Domain.PlaceHashtag;
 
 public interface PlaceHashtagRepository extends JpaRepository<PlaceHashtag,Long> {
 	Optional<PlaceHashtag> findById(Long id);
-	List<PlaceHashtag> findAllByHashtag(Hashtag hashtag);
 	PlaceHashtag findByPlaceAndHashtag(Place place, Hashtag hashtag);
 	boolean existsByPlaceAndHashtag(Place place,Hashtag hashtag);
 }

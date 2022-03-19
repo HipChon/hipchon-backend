@@ -34,9 +34,12 @@ public class PlaceController {
 		return new Result(placeService.fastSearch(userId,cityId,categoryId,order));
 	}
 
-	@GetMapping("/hashtag/{user_id}/{hashtag_id}")
-	public Result findByHashtag(@PathVariable("hashtag_id") Long hashtagId,@PathVariable("user_id") Long userId){
-		return new Result(placeService.findByHashtag(hashtagId,userId));
+	@GetMapping("/hashtag/{user_id}/{hashtag_id}/{order}")
+	public Result findAllByHashtag(
+		@PathVariable("hashtag_id") Long hashtagId,
+		@PathVariable("user_id") Long userId,
+		@PathVariable("order") String order){
+		return new Result(placeService.findAllByHashtag(hashtagId,userId,order));
 	}
 
 	@GetMapping("/hiple/{user_id}")

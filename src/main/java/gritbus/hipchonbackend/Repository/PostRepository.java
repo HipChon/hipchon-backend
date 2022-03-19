@@ -10,4 +10,5 @@ import gritbus.hipchonbackend.Domain.User;
 public interface PostRepository extends JpaRepository<Post,Long> {
 
 	List<Post> findAllByIsBest(Boolean is);
+
 }
