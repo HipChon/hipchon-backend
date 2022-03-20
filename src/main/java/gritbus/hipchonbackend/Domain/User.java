@@ -20,7 +20,9 @@ public class User {
 	private Long id;
 
 	private String name;
+	private String profileImage;
 	private String email;
+
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Post> postList = new ArrayList<>();
