@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 .env
-db/data/ib_log*
+db/data/
 ### STS ###
 .apt_generated
 .classpath
