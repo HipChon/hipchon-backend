@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
+import gritbus.hipchonbackend.Dto.PostDto;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
 import gritbus.hipchonbackend.Repository.PostRepository;
 import gritbus.hipchonbackend.Service.PlaceService;
