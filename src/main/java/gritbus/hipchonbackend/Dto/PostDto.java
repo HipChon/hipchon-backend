@@ -22,10 +22,12 @@ public class PostDto {
 	private Long likeCnt;
 	private Long commentCnt;
 	private String detail;
+	private Long placeId;
+	private Boolean isMyplace;
 	//imggeList는 나중에 넣기
 	@QueryProjection
 	public PostDto(Long id, Long userId,String userName, String userImage, LocalDateTime postTime, Long userPostCnt,
-		Long likeCnt, Long commentCnt, String detail) {
+		Long likeCnt, Long commentCnt, String detail,Long placeId) {
 		this.id = id;
 		this.userId = userId;
 		this.userName = userName;
@@ -35,9 +37,13 @@ public class PostDto {
 		this.likeCnt = likeCnt;
 		this.commentCnt = commentCnt;
 		this.detail = detail;
+		this.placeId = placeId;
+		this.isMyplace = isMyplace;
 	}
 
-
+	public void setIsMyplace(Boolean isMyplace) {
+		this.isMyplace = isMyplace;
+	}
 
 	public void setImageList(List<String> imageList) {
 		this.imageList = imageList;

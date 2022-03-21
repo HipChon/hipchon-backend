@@ -28,12 +28,13 @@ public class PostService {
 	}
 
 	public List<PostDto> findByPlace(Long placeID){
-		List<PostDto> postDtoList = findAllOrByPlace(placeID);
+		List<PostDto> postDtoList = findAllOrByPlace(-1L,placeID);
 		return postDtoList;
 	}
 
-	public List<PostDto> findAll(String order){
-		List<PostDto> postDtoList = findAllOrByPlace(-1L);
+	public List<PostDto> findAll(Long userId,String order){
+		List<PostDto> postDtoList = findAllOrByPlace(userId,-1L);
+		System.out.println(postDtoList.size());
 		return orderPlaceList(postDtoList,order);
 	}
 
@@ -46,10 +47,15 @@ public class PostService {
 		return postDtoList;
 	}
 
-	private List<PostDto> findAllOrByPlace(Long placeID) {
+	private List<PostDto> findAllOrByPlace(Long userId,Long placeID) {
 		List<PostDto> postDtoList = postRepository.findAllOrByPlace(placeID);
 		for (PostDto postDto : postDtoList) {
 			postDto.setImageList(postRepository.getImageList(postDto.getId()));
+		}
+		if (userId!=-1){
+			for (PostDto postDto : postDtoList) {
+				postDto.setIsMyplace(postRepository.getIsMyplace(userId,postDto.getPlaceId()));
+			}
 		}
 		return postDtoList;
 	}

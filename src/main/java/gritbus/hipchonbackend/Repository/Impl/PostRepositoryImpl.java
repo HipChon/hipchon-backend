@@ -3,6 +3,7 @@ package gritbus.hipchonbackend.Repository.Impl;
 import static com.querydsl.jpa.JPAExpressions.*;
 
 import static gritbus.hipchonbackend.Domain.QCategory.*;
+import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 
 import static gritbus.hipchonbackend.Domain.QPost.*;
@@ -14,6 +15,9 @@ import java.util.List;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+
+import gritbus.hipchonbackend.Domain.Myplace;
+import gritbus.hipchonbackend.Domain.QMyplace;
 import gritbus.hipchonbackend.Domain.QPost;
 
 import gritbus.hipchonbackend.Domain.QPostImage;
@@ -50,15 +54,15 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 					.from(subPost)
 					.join(subPost.user ,subUser)
 					.where(subUser.id.eq(user.id))
-					.groupBy(subUser.id)
-				,
+					.groupBy(subUser.id),
 				post.likeCnt,
 				select(postComment.id.count())
 					.from(postComment)
 					.join(postComment.post,subPost2)
 					.where(postComment.post.id.eq(post.id))
 				, //post의 comment 갯수
-				post.detail
+				post.detail,
+				place.id
 			))
 			.from(post)
 			.join(post.user,user)
@@ -76,6 +80,19 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.join(postImage.post,post)
 			.where(post.id.eq(postId))
 			.fetch();
+	}
+
+	@Override
+	public Boolean getIsMyplace(Long userId,Long placeId) {
+		Integer fetchOne = queryFactory
+			.selectOne()
+			.from(myplace)
+			.where(
+				myplace.user.id.eq(userId),
+				myplace.place.id.eq(placeId))
+			.fetchFirst();
+		return fetchOne !=null;
+
 	}
 
 	private BooleanExpression placeEq(Long placeId) {

@@ -26,9 +26,11 @@ public class PostController {
 		return new Result(postService.findByPlace(placeId));
 	}
 
-	@GetMapping("/all/{order}")
-	public Result findAll(@PathVariable("order")String order){
-		return new Result(postService.findAll(order));
+	@GetMapping("/all/{user_id}/{order}")
+	public Result findAll(
+		@PathVariable("user_id") Long userId,
+		@PathVariable("order")String order){
+		return new Result(postService.findAll(userId,order));
 	}
 
 	@Data
