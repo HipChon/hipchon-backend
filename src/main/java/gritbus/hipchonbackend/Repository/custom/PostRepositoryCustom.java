@@ -9,6 +9,6 @@ import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Dto.PostDto;
 
 public interface PostRepositoryCustom {
-	List<PostDto> findAllOrByPlace(Long placeID);
-	Boolean getIsMyplace(Long userId,Long placeId);
+	List<PostDto> findAllOrByPlace(Long userId,Long placeID);
+	// Boolean getIsMyplace(Long userId,Long placeId);
 }

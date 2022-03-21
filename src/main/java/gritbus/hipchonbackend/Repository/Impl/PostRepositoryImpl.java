@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -43,12 +46,12 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 	//placeId가 -1이면 전체 post찾기
 	@Override
-	public List<PostDto> findAllOrByPlace(Long placeID) {
+	public List<PostDto> findAllOrByPlace(Long userId,Long placeID) {
 		QUser subUser = new QUser("subUser");
 		QPost subPost = new QPost("subPost");
 		QPost subPost2 = new QPost("subPost2");
 
-		List<PostDto> postDtoList = getPostDtoList(placeID, subUser, subPost, subPost2);
+		List<PostDto> postDtoList = getPostDtoList(userId,placeID, subUser, subPost, subPost2);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(postDtoList);
 		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p)));
 		return postDtoList;
@@ -79,7 +82,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.collect(Collectors.toList());
 	}
 
-	private List<PostDto> getPostDtoList(Long placeID, QUser subUser, QPost subPost, QPost subPost2) {
+	private List<PostDto> getPostDtoList(Long userId,Long placeID, QUser subUser, QPost subPost, QPost subPost2) {
 		return queryFactory
 			.select(new QPostDto(
 				post.id,
@@ -91,7 +94,8 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 				post.likeCnt,
 				getCommentCnt(subPost2), //post의 comment 갯수
 				post.detail,
-				place.id
+				place.id,
+				getIsMyplace(userId,place.id)
 			))
 			.from(post)
 			.join(post.user, user)
@@ -125,16 +129,15 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.fetch();
 	}
 
-	@Override
-	public Boolean getIsMyplace(Long userId,Long placeId) {
-		Integer fetchOne = queryFactory
+
+	private BooleanExpression getIsMyplace(Long userId, NumberPath<Long> placeId) {
+		return JPAExpressions
 			.selectOne()
 			.from(myplace)
 			.where(
 				myplace.user.id.eq(userId),
 				myplace.place.id.eq(placeId))
-			.fetchFirst();
-		return fetchOne !=null;
+			.exists();
 
 	}
 

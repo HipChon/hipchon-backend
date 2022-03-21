@@ -24,10 +24,10 @@ public class PostDto {
 	private String detail;
 	private Long placeId;
 	private Boolean isMyplace;
-	//imggeList는 나중에 넣기
+
 	@QueryProjection
 	public PostDto(Long id, Long userId,String userName, String userImage, LocalDateTime postTime, Long userPostCnt,
-		Long likeCnt, Long commentCnt, String detail,Long placeId) {
+		Long likeCnt, Long commentCnt, String detail,Long placeId,Boolean isMyplace) {
 		this.id = id;
 		this.userId = userId;
 		this.userName = userName;

@@ -46,4 +46,27 @@ public class PostTest {
 			.isEqualTo(5);
 	}
 
+	@Test
+	@DisplayName("전체 post 보여주기")
+	public void findAll() throws Exception{
+		//given
+		Long userId = 1L;
+		String order = "recent";
+		//when
+		List<PostDto> postDtoList = postService.findAll(userId,order);
+		//then
+		for (PostDto postDto : postDtoList) {
+			System.out.println(postDto.toString());
+		}
+		PostDto post=postDtoList.get(3);
+		// assertThat(postDtoList.size())
+		// 	.isEqualTo(4);
+		// assertThat(post.getUserPostCnt()) // n번째 리뷰 확인
+		// 	.isEqualTo(4);
+		// assertThat(post.getImageList().size())
+		// 	.isEqualTo(3);
+		// assertThat(post.getCommentCnt())
+		// 	.isEqualTo(5);
+	}
+
 }
