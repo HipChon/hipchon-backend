@@ -41,14 +41,14 @@ public class PostTest {
 		for (PostDto postDto : postDtoList) {
 			System.out.println(postDto.toString());
 		}
-
+		PostDto post=postDtoList.get(3);
 		assertThat(postDtoList.size())
 			.isEqualTo(4);
-		assertThat(postDtoList.get(0).getUserPostCnt()) // n번째 리뷰 확인
+		assertThat(post.getUserPostCnt()) // n번째 리뷰 확인
 			.isEqualTo(4);
-		assertThat(postDtoList.get(0).getImageList().size())
+		assertThat(post.getImageList().size())
 			.isEqualTo(3);
-		assertThat(postDtoList.get(0).getCommentCnt())
+		assertThat(post.getCommentCnt())
 			.isEqualTo(5);
 	}
 

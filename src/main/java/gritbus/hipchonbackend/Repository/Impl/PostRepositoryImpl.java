@@ -61,6 +61,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.join(post.user,user)
 			.join(post.place,place)
 			.where(post.place.id.eq(placeID))
+			.orderBy(post.id.desc())
 			.fetch();
 	}
 
