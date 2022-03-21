@@ -34,7 +34,6 @@ public class PostService {
 
 	public List<PostDto> findAll(Long userId,String order){
 		List<PostDto> postDtoList = findAllOrByPlace(userId,-1L);
-		System.out.println(postDtoList.size());
 		return orderPlaceList(postDtoList,order);
 	}
 

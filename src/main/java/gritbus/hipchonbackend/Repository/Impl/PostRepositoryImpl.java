@@ -2,7 +2,6 @@ package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
 
-import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 
@@ -14,13 +13,11 @@ import static gritbus.hipchonbackend.Domain.QUser.*;
 import java.util.List;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.Myplace;
-import gritbus.hipchonbackend.Domain.QMyplace;
 import gritbus.hipchonbackend.Domain.QPost;
 
-import gritbus.hipchonbackend.Domain.QPostImage;
 import gritbus.hipchonbackend.Domain.QUser;
 
 import gritbus.hipchonbackend.Dto.PostDto;
@@ -43,6 +40,10 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		QUser subUser = new QUser("subUser");
 		QPost subPost = new QPost("subPost");
 		QPost subPost2 = new QPost("subPost2");
+		return getPostDtoList(placeID, subUser, subPost, subPost2);
+	}
+
+	private List<PostDto> getPostDtoList(Long placeID, QUser subUser, QPost subPost, QPost subPost2) {
 		return queryFactory
 			.select(new QPostDto(
 				post.id,
@@ -50,26 +51,33 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 				user.name,
 				user.profileImage,
 				post.postTime,
-				select(subPost.id.count())
-					.from(subPost)
-					.join(subPost.user ,subUser)
-					.where(subUser.id.eq(user.id))
-					.groupBy(subUser.id),
+				getUserPostCnt(subUser, subPost),
 				post.likeCnt,
-				select(postComment.id.count())
-					.from(postComment)
-					.join(postComment.post,subPost2)
-					.where(postComment.post.id.eq(post.id))
-				, //post의 comment 갯수
+				getCommentCnt(subPost2), //post의 comment 갯수
 				post.detail,
 				place.id
 			))
 			.from(post)
-			.join(post.user,user)
-			.join(post.place,place)
+			.join(post.user, user)
+			.join(post.place, place)
 			.where(placeEq(placeID))
 			.orderBy(post.id.desc())
 			.fetch();
+	}
+
+	private JPQLQuery<Long> getUserPostCnt(QUser subUser, QPost subPost) {
+		return select(subPost.id.count())
+			.from(subPost)
+			.join(subPost.user, subUser)
+			.where(subUser.id.eq(user.id))
+			.groupBy(subUser.id);
+	}
+
+	private JPQLQuery<Long> getCommentCnt(QPost subPost2) {
+		return select(postComment.id.count())
+			.from(postComment)
+			.join(postComment.post, subPost2)
+			.where(postComment.post.id.eq(post.id));
 	}
 
 	@Override
