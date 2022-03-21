@@ -2,15 +2,12 @@ package gritbus.hipchonbackend.Api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import gritbus.hipchonbackend.Service.MyplaceService;
 import gritbus.hipchonbackend.Service.PostService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -29,9 +26,15 @@ public class PostController {
 		return new Result(postService.findByPlace(placeId));
 	}
 
+	@GetMapping("/all/{order}")
+	public Result findAll(@PathVariable("order")String order){
+		return new Result(postService.findAll(order));
+	}
+
 	@Data
 	@AllArgsConstructor
 	static class Result<T>{
 		private T data;
 	}
+
 }

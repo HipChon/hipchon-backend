@@ -2,6 +2,7 @@ package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
 
+import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 
 import static gritbus.hipchonbackend.Domain.QPost.*;
@@ -11,6 +12,7 @@ import static gritbus.hipchonbackend.Domain.QUser.*;
 
 import java.util.List;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import gritbus.hipchonbackend.Domain.QPost;
 
@@ -31,8 +33,9 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		this.queryFactory = queryFactory;
 	}
 
+	//placeId가 -1이면 전체 post찾기
 	@Override
-	public List<PostDto> findByPlace(Long placeID) {
+	public List<PostDto> findAllOrByPlace(Long placeID) {
 		QUser subUser = new QUser("subUser");
 		QPost subPost = new QPost("subPost");
 		QPost subPost2 = new QPost("subPost2");
@@ -60,7 +63,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.from(post)
 			.join(post.user,user)
 			.join(post.place,place)
-			.where(post.place.id.eq(placeID))
+			.where(placeEq(placeID))
 			.orderBy(post.id.desc())
 			.fetch();
 	}
@@ -75,4 +78,10 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.fetch();
 	}
 
+	private BooleanExpression placeEq(Long placeId) {
+		if (placeId ==-1){
+			return null;
+		}
+		return post.place.id.eq(placeId);
+	}
 }

@@ -41,11 +41,11 @@ public class Post {
 	private List<PostImage> postImageList = new ArrayList<>();
 
 	private String title;
-	private Long viewCnt;
+	private Long viewCnt = 0L;
 	private String detail;
 	private LocalDateTime postTime;
 	private Long rate;
-	private Long likeCnt;
+	private Long likeCnt= 0L;
 
 	private Boolean isBest;
 

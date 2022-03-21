@@ -59,7 +59,7 @@ public class Place {
 	private String oneLineIntro;
 	private Boolean animal;
 
-	private Long viewCnt;
+	private Long viewCnt = 0L;
 	private Boolean hiple;
 
 	public boolean containHashtag(Long hashtagId){
