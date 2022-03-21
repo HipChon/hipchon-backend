@@ -49,7 +49,8 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		QPost subPost2 = new QPost("subPost2");
 
 		List<PostDto> postDtoList = getPostDtoList(placeID, subUser, subPost, subPost2);
-		postDtoList.forEach(p->p.setImageList(mapToImage(groupById(postDtoList), p)));
+		Map<Long, List<PostImageDto>> postImageMap = groupById(postDtoList);
+		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p)));
 		return postDtoList;
 	}
 
