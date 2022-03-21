@@ -10,8 +10,13 @@ import static gritbus.hipchonbackend.Domain.QPostComment.*;
 import static gritbus.hipchonbackend.Domain.QPostImage.*;
 import static gritbus.hipchonbackend.Domain.QUser.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -22,8 +27,10 @@ import gritbus.hipchonbackend.Domain.QUser;
 
 import gritbus.hipchonbackend.Dto.PostDto;
 
+import gritbus.hipchonbackend.Dto.PostImageDto;
 import gritbus.hipchonbackend.Dto.QPostDto;
 
+import gritbus.hipchonbackend.Dto.QPostImageDto;
 import gritbus.hipchonbackend.Repository.custom.PostRepositoryCustom;
 
 public class PostRepositoryImpl implements PostRepositoryCustom {
@@ -40,7 +47,35 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		QUser subUser = new QUser("subUser");
 		QPost subPost = new QPost("subPost");
 		QPost subPost2 = new QPost("subPost2");
-		return getPostDtoList(placeID, subUser, subPost, subPost2);
+
+		List<PostDto> postDtoList = getPostDtoList(placeID, subUser, subPost, subPost2);
+		postDtoList.forEach(p->p.setImageList(mapToImage(groupById(postDtoList), p)));
+		return postDtoList;
+	}
+
+	private Map<Long, List<PostImageDto>> groupById(List<PostDto> postDtoList) {
+		return getImageList(toPostIdList(postDtoList)).stream()
+			.collect(Collectors.groupingBy(p -> p.getPostId()));
+	}
+
+	private List<String> mapToImage(Map<Long, List<PostImageDto>> postImageMap, PostDto p) {
+		if (hasImage(postImageMap, p)){
+			return postImageMap.get(p.getId()).stream()
+				.map(PostImageDto::getImage)
+				.collect(Collectors.toList());
+		}
+		return new ArrayList<>();
+
+	}
+
+	private boolean hasImage(Map<Long, List<PostImageDto>> postImageMap, PostDto p) {
+		return postImageMap.keySet().contains(p.getId());
+	}
+
+	private List<Long> toPostIdList(List<PostDto> postDtoList) {
+		return postDtoList.stream()
+			.map(PostDto::getId)
+			.collect(Collectors.toList());
 	}
 
 	private List<PostDto> getPostDtoList(Long placeID, QUser subUser, QPost subPost, QPost subPost2) {
@@ -80,13 +115,12 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.where(postComment.post.id.eq(post.id));
 	}
 
-	@Override
-	public List<String> getImageList(Long postId) {
+	private List<PostImageDto> getImageList(List<Long> postIdList) {
 		return queryFactory
-			.select(postImage.image)
+			.select(new QPostImageDto(post.id,postImage.image))
 			.from(postImage)
 			.join(postImage.post,post)
-			.where(post.id.eq(postId))
+			.where(post.id.in(postIdList))
 			.fetch();
 	}
 

@@ -10,6 +10,5 @@ import gritbus.hipchonbackend.Dto.PostDto;
 
 public interface PostRepositoryCustom {
 	List<PostDto> findAllOrByPlace(Long placeID);
-	List<String> getImageList(Long postId);
 	Boolean getIsMyplace(Long userId,Long placeId);
 }
