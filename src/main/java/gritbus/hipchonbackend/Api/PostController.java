@@ -24,6 +24,11 @@ public class PostController {
 		return new Result(postService.findAllByIsBest());
 	}
 
+	@GetMapping("/{place_id}")
+	public Result findByPlace(@PathVariable("place_id") Long placeId){
+		return new Result(postService.findByPlace(placeId));
+	}
+
 	@Data
 	@AllArgsConstructor
 	static class Result<T>{

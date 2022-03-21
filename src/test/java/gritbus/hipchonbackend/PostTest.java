@@ -26,6 +26,8 @@ public class PostTest {
 
 	@Autowired
 	PostService postService;
+	@Autowired
+	PostRepository postRepository;
 
 	@Test
 	@DisplayName("상세페이지 속 피드")
@@ -33,14 +35,21 @@ public class PostTest {
 		//given
 		Long placeId = 1L;
 		//when
-		List<PostDto> postDtoList = postService.findByPlace();
+		List<PostDto> postDtoList = postService.findByPlace(placeId);
 		//then
+
+		for (PostDto postDto : postDtoList) {
+			System.out.println(postDto.toString());
+		}
+
 		assertThat(postDtoList.size())
+			.isEqualTo(4);
+		assertThat(postDtoList.get(0).getUserPostCnt()) // n번째 리뷰 확인
+			.isEqualTo(4);
+		assertThat(postDtoList.get(0).getImageList().size())
 			.isEqualTo(3);
-		assertThat(postDtoList.get(0).getNth()) // n번째 리뷰 확인
-			.isEqualTo(5);
 		assertThat(postDtoList.get(0).getCommentCnt())
-			.isEqualTo(3);
+			.isEqualTo(5);
 	}
 
 }

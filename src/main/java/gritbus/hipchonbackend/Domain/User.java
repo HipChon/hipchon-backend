@@ -31,7 +31,7 @@ public class User {
 	private List<Myplace> myplaceList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Comment> commentList = new ArrayList<>();
+	private List<PostComment> postCommentList = new ArrayList<>();
 
 
 

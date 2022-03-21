@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import gritbus.hipchonbackend.Domain.Post;
 import gritbus.hipchonbackend.Dto.BestPostDto;
+import gritbus.hipchonbackend.Dto.PostDto;
 import gritbus.hipchonbackend.Repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -23,5 +24,12 @@ public class PostService {
 			.collect(Collectors.toList());
 	}
 
+	public List<PostDto> findByPlace(Long placeID){
+		List<PostDto> postDtoList = postRepository.findByPlace(placeID);
+		for (PostDto postDto : postDtoList) {
+			postDto.setImageList(postRepository.getImageList(postDto.getId()));
+		}
+		return postDtoList;
 
+	}
 }
