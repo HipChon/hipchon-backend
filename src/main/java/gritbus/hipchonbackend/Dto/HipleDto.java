@@ -34,8 +34,17 @@ public class HipleDto {
 		this.city = city;
 		this.placeImage = placeImage;
 		this.myplaceCnt = myplaceCnt;
+		if (myplaceCnt==null){
+			this.myplaceCnt = 0L;
+		}
 		this.postCnt = postCnt;
+		if (postCnt==null){
+			this.postCnt = 0L;
+		}
 		this.isMyplace = isMyplace;
+		if (isMyplace==null){
+			this.isMyplace = false;
+		}
 	}
 
 	public static HipleDto of (Place p, Long userId){

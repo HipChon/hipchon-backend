@@ -31,11 +31,20 @@ public class PlaceListDto {
 		this.city = city;
 		this.placeImage = placeImage;
 		this.postCnt = postCnt;
+		if (postCnt==null){
+			this.postCnt = 0L;
+		}
 		this.myplaceCnt = myplaceCnt;
+		if (myplaceCnt==null){
+			this.myplaceCnt = 0L;
+		}
 		this.keyword = "키워드 리뷰가 없습니다!";
 		this.keywordEmoji = "";
 		this.keywordCategory = "";
 		this.isMyplace = isMyplace;
+		if (isMyplace==null){
+			this.isMyplace = false;
+		}
 	}
 
 }

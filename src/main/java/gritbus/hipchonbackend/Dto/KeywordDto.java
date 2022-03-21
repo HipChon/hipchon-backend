@@ -21,5 +21,8 @@ public class KeywordDto {
 		this.category = category;
 		this.emoji = emoji;
 		this.postCnt = postCnt;
+		if (postCnt==null){
+			this.postCnt = 0L;
+		}
 	}
 }

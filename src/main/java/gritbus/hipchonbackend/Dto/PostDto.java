@@ -32,9 +32,14 @@ public class PostDto {
 		this.userId = userId;
 		this.userName = userName;
 		this.userImage = userImage;
-		this.postTime = postTime.toLocalDate();
+		if (postTime!=null){
+			this.postTime = postTime.toLocalDate();
+		}
 		this.userPostCnt = userPostCnt;
 		this.likeCnt = likeCnt;
+		if (likeCnt==null){
+			this.likeCnt = 0L;
+		}
 		this.commentCnt = commentCnt;
 		this.detail = detail;
 		this.placeId = placeId;
