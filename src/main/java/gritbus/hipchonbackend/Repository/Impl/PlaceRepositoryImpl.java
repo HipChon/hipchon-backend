@@ -99,9 +99,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.fetch();
 	}
 
-
-
-	private JPQLQuery<Long> getPostCnt(){
+	public static JPQLQuery<Long> getPostCnt(){
 		return select(post.place.count())
 			.from(post)
 			.where(post.place.eq(place));
