@@ -27,7 +27,7 @@ public class PostController {
 	}
 
 	@GetMapping("/user/{user_id}")
-	public Result findByuser(@PathVariable("user_id") Long userid){
+	public Result findByUser(@PathVariable("user_id") Long userid){
 		return new Result(postService.findByUser(userid));
 	}
 
