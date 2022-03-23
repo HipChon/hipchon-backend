@@ -56,7 +56,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 	@Override
 	public List<MypostDto> findByUser(Long userId) {
-		List<MypostDto> mypostList = getMypostList();
+		List<MypostDto> mypostList = getMypostList(userId);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(toMyPostIdList(mypostList)));
 		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getId())));
 		return mypostList;
@@ -68,7 +68,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 				.collect(Collectors.toList());
 	}
 
-	private List<MypostDto> getMypostList() {
+	private List<MypostDto> getMypostList(Long userID) {
 		return queryFactory
 				.select(new QMypostDto(
 						post.id,
@@ -76,6 +76,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 				))
 				.from(post)
 				.join(post.place, place)
+				.where(post.user.id.eq(userID))
 				.fetch();
 	}
 
