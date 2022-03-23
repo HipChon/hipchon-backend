@@ -1,0 +1,299 @@
+[33mcommit 3c917cdc1d2791c7b2ddec1dc360ff4a942469a7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Wed Mar 23 08:09:56 2022 +0900
+
+    feat: 내가 저장한 장소 보여주는 API구현
+
+[33mcommit bfb6cfbc9ffa5772de03cb8694a79d963db538fa[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Tue Mar 22 08:51:06 2022 +0900
+
+    fix: DTO null 예외처리
+
+[33mcommit f3689d39e7b328e59d41ed6cc9167f4c2a83a053[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 22:55:54 2022 +0900
+
+    perf: Post  isMyplace n+1문제 성능 개선
+
+[33mcommit c5af977d1e9ac49a914154e35e9fca10ab89c278[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 22:49:13 2022 +0900
+
+    fix: image쿼리 반복문에서 빼냄
+
+[33mcommit 16c660522a7fb464e6db707110fa5c5e3f407738[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 22:05:55 2022 +0900
+
+    pref: post조회 getimage 쿼리 N+1 성능 개선
+
+[33mcommit ccf9128db15a5d3035c90565f44fa22c0707648a[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 20:20:41 2022 +0900
+
+    refact: Post 조회 Repo 리팩토링
+
+[33mcommit 75714a67fe63a38631687740bd7fe838c4e53216[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 20:00:23 2022 +0900
+
+    feat: 모든 post 조회시 isMyplace 추가
+
+[33mcommit c878eed2a53b3bab72fa1c4182c3cab09ae34418[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 15:12:00 2022 +0900
+
+    feat: 피드 -> 모든 Post조회 및 정렬기능 추가
+
+[33mcommit f558b604e58f3b7521c1a5a327d13d99717d667e[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 14:47:42 2022 +0900
+
+    feat: Post 조회 최신순 정렬 기능 추가
+
+[33mcommit 2090d65f6bd724c045d7481600ac404500ee27ce[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 13:58:37 2022 +0900
+
+    chore: gitignore반영하기 위해 git 캐쉬 초기화
+
+[33mcommit e9ab4a41e84b7a59d288e74fb34650c2bf531c92[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Mon Mar 21 13:53:41 2022 +0900
+
+    feat: 상세페이지 Post 피드 조회API기능 구현
+
+[33mcommit 9c3ee43ede28b4776b47b4f6f6ed417c9ccb6e37[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 16:06:16 2022 +0900
+
+    fix: user Entity profileImage추가
+
+[33mcommit 80d9d499fa505a0a1de50ffbd39e5d0354a30bf8[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 15:27:41 2022 +0900
+
+    feat: PostDto 생성
+
+[33mcommit 7e85c33a35a5e1b5cffb01ed226fce4e111cf563[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 15:17:52 2022 +0900
+
+    test: 상세페이지 속 피드 테스트
+
+[33mcommit e20d75f701fbe40fed65c601d7e07ff5719b5ef4[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 03:42:47 2022 +0900
+
+    feat: hashtag별 장소 찾기 API 구현 및 test
+
+[33mcommit 9924e285f27fcddde07c489ee6590e2762a0767f[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 02:53:15 2022 +0900
+
+    feat: best후기 API 구현
+
+[33mcommit efd1eaf3b8850b6cbfcd079f147c04d96ffe2868[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 02:28:30 2022 +0900
+
+    refactor: comment 변경
+
+[33mcommit 8c5f856bf13f6de4a305f88f60bf33f57067f13b[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 02:03:01 2022 +0900
+
+    test: test db연동
+
+[33mcommit 3857439acd7e58ffb30849128d401e6dd4e2a4b1[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 20 01:57:23 2022 +0900
+
+    feat: mariadb docker-compose 및 환경설정
+
+[33mcommit 5914c475de65ddd8aeca8ef08de552d19d0312ac[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 03:53:08 2022 +0900
+
+    feat: keyword getTop1 API구현
+
+[33mcommit 8cf73ab96a830b632e6c6e51437b240b010421f0[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 03:43:16 2022 +0900
+
+    feat: findById API 구현
+
+[33mcommit 03c23e9656bd2cd9e4c13970612af2b4d13c389f[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 02:48:38 2022 +0900
+
+    refactor: api 매핑 초기값 추가
+
+[33mcommit fafe1a4bcc6be59b0efb0b6773e4d1386b107ea9[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 02:42:14 2022 +0900
+
+    feat: 빠른검색에 장소별 1위 키워드리뷰 넣음
+
+[33mcommit fab9b497b3d74751a81898cd73ea70de28a8374e[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 01:49:04 2022 +0900
+
+    feat: get top3 API 구현
+
+[33mcommit 014098ef4622eb860d68f41c7763ef067898dc9f[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 01:20:46 2022 +0900
+
+    fix: addMyplace API Result로 감싸기
+
+[33mcommit d75e59eeb8a025ee5182f5815d9d09acac652347[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 00:52:30 2022 +0900
+
+    fix: findByHasgtag api 경로 변경
+
+[33mcommit fea56771cb4c6921d9305cacc9057bf84a3a789b[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 00:51:45 2022 +0900
+
+    refactor: Impl 패키징, Contrller '/api'매핑 추가
+
+[33mcommit 0966d67d9b16a54db36d778b4f74e987fed41f1d[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 19 00:48:15 2022 +0900
+
+    feat: top3 키워드 query 추가
+
+[33mcommit 525841561348e5a6e55832042625205526f0bf7a[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Wed Mar 16 18:12:10 2022 +0900
+
+    fix: keyword Entity, DTO 수정
+
+[33mcommit c25c4f40023a05eab34a89e2f10213c7fb7d66e7[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Wed Mar 16 14:39:20 2022 +0900
+
+    feat: fastSearch 정렬기능 추가
+
+[33mcommit 7a1d832bbccd90d7f621fd91d86dee999156c6ac[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Wed Mar 16 13:43:52 2022 +0900
+
+    refactor: findAllbyHiple 성능개선
+
+[33mcommit c38b145a1e5bb36bd5411acbd0e06d2b8980424f[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Wed Mar 16 12:57:46 2022 +0900
+
+    feat: myplace add 기능 추가
+
+[33mcommit f1f0acd71981c5b56920aadf85cf9ee197d0b0c4[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Wed Mar 16 11:29:33 2022 +0900
+
+    feat: fastSearch 성능개선
+
+[33mcommit f2d51c3477eafae2645b4a9de9b32616ff7f1f11[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 12 21:12:13 2022 +0900
+
+    fix: Place Entity 필드 변경
+
+[33mcommit 784f0792ff750f2009657260cff73b52e31df7e1[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 12 19:54:20 2022 +0900
+
+    feat: fastSearch 동적쿼리 구현
+
+[33mcommit 391b0f40fb04bf6b5d8e51d2524b0a7c52d3c10f[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 12 18:47:23 2022 +0900
+
+    feat: Querydsl PlaceRepositoryCustom 추가
+
+[33mcommit 18a328d6e31b0da5fa907f60672c68ff064d3e95[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Fri Mar 11 20:51:50 2022 +0900
+
+    build: querydsl 설정 추가
+
+[33mcommit 48fbcf8f1db549a16ea8fe54c8c45c7f4841f3b6[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 6 02:01:27 2022 +0900
+
+    feat: 이벤트, 공지사항 Entity, 조회 API추가
+
+[33mcommit fe10f6753cb20c8128584891c80ec88d5760b298[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 6 01:24:34 2022 +0900
+
+    feat: 빠른검색 API 후기순으로 정렬기능 추가
+
+[33mcommit f0c4676ca9f11bddd15836b3b16831987eb66784[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 6 01:07:24 2022 +0900
+
+    feat: Place 조회 API isMyplace기능 추가
+
+[33mcommit aeabafa7fb340a10d306f55a134260a1997b39e4[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Mar 6 00:58:02 2022 +0900
+
+    feat: Place 주간 힙플 조회  API구현
+
+[33mcommit 02286749e4503f1cd5e39d7aa8af4fc7baba0eb2[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 5 21:44:32 2022 +0900
+
+    fix: Place findByHashtag API 경로 } 오타 수정
+
+[33mcommit 6315aa4db8d289a911fede887365b9bd545e5138[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 5 20:29:58 2022 +0900
+
+    feat: Myplace add API 구현
+
+[33mcommit 85fd8fd88213786ce0be44862b95961ed0f122a7[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Mar 5 19:27:51 2022 +0900
+
+    feat: Place findByHasgtag API구현
+
+[33mcommit 99a5647bf8c8039bf4db14b578f493ec72ad8dd4[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Feb 27 07:06:31 2022 +0900
+
+    feat: 모든 city, hashtag 조회 API 구현
+
+[33mcommit 71ae15b12723f3d54d6938ac8c1b48de9d6f9fdb[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Feb 27 06:37:40 2022 +0900
+
+    feat: fastSearch API 구현
+
+[33mcommit 6b73e669f2e562ad1e2946c10c5704be1b95d060[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sun Feb 27 02:39:42 2022 +0900
+
+    Post, User, Myplace 관련 Entity 구현
+
+[33mcommit c269cf11f468119dbcf7aa0854a7ffe96a34f3b5[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Feb 26 22:14:19 2022 +0900
+
+    feat: hastag 관련 entity 구현
+
+[33mcommit 3debb31bd5e15cf68803fd60ae2d042c221aa143[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Feb 26 18:28:57 2022 +0900
+
+    feat: place 관련 Entity 구현
+
+[33mcommit 9b1a062a414daf709d3c4a108e4e36dc816b8148[m
+Author: Mo0nl19ht <mool2480@gmail.com>
+Date:   Sat Feb 26 01:14:37 2022 +0900
+
+    Initial commit

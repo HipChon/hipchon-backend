@@ -52,13 +52,13 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		QPost subPost2 = new QPost("subPost2");
 
 		List<PostDto> postDtoList = getPostDtoList(userId,placeID, subUser, subPost, subPost2);
-		Map<Long, List<PostImageDto>> postImageMap = groupById(postDtoList);
+		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(toPostIdList(postDtoList)));
 		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p)));
 		return postDtoList;
 	}
 
-	private Map<Long, List<PostImageDto>> groupById(List<PostDto> postDtoList) {
-		return getImageList(toPostIdList(postDtoList)).stream()
+	private Map<Long, List<PostImageDto>> groupById(List<PostImageDto> ImageDto) {
+		return ImageDto.stream()
 			.collect(Collectors.groupingBy(p -> p.getPostId()));
 	}
 
