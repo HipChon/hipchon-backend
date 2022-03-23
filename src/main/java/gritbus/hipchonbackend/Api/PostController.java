@@ -21,9 +21,14 @@ public class PostController {
 		return new Result(postService.findAllByIsBest());
 	}
 
-	@GetMapping("/{place_id}")
+	@GetMapping("/place/{place_id}")
 	public Result findByPlace(@PathVariable("place_id") Long placeId){
 		return new Result(postService.findByPlace(placeId));
+	}
+
+	@GetMapping("/user/{user_id}")
+	public Result findByuser(@PathVariable("user_id") Long userid){
+		return new Result(postService.findByUser(userid));
 	}
 
 	@GetMapping("/all/{user_id}/{order}")

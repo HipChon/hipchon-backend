@@ -20,6 +20,7 @@ import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -28,12 +29,8 @@ import gritbus.hipchonbackend.Domain.QPost;
 
 import gritbus.hipchonbackend.Domain.QUser;
 
-import gritbus.hipchonbackend.Dto.PostDto;
+import gritbus.hipchonbackend.Dto.*;
 
-import gritbus.hipchonbackend.Dto.PostImageDto;
-import gritbus.hipchonbackend.Dto.QPostDto;
-
-import gritbus.hipchonbackend.Dto.QPostImageDto;
 import gritbus.hipchonbackend.Repository.custom.PostRepositoryCustom;
 
 public class PostRepositoryImpl implements PostRepositoryCustom {
@@ -53,8 +50,33 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 		List<PostDto> postDtoList = getPostDtoList(userId,placeID, subUser, subPost, subPost2);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(toPostIdList(postDtoList)));
-		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p)));
+		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p.getId())));
 		return postDtoList;
+	}
+
+	@Override
+	public List<MypostDto> findByUser(Long userId) {
+		List<MypostDto> mypostList = getMypostList();
+		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(toMyPostIdList(mypostList)));
+		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getId())));
+		return mypostList;
+	}
+
+	private List<Long> toMyPostIdList(List<MypostDto> mypostList) {
+		return mypostList.stream()
+				.map(MypostDto::getId)
+				.collect(Collectors.toList());
+	}
+
+	private List<MypostDto> getMypostList() {
+		return queryFactory
+				.select(new QMypostDto(
+						post.id,
+						place.name
+				))
+				.from(post)
+				.join(post.place, place)
+				.fetch();
 	}
 
 	private Map<Long, List<PostImageDto>> groupById(List<PostImageDto> ImageDto) {
@@ -62,9 +84,16 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.collect(Collectors.groupingBy(p -> p.getPostId()));
 	}
 
-	private List<String> mapToImage(Map<Long, List<PostImageDto>> postImageMap, PostDto p) {
-		if (hasImage(postImageMap, p)){
-			return postImageMap.get(p.getId()).stream()
+	private String getFirstImage(Map<Long, List<PostImageDto>> postImageMap, Long postId ) {
+		if (hasImage(postImageMap, postId) && (postImageMap!=null) &&(postImageMap.get(postId)!=null)){
+			return postImageMap.get(postId).get(0).getImage();
+		}
+		return null;
+	}
+
+	private List<String> mapToImage(Map<Long, List<PostImageDto>> postImageMap, Long postId ) {
+		if (hasImage(postImageMap, postId) && (postImageMap!=null) && (postImageMap.get(postId)!=null)){
+			return postImageMap.get(postId).stream()
 				.map(PostImageDto::getImage)
 				.collect(Collectors.toList());
 		}
@@ -72,8 +101,8 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 	}
 
-	private boolean hasImage(Map<Long, List<PostImageDto>> postImageMap, PostDto p) {
-		return postImageMap.keySet().contains(p.getId());
+	private boolean hasImage(Map<Long, List<PostImageDto>> postImageMap, Long postId) {
+		return postImageMap.keySet().contains(postId);
 	}
 
 	private List<Long> toPostIdList(List<PostDto> postDtoList) {
