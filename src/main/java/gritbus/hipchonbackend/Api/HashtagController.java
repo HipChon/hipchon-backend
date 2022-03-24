@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Service.HashtagService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/hashtag")
 public class HashtagController {
 	private final HashtagService hashtagService;
-
-	@GetMapping("/all")
-	public Result findAll(){
-		return new Result(hashtagService.findAll());
-	}
 
 	@Data
 	@AllArgsConstructor

@@ -27,9 +27,6 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 		this.queryFactory = queryFactory;
 	}
 
-
-
-
 	@Override
 	public List<Myplace> findAllBy(MyplaceCondition condition){
 		return queryFactory

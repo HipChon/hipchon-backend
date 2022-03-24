@@ -17,9 +17,4 @@ import lombok.RequiredArgsConstructor;
 public class CityService {
 	private CityRepository cityRepository;
 
-	public List<CityDto> findAll(){
-		return cityRepository.findAll().stream()
-			.map(city -> CityDto.of(city))
-			.collect(Collectors.toList());
-	}
 }

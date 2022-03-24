@@ -1,20 +1,22 @@
 package gritbus.hipchonbackend.Dto;
 
+import com.querydsl.core.annotations.QueryProjection;
+
 import gritbus.hipchonbackend.Domain.City;
 import gritbus.hipchonbackend.Domain.Hashtag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
 public class HashtagDto {
 	private Long id;
 	private String name;
+	private String image;
 
-	public static HashtagDto of (Hashtag h){
-		return new HashtagDto(
-			h.getId(),
-			h.getName()
-		);
+	@QueryProjection
+	public HashtagDto(Long id, String name, String image) {
+		this.id = id;
+		this.name = name;
+		this.image = image;
 	}
 }
