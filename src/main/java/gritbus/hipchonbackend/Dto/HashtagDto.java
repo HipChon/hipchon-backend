@@ -9,13 +9,13 @@ import lombok.Getter;
 
 @Getter
 public class HashtagDto {
-	private Long id;
+	private Long hasgtagId;
 	private String name;
 	private String image;
 
 	@QueryProjection
-	public HashtagDto(Long id, String name, String image) {
-		this.id = id;
+	public HashtagDto(Long hasgtagId, String name, String image) {
+		this.hasgtagId = hasgtagId;
 		this.name = name;
 		this.image = image;
 	}

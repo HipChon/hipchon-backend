@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class BestPostDto {
-	private Long id;
+	private Long postId;
 	private String title;
 	private Long hashtagId;
 	private String hashtagName;

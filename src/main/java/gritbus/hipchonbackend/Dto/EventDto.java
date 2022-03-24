@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class EventDto {
-	private Long id;
+	private Long eventId;
 	private String title;
 	private String detail;
 	private String thumbnail;

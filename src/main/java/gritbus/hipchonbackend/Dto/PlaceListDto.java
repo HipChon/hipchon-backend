@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class PlaceListDto {
-	private Long id;
+	private Long placeId;
 	private String name;
 	private String category;
 	private String city;
@@ -23,9 +23,9 @@ public class PlaceListDto {
 	private Boolean isMyplace;
 
 	@QueryProjection
-	public PlaceListDto(Long id, String name, String category, String city, String placeImage, Long postCnt,
+	public PlaceListDto(Long placeId, String name, String category, String city, String placeImage, Long postCnt,
 		Long myplaceCnt,Boolean isMyplace) {
-		this.id = id;
+		this.placeId = placeId;
 		this.name = name;
 		this.category = category;
 		this.city = city;

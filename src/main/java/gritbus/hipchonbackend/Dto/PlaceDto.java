@@ -14,7 +14,7 @@ import lombok.Getter;
 public class PlaceDto {
 	//상세페이지
 	// 맨 위 정보 화면
-	private Long id;
+	private Long placeId;
 	private String placeImage;
 	private String name;
 	private String contact;

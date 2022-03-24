@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class CityDto {
-	private Long id;
+	private Long cityId;
 	private String name;
 
 	public static CityDto of (City c){

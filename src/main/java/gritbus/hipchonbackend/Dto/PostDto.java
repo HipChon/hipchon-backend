@@ -12,7 +12,7 @@ import lombok.ToString;
 
 @Data
 public class PostDto {
-	private Long id;
+	private Long postId;
 	private Long userId;
 	private String userName;
 	private String userImage;
@@ -26,9 +26,9 @@ public class PostDto {
 	private Boolean isMyplace;
 
 	@QueryProjection
-	public PostDto(Long id, Long userId,String userName, String userImage, LocalDateTime postTime, Long userPostCnt,
+	public PostDto(Long postId, Long userId,String userName, String userImage, LocalDateTime postTime, Long userPostCnt,
 		Long likeCnt, Long commentCnt, String detail,Long placeId,Boolean isMyplace) {
-		this.id = id;
+		this.postId = postId;
 		this.userId = userId;
 		this.userName = userName;
 		this.userImage = userImage;

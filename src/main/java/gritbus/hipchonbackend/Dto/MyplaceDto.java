@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class MyplaceDto {
-	private Long id;
+	private Long placeId;
 	private String name;
 	private String category;
 	private String address;
@@ -16,9 +16,9 @@ public class MyplaceDto {
 	private String memo;
 
 	@QueryProjection
-	public MyplaceDto(Long id, String name, String category, String address, String image, Long myplaceCnt,
+	public MyplaceDto(Long placeId, String name, String category, String address, String image, Long myplaceCnt,
 		Long postCnt) {
-		this.id = id;
+		this.placeId = placeId;
 		this.name = name;
 		this.category = category;
 		this.address = address;

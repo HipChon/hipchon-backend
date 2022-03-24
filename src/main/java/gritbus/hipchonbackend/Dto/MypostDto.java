@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class MypostDto {
-    private Long id;
+    private Long postId;
     private String placeName;
     private String postImage;
 
     @QueryProjection
-    public MypostDto(Long id, String placeName){
-        this.id = id;
+    public MypostDto(Long postId, String placeName){
+        this.postId = postId;
         this.placeName = placeName;
     }
 
