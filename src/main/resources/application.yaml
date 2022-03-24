@@ -19,4 +19,3 @@ logging:
     #logger로 찍음
     org.hibernate.SQL: debug
     org.hibernate.type: trace
-
