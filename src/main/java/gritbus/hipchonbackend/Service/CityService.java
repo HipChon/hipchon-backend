@@ -15,6 +15,6 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CityService {
-	private CityRepository cityRepository;
+	private final CityRepository cityRepository;
 
 }

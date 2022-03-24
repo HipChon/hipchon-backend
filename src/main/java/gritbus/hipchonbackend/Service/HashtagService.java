@@ -9,6 +9,6 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class HashtagService {
-	private HashtagRepository hashtagRepository;
+	private final HashtagRepository hashtagRepository;
 
 }

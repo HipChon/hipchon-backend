@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class AnnounceService {
-	private AnnounceRepository announceRepository;
+	private final AnnounceRepository announceRepository;
 
 	public List<AnnounceDto> findAll(){
 		List<Announce> all = announceRepository.findAll();
