@@ -50,7 +50,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 		List<PostDto> postDtoList = getPostDtoList(userId,placeID, subUser, subPost, subPost2);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory,toPostIdList(postDtoList)));
-		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p.getId())));
+		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p.getPostId())));
 		return postDtoList;
 	}
 
@@ -58,13 +58,13 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 	public List<MypostDto> findByUser(Long userId) {
 		List<MypostDto> mypostList = getMypostList(userId);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory,toMyPostIdList(mypostList)));
-		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getId())));
+		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getPostId())));
 		return mypostList;
 	}
 
 	public static List<Long> toMyPostIdList(List<MypostDto> mypostList) {
 		return mypostList.stream()
-				.map(MypostDto::getId)
+				.map(MypostDto::getPostId)
 				.collect(Collectors.toList());
 	}
 
@@ -108,7 +108,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 	private List<Long> toPostIdList(List<PostDto> postDtoList) {
 		return postDtoList.stream()
-			.map(PostDto::getId)
+			.map(PostDto::getPostId)
 			.collect(Collectors.toList());
 	}
 

@@ -70,7 +70,7 @@ public class PlaceService {
 
 	private void addTopKeyword(List<PlaceListDto> placeList) {
 		for (PlaceListDto p : placeList) {
-			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getId());
+			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getPlaceId());
 			if (top1.size() > 0 ){
 				p.setKeyword(top1.get(0).getKeyword());
 				p.setKeywordCategory(top1.get(0).getCategory());

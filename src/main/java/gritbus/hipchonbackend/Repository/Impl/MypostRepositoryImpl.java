@@ -30,7 +30,7 @@ public class MypostRepositoryImpl implements MypostRepositoryCustom {
 	public List<MypostDto> findMypost(Long userId) {
 		List<MypostDto> mypostList = getMypostDtoList(userId);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory,toMyPostIdList(mypostList)));
-		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getId())));
+		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getPostId())));
 		return mypostList;
 	}
 
