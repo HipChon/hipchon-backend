@@ -53,11 +53,6 @@ public class PostService {
 
 	private List<PostDto> findAllOrByPlace(Long userId,Long placeID) {
 		List<PostDto> postDtoList = postRepository.findAllOrByPlace(userId,placeID);
-		// if (userId!=-1){
-		// 	for (PostDto postDto : postDtoList) {
-		// 		postDto.setIsMyplace(postRepository.getIsMyplace(userId,postDto.getPlaceId()));
-		// 	}
-		// }
 		return postDtoList;
 	}
 

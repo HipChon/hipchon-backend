@@ -18,11 +18,11 @@ public class Myplace {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "place")
+	@JoinColumn(name = "place_id")
 	private Place place;
 
 	private void setPlace(Place place){

@@ -13,5 +13,4 @@ public interface PostRepositoryCustom {
 	List<PostDto> findAllOrByPlace(Long userId,Long placeID);
 	List<MypostDto> findByUser(Long userId);
 
-	// Boolean getIsMyplace(Long userId,Long placeId);
 }

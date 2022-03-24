@@ -49,7 +49,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		QPost subPost2 = new QPost("subPost2");
 
 		List<PostDto> postDtoList = getPostDtoList(userId,placeID, subUser, subPost, subPost2);
-		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(toPostIdList(postDtoList)));
+		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory,toPostIdList(postDtoList)));
 		postDtoList.forEach(p->p.setImageList(mapToImage(postImageMap, p.getId())));
 		return postDtoList;
 	}
@@ -57,12 +57,12 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 	@Override
 	public List<MypostDto> findByUser(Long userId) {
 		List<MypostDto> mypostList = getMypostList(userId);
-		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(toMyPostIdList(mypostList)));
+		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory,toMyPostIdList(mypostList)));
 		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getId())));
 		return mypostList;
 	}
 
-	private List<Long> toMyPostIdList(List<MypostDto> mypostList) {
+	public static List<Long> toMyPostIdList(List<MypostDto> mypostList) {
 		return mypostList.stream()
 				.map(MypostDto::getId)
 				.collect(Collectors.toList());
@@ -80,12 +80,12 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 				.fetch();
 	}
 
-	private Map<Long, List<PostImageDto>> groupById(List<PostImageDto> ImageDto) {
+	public static Map<Long, List<PostImageDto>> groupById(List<PostImageDto> ImageDto) {
 		return ImageDto.stream()
 			.collect(Collectors.groupingBy(p -> p.getPostId()));
 	}
 
-	private String getFirstImage(Map<Long, List<PostImageDto>> postImageMap, Long postId ) {
+	public static String getFirstImage(Map<Long, List<PostImageDto>> postImageMap, Long postId ) {
 		if (hasImage(postImageMap, postId) && (postImageMap!=null) &&(postImageMap.get(postId)!=null)){
 			return postImageMap.get(postId).get(0).getImage();
 		}
@@ -102,7 +102,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 	}
 
-	private boolean hasImage(Map<Long, List<PostImageDto>> postImageMap, Long postId) {
+	public static boolean hasImage(Map<Long, List<PostImageDto>> postImageMap, Long postId) {
 		return postImageMap.keySet().contains(postId);
 	}
 
@@ -150,7 +150,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.where(postComment.post.id.eq(post.id));
 	}
 
-	private List<PostImageDto> getImageList(List<Long> postIdList) {
+	public static List<PostImageDto> getImageList(JPAQueryFactory queryFactory,List<Long> postIdList) {
 		return queryFactory
 			.select(new QPostImageDto(post.id,postImage.image))
 			.from(postImage)

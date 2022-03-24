@@ -41,4 +41,5 @@ public class MyplaceService {
 	public Long getMyplaceCntByUser(Long userId){
 		return Long.valueOf(myplaceRepository.findAllBy(new MyplaceCondition(userId, null)).size());
 	}
+
 }
