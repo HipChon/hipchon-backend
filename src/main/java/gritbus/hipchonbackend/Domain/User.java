@@ -33,6 +33,7 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<PostComment> postCommentList = new ArrayList<>();
 
-
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Mypost> mypostList = new ArrayList<>();
 
 }

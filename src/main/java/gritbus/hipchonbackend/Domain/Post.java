@@ -40,6 +40,9 @@ public class Post {
 	@OneToMany(mappedBy = "post" , cascade = CascadeType.ALL)
 	private List<PostImage> postImageList = new ArrayList<>();
 
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+	private List<Mypost> mypostList = new ArrayList<>();
+
 	private String title;
 	private Long viewCnt = 0L;
 	private String detail;
