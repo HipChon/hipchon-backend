@@ -28,7 +28,7 @@ public class MyplaceService {
 		Place place = placeRepository.findById(placeId).get();
 		User user = userRepository.findById(userId).get();
 		if (myplaceRepository.existsByUserAndPlace(user, place)){
-			// throw new DatabaseException("이미 저장되어 있는 MYPLACE입니다!");
+			return null;
 		}
 		Myplace save = myplaceRepository.save(Myplace.createMyplace(user, place));
 		return save.getId();

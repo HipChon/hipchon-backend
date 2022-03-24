@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class MyplaceController {
 	private final MyplaceService myplaceService;
 
-	@Operation(summary = "마이플레이스에 저장 API", description = "")
+	@Operation(summary = "마이플레이스에 저장 API", description = "중복시 null 반환\n저장 성공시 myplaceId 반환(프론트에서 당장은 사용할 일 없음)")
 	@PostMapping("/{user_id}/{place_id}")
 	public Result addMyplace(@PathVariable("user_id") Long userId, @PathVariable("place_id")Long placeId){
 		return new Result(myplaceService.add(userId,placeId));
