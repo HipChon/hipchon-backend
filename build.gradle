@@ -38,12 +38,13 @@ dependencies {
     //querydsl
     //querydsl 추가
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation("org.projectlombok:lombok:")
     annotationProcessor(
             "javax.persistence:javax.persistence-api",
             "javax.annotation:javax.annotation-api",
             "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
-    testImplementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
-    testAnnotationProcessor("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+//    testImplementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
+//    testAnnotationProcessor("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
     //테스트에서 lombok 사용
     testCompileOnly 'org.projectlombok:lombok'
@@ -61,7 +62,7 @@ tasks.named('test') {
 
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
-
+//def querydslDir = "/generated/querydsl"
 querydsl {
     jpa = true
     querydslSourcesDir = querydslDir
@@ -70,9 +71,19 @@ sourceSets {
     main.java.srcDir querydslDir
 }
 configurations {
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
     querydsl.extendsFrom compileClasspath
 }
 compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
 }
-//querydsl 추가 끝
+
+compileQuerydsl.doFirst {
+    if(file(querydslDir).exists() ) delete(file(querydslDir))
+}
+
+compileJava.doFirst {
+    if(file(querydslDir).exists() ) delete(file(querydslDir))
+}

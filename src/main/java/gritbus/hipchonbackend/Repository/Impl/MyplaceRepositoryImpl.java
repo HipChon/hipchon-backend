@@ -1,5 +1,6 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
+import static com.querydsl.jpa.JPAExpressions.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QUser.*;

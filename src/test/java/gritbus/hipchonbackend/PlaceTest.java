@@ -76,7 +76,7 @@ public class PlaceTest {
 		List<PlaceListDto> placeListDtos = placeService.fastSearch(userId, cityId, categoryId, order);
 		for (PlaceListDto place : placeListDtos) {
 			System.out.print("getName() = " + place.getName());
-			System.out.print(" /getId() = " + place.getId());
+			System.out.print(" /getId() = " + place.getPlaceId());
 			System.out.print(" /postCnt = " + place.getPostCnt());
 			System.out.print(" /getIsMyplace() = " + place.getIsMyplace());
 			System.out.print(" /getMyplaceCnt() = " + place.getMyplaceCnt());

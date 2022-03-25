@@ -1,5 +1,6 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
+import static com.querydsl.jpa.JPAExpressions.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QPost.*;
@@ -23,6 +24,9 @@ import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.PostDto;
 import gritbus.hipchonbackend.Dto.PostImageDto;
+import gritbus.hipchonbackend.Dto.QMypostDto;
+import gritbus.hipchonbackend.Dto.QPostDto;
+import gritbus.hipchonbackend.Dto.QPostImageDto;
 import gritbus.hipchonbackend.Repository.custom.PostRepositoryCustom;
 
 public class PostRepositoryImpl implements PostRepositoryCustom {
