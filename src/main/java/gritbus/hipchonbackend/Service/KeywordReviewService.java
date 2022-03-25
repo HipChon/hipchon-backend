@@ -1,7 +1,6 @@
 package gritbus.hipchonbackend.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +15,11 @@ import lombok.RequiredArgsConstructor;
 public class KeywordReviewService {
 	private final KeywordReviewRepository keywordReviewRepository;
 
-	public List<KeywordDto> getTop3(Long placeId){
+	public List<KeywordDto> getTop3(Long placeId) {
 		return keywordReviewRepository.getTop3(placeId);
 	}
 
-	public List<KeywordDto> getTop1(Long placeId){
+	public List<KeywordDto> getTop1(Long placeId) {
 		return keywordReviewRepository.getTop1(placeId);
 	}
 }

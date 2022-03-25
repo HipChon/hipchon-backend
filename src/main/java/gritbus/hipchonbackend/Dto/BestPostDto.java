@@ -1,6 +1,5 @@
 package gritbus.hipchonbackend.Dto;
 
-import gritbus.hipchonbackend.Domain.Event;
 import gritbus.hipchonbackend.Domain.Hashtag;
 import gritbus.hipchonbackend.Domain.Post;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,7 @@ public class BestPostDto {
 	private String hashtagName;
 	private String hashtagImage;
 
-	public static BestPostDto of (Post p){
+	public static BestPostDto of(Post p) {
 		Hashtag hashtag = p.getPlace().getPlaceHashtagList().get(0).getHashtag();
 
 		return new BestPostDto(
@@ -26,6 +25,5 @@ public class BestPostDto {
 			hashtag.getImage()
 		);
 	}
-
 
 }

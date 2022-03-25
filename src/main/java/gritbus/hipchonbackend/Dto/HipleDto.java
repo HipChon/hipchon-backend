@@ -5,7 +5,6 @@ import com.querydsl.core.annotations.QueryProjection;
 import gritbus.hipchonbackend.Domain.Place;
 import lombok.Getter;
 
-
 @Getter
 public class HipleDto {
 	private Long placeId;
@@ -18,7 +17,8 @@ public class HipleDto {
 	private Boolean isMyplace;
 
 	@QueryProjection
-	public HipleDto(Long placeId, String name, String city, String category,String placeImage, Long postCnt, Long myplaceCnt,
+	public HipleDto(Long placeId, String name, String city, String category, String placeImage, Long postCnt,
+		Long myplaceCnt,
 		Boolean isMyplace) {
 		this.placeId = placeId;
 		this.name = name;
@@ -26,20 +26,20 @@ public class HipleDto {
 		this.city = city;
 		this.placeImage = placeImage;
 		this.myplaceCnt = myplaceCnt;
-		if (myplaceCnt==null){
+		if (myplaceCnt == null) {
 			this.myplaceCnt = 0L;
 		}
 		this.postCnt = postCnt;
-		if (postCnt==null){
+		if (postCnt == null) {
 			this.postCnt = 0L;
 		}
 		this.isMyplace = isMyplace;
-		if (isMyplace==null){
+		if (isMyplace == null) {
 			this.isMyplace = false;
 		}
 	}
 
-	public static HipleDto of (Place p, Long userId){
+	public static HipleDto of(Place p, Long userId) {
 		return new HipleDto(
 			p.getId(),
 			p.getName(),

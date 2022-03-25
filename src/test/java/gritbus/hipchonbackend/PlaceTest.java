@@ -11,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.jpa.JPAExpressions;
-
 import gritbus.hipchonbackend.Domain.Place;
-import gritbus.hipchonbackend.Domain.QPlace;
-import gritbus.hipchonbackend.Domain.QPost;
 import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
@@ -33,9 +28,9 @@ public class PlaceTest {
 
 	@Test
 	@DisplayName("place repo test")
-	public void test() throws Exception{
+	public void test() throws Exception {
 		//given
-		String name="조양방직";
+		String name = "조양방직";
 		//when
 		Optional<Place> found = placeRepository.findByName(name);
 
@@ -47,11 +42,12 @@ public class PlaceTest {
 		assertThat(found.get().getId())
 			.isEqualTo(5);
 	}
+
 	@Test
 	@DisplayName("all hiple")
-	public void findAllByHipleTest() throws Exception{
+	public void findAllByHipleTest() throws Exception {
 		//given
-		String is="true";
+		String is = "true";
 		Long userId = 1L;
 		//when
 		List<HipleDto> allByHiple = placeService.findAllByHiple(userId);
@@ -62,27 +58,29 @@ public class PlaceTest {
 		assertThat(allByHiple.size())
 			.isEqualTo(8);
 		assertThat(allByHiple.stream()
-			.filter(h->h.getIsMyplace())
+			.filter(h -> h.getIsMyplace())
 			.count())
 			.isEqualTo(2);
 	}
+
 	@Test
 	@DisplayName("fastSearch")
-	public void fastSearchTest() throws Exception{
+	public void fastSearchTest() throws Exception {
 
 		//given
-		Long cityId=2L;
-		Long categoryId=1L;
+		Long cityId = 2L;
+		Long categoryId = 1L;
 		Long userId = 1L;
 		String order = "myplace";
 		//when
-		List<PlaceListDto> placeListDtos = placeService.fastSearch(userId, cityId, categoryId,order);
+		List<PlaceListDto> placeListDtos = placeService.fastSearch(userId, cityId, categoryId, order);
 		for (PlaceListDto place : placeListDtos) {
 			System.out.print("getName() = " + place.getName());
 			System.out.print(" /getId() = " + place.getId());
 			System.out.print(" /postCnt = " + place.getPostCnt());
 			System.out.print(" /getIsMyplace() = " + place.getIsMyplace());
-			System.out.print(" /getMyplaceCnt() = " + place.getMyplaceCnt());;
+			System.out.print(" /getMyplaceCnt() = " + place.getMyplaceCnt());
+			;
 			System.out.print(" /getKeyword() = " + place.getKeyword());
 			System.out.println(" /place.getKeywordEmoji() = " + place.getKeywordEmoji());
 
@@ -94,7 +92,7 @@ public class PlaceTest {
 		assertThat(placeListDtos.size())
 			.isEqualTo(3);
 		assertThat(placeListDtos.stream()
-			.filter(p->p.getIsMyplace())
+			.filter(p -> p.getIsMyplace())
 			.count())
 			.isEqualTo(2);
 

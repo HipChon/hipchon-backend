@@ -15,14 +15,14 @@ import lombok.Getter;
 @Entity
 @Getter
 public class User {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "user_id")
 	private Long id;
 
 	private String name;
 	private String profileImage;
 	private String email;
-
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Post> postList = new ArrayList<>();

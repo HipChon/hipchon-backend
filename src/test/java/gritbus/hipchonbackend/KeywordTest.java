@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import gritbus.hipchonbackend.Dto.KeywordDto;
 import gritbus.hipchonbackend.Repository.KeywordReviewRepository;
 
-
 @SpringBootTest
 @Transactional(readOnly = true)
 public class KeywordTest {
@@ -23,10 +22,10 @@ public class KeywordTest {
 
 	@Test
 	@DisplayName("get top 3 keyword")
-	public void getTop3() throws Exception{
+	public void getTop3() throws Exception {
 
 		//given
-		Long placeId=1L;
+		Long placeId = 1L;
 
 		//when
 		List<KeywordDto> top3 = keywordReviewRepository.getTop3(placeId);
@@ -41,10 +40,10 @@ public class KeywordTest {
 
 	@Test
 	@DisplayName("get top 1 keyword")
-	public void getTop1() throws Exception{
+	public void getTop1() throws Exception {
 
 		//given
-		Long placeId=1L;
+		Long placeId = 1L;
 
 		//when
 		List<KeywordDto> top1 = keywordReviewRepository.getTop1(placeId);

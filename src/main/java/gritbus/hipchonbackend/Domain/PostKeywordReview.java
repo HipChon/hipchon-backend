@@ -13,7 +13,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class PostKeywordReview {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "post_keyword_review_id")
 	private Long id;
 
@@ -25,21 +26,21 @@ public class PostKeywordReview {
 	@JoinColumn(name = "keyword_review_id")
 	private KeywordReview keywordReview;
 
-	private void setPost(Post post){
-		this.post = post;
-		post.getPostKeywordReviewList().add(this);
-	}
-
-	private void setKeywordReview(KeywordReview keywordReview){
-		this.keywordReview = keywordReview;
-		keywordReview.getPostKeywordReviewList().add(this);
-	}
-
-	public static PostKeywordReview createPostKeywordReview(Post post, KeywordReview keywordReview){
+	public static PostKeywordReview createPostKeywordReview(Post post, KeywordReview keywordReview) {
 		PostKeywordReview postKeywordReview = new PostKeywordReview();
 		postKeywordReview.setKeywordReview(keywordReview);
 		postKeywordReview.setPost(post);
 		return postKeywordReview;
+	}
+
+	private void setPost(Post post) {
+		this.post = post;
+		post.getPostKeywordReviewList().add(this);
+	}
+
+	private void setKeywordReview(KeywordReview keywordReview) {
+		this.keywordReview = keywordReview;
+		keywordReview.getPostKeywordReviewList().add(this);
 	}
 
 }

@@ -17,7 +17,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import gritbus.hipchonbackend.Cond.PlaceFastSearchCondition;
 import gritbus.hipchonbackend.Cond.PlaceHashtagCondition;
-import gritbus.hipchonbackend.Domain.QPlaceHashtag;
 import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Dto.QHipleDto;
@@ -32,6 +31,11 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 		this.queryFactory = queryFactory;
 	}
 
+	public static JPQLQuery<Long> getPostCnt() {
+		return select(post.place.count())
+			.from(post)
+			.where(post.place.eq(place));
+	}
 
 	@Override
 	public List<PlaceListDto> findAllByHashtag(PlaceHashtagCondition condition) {
@@ -46,10 +50,10 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 				getMyplaceCnt(),
 				isMyplace(condition.getUserId())))
 			.from(placeHashtag)
-			.join(placeHashtag.place,place)
-			.join(place.category,category)
-			.join(place.city,city)
-			.join(placeHashtag.hashtag,hashtag)
+			.join(placeHashtag.place, place)
+			.join(place.category, category)
+			.join(place.city, city)
+			.join(placeHashtag.hashtag, hashtag)
 			.where(placeHashtag.hashtag.id.eq(condition.getHashtagId()))
 			.fetch();
 	}
@@ -69,8 +73,8 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 				)
 			)
 			.from(place)
-			.join(place.category,category)
-			.join(place.city,city)
+			.join(place.category, category)
+			.join(place.city, city)
 			.where(
 				cityEq(condition.getCityId()),
 				categoryEq(condition.getCategoryId()))
@@ -78,7 +82,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 	}
 
 	@Override
-	public List<HipleDto> findAllByHiple(Long userId){
+	public List<HipleDto> findAllByHiple(Long userId) {
 		return queryFactory
 			.select(new QHipleDto(
 					place.id,
@@ -92,26 +96,20 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 				)
 			)
 			.from(place)
-			.join(place.category,category)
-			.join(place.city,city)
+			.join(place.category, category)
+			.join(place.city, city)
 			.where(
 				place.hiple.eq(true))
 			.fetch();
 	}
 
-	public static JPQLQuery<Long> getPostCnt(){
-		return select(post.place.count())
-			.from(post)
-			.where(post.place.eq(place));
-	}
-
-	private JPQLQuery<Long> getMyplaceCnt(){
+	private JPQLQuery<Long> getMyplaceCnt() {
 		return select(myplace.place.count())
 			.from(myplace)
 			.where(myplace.place.eq(place));
 	}
 
-	private BooleanExpression isMyplace(Long userId){
+	private BooleanExpression isMyplace(Long userId) {
 		return select(myplace)
 			.from(myplace)
 			.where(
@@ -121,14 +119,14 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 	}
 
 	private BooleanExpression categoryEq(Long categoryId) {
-		if (categoryId ==null){
+		if (categoryId == null) {
 			return null;
 		}
 		return category.id.eq(categoryId);
 	}
 
 	private BooleanExpression cityEq(Long cityId) {
-		if (cityId==null){
+		if (cityId == null) {
 			return null;
 		}
 		return city.id.eq(cityId);

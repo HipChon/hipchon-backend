@@ -15,7 +15,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Hashtag {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "hashtag_id")
 	private Long id;
 

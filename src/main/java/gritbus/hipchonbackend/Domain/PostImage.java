@@ -13,7 +13,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class PostImage {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "post_image_id")
 	private Long id;
 

@@ -18,13 +18,13 @@ public class EventController {
 
 	@Operation(summary = "이벤트 조회 API", description = "이벤트 정보가 없어서 사용안됩니다!")
 	@GetMapping("")
-	public Result findAll(){
+	public Result findAll() {
 		return new Result(eventService.findAll());
 	}
 
 	@Data
 	@AllArgsConstructor
-	static class Result<T>{
+	static class Result<T> {
 		private T data;
 	}
 

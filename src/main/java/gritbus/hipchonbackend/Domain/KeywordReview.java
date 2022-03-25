@@ -15,7 +15,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class KeywordReview {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "keyword_review_id")
 	private Long id;
 
@@ -23,11 +24,7 @@ public class KeywordReview {
 	private String category;
 	private String emoji;
 
-
 	@OneToMany(mappedBy = "keywordReview", cascade = CascadeType.ALL)
 	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
-
-
-
 
 }

@@ -2,7 +2,6 @@ package gritbus.hipchonbackend.Dto;
 
 import java.time.LocalDateTime;
 
-import gritbus.hipchonbackend.Domain.Announce;
 import gritbus.hipchonbackend.Domain.Event;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +15,7 @@ public class EventDto {
 	private String thumbnail;
 	private LocalDateTime postTime;
 
-	public static EventDto of (Event e){
+	public static EventDto of(Event e) {
 		return new EventDto(
 			e.getId(),
 			e.getTitle(),

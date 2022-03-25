@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor(access=AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Gps {
 
 	private Double latitude;

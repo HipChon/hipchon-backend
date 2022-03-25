@@ -19,7 +19,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Post {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "post_id")
 	private Long id;
 
@@ -31,13 +32,13 @@ public class Post {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "post" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<PostComment> commentList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "post" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<PostKeywordReview> postKeywordReviewList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "post" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<PostImage> postImageList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
@@ -48,7 +49,7 @@ public class Post {
 	private String detail;
 	private LocalDateTime postTime;
 	private Long rate;
-	private Long likeCnt= 0L;
+	private Long likeCnt = 0L;
 
 	private Boolean isBest;
 

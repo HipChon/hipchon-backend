@@ -8,6 +8,7 @@ import lombok.Data;
 public class PostImageDto {
 	private Long postId;
 	private String image;
+
 	@QueryProjection
 	public PostImageDto(Long postId, String image) {
 		this.postId = postId;

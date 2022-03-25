@@ -6,7 +6,6 @@ import static gritbus.hipchonbackend.Domain.QPost.*;
 import static gritbus.hipchonbackend.Domain.QPostKeywordReview.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberPath;
@@ -26,15 +25,15 @@ public class KeywordReviewRepositoryImpl implements KeywordReviewRepositoryCusto
 
 	@Override
 	public List<KeywordDto> getTop3(Long placeId) {
-		return getTop(placeId,3);
+		return getTop(placeId, 3);
 	}
 
 	@Override
 	public List<KeywordDto> getTop1(Long placeId) {
-		return  getTop(placeId,1);
+		return getTop(placeId, 1);
 	}
 
-	private List<KeywordDto> getTop(Long placeId,int top) {
+	private List<KeywordDto> getTop(Long placeId, int top) {
 		NumberPath<Long> cnt = Expressions.numberPath(Long.class, "cnt");
 		return queryFactory
 			.select(new QKeywordDto(
@@ -56,22 +55,22 @@ public class KeywordReviewRepositoryImpl implements KeywordReviewRepositoryCusto
 
 }
 
-		//여러 방법으로 해보는중
-	// 	return queryFactory
-	// 		.select(new QKeywordDto(
-	// 			keywordReview.id,
-	// 			keywordReview.keyword,
-	// 			// keywordReview.category,
-	// 			postKeywordReview.count().as(cnt)
-	// 		))
-	// 		.from(keywordReview)
-	// 		.join(postKeywordReview)
-	// 		.join(postKeywordReview.post,post)
-	// 		.where(post.place.id.eq(placeId))
-	// 		.groupBy(keywordReview.id)
-	// 		.orderBy(cnt.desc(),keywordReview.id.desc())
-	// 		.limit(3)
-	// 		.fetch();
-	// }
+//여러 방법으로 해보는중
+// 	return queryFactory
+// 		.select(new QKeywordDto(
+// 			keywordReview.id,
+// 			keywordReview.keyword,
+// 			// keywordReview.category,
+// 			postKeywordReview.count().as(cnt)
+// 		))
+// 		.from(keywordReview)
+// 		.join(postKeywordReview)
+// 		.join(postKeywordReview.post,post)
+// 		.where(post.place.id.eq(placeId))
+// 		.groupBy(keywordReview.id)
+// 		.orderBy(cnt.desc(),keywordReview.id.desc())
+// 		.limit(3)
+// 		.fetch();
+// }
 
 

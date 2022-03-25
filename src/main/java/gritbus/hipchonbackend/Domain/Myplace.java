@@ -13,7 +13,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Myplace {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "myplace_id")
 	private Long id;
 
@@ -25,21 +26,21 @@ public class Myplace {
 	@JoinColumn(name = "place_id")
 	private Place place;
 
-	private void setPlace(Place place){
-		this.place= place;
-		place.getMyplaceList().add(this);
-	}
-
-	private void setUser(User user){
-		this.user = user;
-		user.getMyplaceList().add(this);
-	}
-
-	public static Myplace createMyplace(User user, Place place){
+	public static Myplace createMyplace(User user, Place place) {
 		Myplace myplace = new Myplace();
 		myplace.setPlace(place);
 		myplace.setUser(user);
 		return myplace;
+	}
+
+	private void setPlace(Place place) {
+		this.place = place;
+		place.getMyplaceList().add(this);
+	}
+
+	private void setUser(User user) {
+		this.user = user;
+		user.getMyplaceList().add(this);
 	}
 
 }

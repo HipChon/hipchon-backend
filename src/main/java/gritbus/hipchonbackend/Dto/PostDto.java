@@ -7,8 +7,6 @@ import java.util.List;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.ToString;
 
 @Data
 public class PostDto {
@@ -26,18 +24,19 @@ public class PostDto {
 	private Boolean isMyplace;
 
 	@QueryProjection
-	public PostDto(Long postId, Long userId,String userName, String userImage, LocalDateTime postTime, Long userPostCnt,
-		Long likeCnt, Long commentCnt, String detail,Long placeId,Boolean isMyplace) {
+	public PostDto(Long postId, Long userId, String userName, String userImage, LocalDateTime postTime,
+		Long userPostCnt,
+		Long likeCnt, Long commentCnt, String detail, Long placeId, Boolean isMyplace) {
 		this.postId = postId;
 		this.userId = userId;
 		this.userName = userName;
 		this.userImage = userImage;
-		if (postTime!=null){
+		if (postTime != null) {
 			this.postTime = postTime.toLocalDate();
 		}
 		this.userPostCnt = userPostCnt;
 		this.likeCnt = likeCnt;
-		if (likeCnt==null){
+		if (likeCnt == null) {
 			this.likeCnt = 0L;
 		}
 		this.commentCnt = commentCnt;

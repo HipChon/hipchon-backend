@@ -41,8 +41,7 @@ public class PlaceDto {
 	private Boolean animal;
 	private List<String> hashtag;
 
-
-	public static PlaceDto of (Place p,Long userId){
+	public static PlaceDto of(Place p, Long userId) {
 		return new PlaceDto(
 			p.getId(),
 			p.getPlaceImage(),
@@ -61,7 +60,7 @@ public class PlaceDto {
 			p.getGps().getLatitude(),
 			p.getGps().getLongitude(),
 			p.getAddress(),
-			
+
 			p.getCity().getName(),
 			p.getHiple(),
 			p.getAnimal(),

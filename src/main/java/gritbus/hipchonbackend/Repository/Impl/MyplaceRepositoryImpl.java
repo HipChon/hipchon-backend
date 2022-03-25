@@ -1,6 +1,5 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
-import static com.querydsl.jpa.JPAExpressions.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QUser.*;
@@ -28,16 +27,17 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 	}
 
 	@Override
-	public List<Myplace> findAllBy(MyplaceCondition condition){
+	public List<Myplace> findAllBy(MyplaceCondition condition) {
 		return queryFactory
 			.select(myplace)
 			.from(myplace)
 			.where(
 				userEq(condition.getUserId()),
 				placeEq(condition.getPlaceId())
-				)
+			)
 			.fetch();
 	}
+
 	@Override
 	public List<MyplaceDto> findAllMyplace(Long userId) {
 		QMyplace subMypalce = new QMyplace("subMyplace");
@@ -53,7 +53,7 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 				//comm
 			))
 			.from(myplace)
-			.join(myplace.place,place)
+			.join(myplace.place, place)
 			.where(myplace.user.id.eq(userId))
 			.fetch();
 	}
@@ -65,14 +65,14 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 	}
 
 	private BooleanExpression userEq(Long userId) {
-		if (userId==null){
+		if (userId == null) {
 			return null;
 		}
 		return user.id.eq(userId);
 	}
 
 	private BooleanExpression placeEq(Long placeId) {
-		if (placeId==null){
+		if (placeId == null) {
 			return null;
 		}
 		return place.id.eq(placeId);

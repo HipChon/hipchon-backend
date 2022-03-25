@@ -15,7 +15,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class City {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "city_id")
 	private Long id;
 

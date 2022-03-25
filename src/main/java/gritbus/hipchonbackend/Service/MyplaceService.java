@@ -24,21 +24,21 @@ public class MyplaceService {
 	private final UserRepository userRepository;
 
 	@Transactional
-	public Long add(Long userId, Long placeId){
+	public Long add(Long userId, Long placeId) {
 		Place place = placeRepository.findById(placeId).get();
 		User user = userRepository.findById(userId).get();
-		if (myplaceRepository.existsByUserAndPlace(user, place)){
+		if (myplaceRepository.existsByUserAndPlace(user, place)) {
 			return null;
 		}
 		Myplace save = myplaceRepository.save(Myplace.createMyplace(user, place));
 		return save.getId();
 	}
 
-	public List<MyplaceDto> findAllMyplace(Long userId){
+	public List<MyplaceDto> findAllMyplace(Long userId) {
 		return myplaceRepository.findAllMyplace(userId);
 	}
 
-	public Long getMyplaceCntByUser(Long userId){
+	public Long getMyplaceCntByUser(Long userId) {
 		return Long.valueOf(myplaceRepository.findAllBy(new MyplaceCondition(userId, null)).size());
 	}
 

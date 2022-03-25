@@ -16,7 +16,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Event {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "event")
 	private Long id;
 	private String title;
@@ -24,7 +25,7 @@ public class Event {
 	private String detail;
 	private String thumbnail;
 
-	@OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<EventImage> eventImageList = new ArrayList<>();
 
 }

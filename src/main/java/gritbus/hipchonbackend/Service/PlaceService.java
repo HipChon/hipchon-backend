@@ -2,8 +2,6 @@ package gritbus.hipchonbackend.Service;
 
 import static java.util.Comparator.*;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -12,8 +10,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.querydsl.core.Tuple;
-
 import gritbus.hipchonbackend.Cond.PlaceFastSearchCondition;
 import gritbus.hipchonbackend.Cond.PlaceHashtagCondition;
 import gritbus.hipchonbackend.Domain.Place;
@@ -21,11 +17,7 @@ import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.KeywordDto;
 import gritbus.hipchonbackend.Dto.PlaceDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
-import gritbus.hipchonbackend.Repository.CategoryRepository;
-import gritbus.hipchonbackend.Repository.CityRepository;
-import gritbus.hipchonbackend.Repository.HashtagRepository;
 import gritbus.hipchonbackend.Repository.KeywordReviewRepository;
-import gritbus.hipchonbackend.Repository.PlaceHashtagRepository;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -36,26 +28,27 @@ public class PlaceService {
 	private final PlaceRepository placeRepository;
 	private final KeywordReviewRepository keywordReviewRepository;
 
-	public PlaceDto findById(Long placeId,Long userId){
+	public PlaceDto findById(Long placeId, Long userId) {
 		Optional<Place> byId = placeRepository.findById(placeId);
-		return PlaceDto.of(byId.get(),userId);
+		return PlaceDto.of(byId.get(), userId);
 	}
 
-	public List<HipleDto> findAllByHiple(Long userId){
+	public List<HipleDto> findAllByHiple(Long userId) {
 		return placeRepository.findAllByHiple(userId);
 	}
 
-	public List<PlaceListDto> findAllByHashtag(Long hashtagId,Long userId,String order){
+	public List<PlaceListDto> findAllByHashtag(Long hashtagId, Long userId, String order) {
 		List<PlaceListDto> placeList = placeRepository.findAllByHashtag(new PlaceHashtagCondition(hashtagId, userId));
 		addTopKeyword(placeList);
-		return orderPlaceList(placeList,order);
+		return orderPlaceList(placeList, order);
 	}
 
-	public List<PlaceListDto> fastSearch(Long userId,Long cityId, Long categoryId,String order){
-		List<PlaceListDto> placeList = placeRepository.fastSearch(new PlaceFastSearchCondition(userId,cityId,categoryId));
+	public List<PlaceListDto> fastSearch(Long userId, Long cityId, Long categoryId, String order) {
+		List<PlaceListDto> placeList = placeRepository.fastSearch(
+			new PlaceFastSearchCondition(userId, cityId, categoryId));
 		//성능 개선 꼭 하기!!
 		addTopKeyword(placeList);
-		return orderPlaceList(placeList,order);
+		return orderPlaceList(placeList, order);
 
 		//느린버전
 		// Optional<City> city = cityRepository.findById(cityId);
@@ -71,7 +64,7 @@ public class PlaceService {
 	private void addTopKeyword(List<PlaceListDto> placeList) {
 		for (PlaceListDto p : placeList) {
 			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getPlaceId());
-			if (top1.size() > 0 ){
+			if (top1.size() > 0) {
 				p.setKeyword(top1.get(0).getKeyword());
 				p.setKeywordCategory(top1.get(0).getCategory());
 				p.setKeywordEmoji(top1.get(0).getEmoji());
@@ -85,8 +78,8 @@ public class PlaceService {
 			.collect(Collectors.toList());
 	}
 
-	private Function<PlaceListDto,Long> orderBy(String order){
-		if (order.equals("myplace")){
+	private Function<PlaceListDto, Long> orderBy(String order) {
+		if (order.equals("myplace")) {
 			return PlaceListDto::getMyplaceCnt;
 		}
 		return PlaceListDto::getPostCnt;
@@ -101,7 +94,6 @@ public class PlaceService {
 	// 		.map(place -> PlaceDto.of(place,userId))
 	// 		.collect(Collectors.toList());
 	// }
-
 
 	// private List<Place> filterByAnimal(List<Place> filtered, Boolean animal){
 	// 	filtered = filtered.stream()
@@ -127,6 +119,5 @@ public class PlaceService {
 	// 	}
 	// 	return filtered;
 	// }
-
 
 }

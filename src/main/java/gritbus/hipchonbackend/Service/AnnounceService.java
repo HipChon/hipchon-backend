@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class AnnounceService {
 	private final AnnounceRepository announceRepository;
 
-	public List<AnnounceDto> findAll(){
+	public List<AnnounceDto> findAll() {
 		List<Announce> all = announceRepository.findAll();
 		return all.stream()
 			.map(announce -> AnnounceDto.of(announce))

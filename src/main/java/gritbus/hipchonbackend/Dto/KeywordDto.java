@@ -2,9 +2,7 @@ package gritbus.hipchonbackend.Dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 
 @Getter
 public class KeywordDto {
@@ -15,13 +13,13 @@ public class KeywordDto {
 	private Long postCnt;
 
 	@QueryProjection
-	public KeywordDto(Long keywordId, String keyword, String category,String emoji, Long postCnt) {
+	public KeywordDto(Long keywordId, String keyword, String category, String emoji, Long postCnt) {
 		this.keywordId = keywordId;
 		this.keyword = keyword;
 		this.category = category;
 		this.emoji = emoji;
 		this.postCnt = postCnt;
-		if (postCnt==null){
+		if (postCnt == null) {
 			this.postCnt = 0L;
 		}
 	}

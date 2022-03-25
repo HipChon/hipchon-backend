@@ -16,13 +16,14 @@ import lombok.Getter;
 @Getter
 public class Category {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "category_id")
 	private Long id;
 
 	private String name;
 
-	@OneToMany(mappedBy ="category",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<Place> placeList = new ArrayList<>();
 
 }

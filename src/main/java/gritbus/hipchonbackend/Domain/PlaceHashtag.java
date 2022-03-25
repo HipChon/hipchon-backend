@@ -12,7 +12,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class PlaceHashtag {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -23,20 +24,20 @@ public class PlaceHashtag {
 	@JoinColumn(name = "place_id")
 	private Place place;
 
-	private void setHashtag(Hashtag hashtag){
-		this.hashtag=hashtag;
-		hashtag.getPlaceHashtagList().add(this);
-	}
-
-	private void setPlace(Place place){
-		this.place=place;
-		place.getPlaceHashtagList().add(this);
-	}
-
-	public static PlaceHashtag createPlaceHashtag(Place place, Hashtag hashtag){
+	public static PlaceHashtag createPlaceHashtag(Place place, Hashtag hashtag) {
 		PlaceHashtag placeHashtag = new PlaceHashtag();
 		placeHashtag.setPlace(place);
 		placeHashtag.setHashtag(hashtag);
 		return placeHashtag;
+	}
+
+	private void setHashtag(Hashtag hashtag) {
+		this.hashtag = hashtag;
+		hashtag.getPlaceHashtagList().add(this);
+	}
+
+	private void setPlace(Place place) {
+		this.place = place;
+		place.getPlaceHashtagList().add(this);
 	}
 }

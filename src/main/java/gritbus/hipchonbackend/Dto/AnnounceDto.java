@@ -3,7 +3,6 @@ package gritbus.hipchonbackend.Dto;
 import java.time.LocalDateTime;
 
 import gritbus.hipchonbackend.Domain.Announce;
-import gritbus.hipchonbackend.Domain.Hashtag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,7 +14,7 @@ public class AnnounceDto {
 	private LocalDateTime postTime;
 	private String detail;
 
-	public static AnnounceDto of (Announce a){
+	public static AnnounceDto of(Announce a) {
 		return new AnnounceDto(
 			a.getId(),
 			a.getTitle(),

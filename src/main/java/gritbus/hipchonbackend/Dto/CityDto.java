@@ -10,7 +10,7 @@ public class CityDto {
 	private Long cityId;
 	private String name;
 
-	public static CityDto of (City c){
+	public static CityDto of(City c) {
 		return new CityDto(
 			c.getId(),
 			c.getName()

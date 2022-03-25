@@ -13,7 +13,8 @@ import lombok.Getter;
 @Getter
 
 public class Announce {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "announce")
 	private Long id;
 	private String title;

@@ -15,7 +15,8 @@ import lombok.Getter;
 @Entity
 @Getter
 public class PostComment {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "post_comment_id")
 	private Long id;
 
@@ -23,13 +24,13 @@ public class PostComment {
 	private LocalDateTime commentTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "post_id")
+	@JoinColumn(name = "post_id")
 	private Post post;
 
-	private Boolean isRemoved= false;
+	private Boolean isRemoved = false;
 
 }

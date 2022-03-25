@@ -10,11 +10,11 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Configuration
 public class QueryConfig {
-		@PersistenceContext
-		private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-		@Bean
-		public JPAQueryFactory jpaQueryFactory() {
-			return new JPAQueryFactory(entityManager);
-		}
+	@Bean
+	public JPAQueryFactory jpaQueryFactory() {
+		return new JPAQueryFactory(entityManager);
+	}
 }

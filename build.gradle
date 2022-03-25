@@ -42,8 +42,8 @@ dependencies {
             "javax.persistence:javax.persistence-api",
             "javax.annotation:javax.annotation-api",
             "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
-    testImplementation ("com.querydsl:querydsl-jpa:${queryDslVersion}")
-    testAnnotationProcessor ("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+    testImplementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
+    testAnnotationProcessor("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
     //테스트에서 lombok 사용
     testCompileOnly 'org.projectlombok:lombok'

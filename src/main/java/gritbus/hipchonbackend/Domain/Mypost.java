@@ -26,20 +26,20 @@ public class Mypost {
 	@JoinColumn(name = "post_id")
 	private Post post;
 
-	private void setPost(Post post){
-		this.post= post;
-		post.getMypostList().add(this);
-	}
-
-	private void setUser(User user){
-		this.user = user;
-		user.getMypostList().add(this);
-	}
-
-	public static Mypost createMypost(User user, Post post){
+	public static Mypost createMypost(User user, Post post) {
 		Mypost mypost = new Mypost();
 		mypost.setPost(post);
 		mypost.setUser(user);
 		return mypost;
+	}
+
+	private void setPost(Post post) {
+		this.post = post;
+		post.getMypostList().add(this);
+	}
+
+	private void setUser(User user) {
+		this.user = user;
+		user.getMypostList().add(this);
 	}
 }

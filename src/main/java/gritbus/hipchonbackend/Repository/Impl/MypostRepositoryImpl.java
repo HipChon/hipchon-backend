@@ -11,11 +11,6 @@ import java.util.Map;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.Mypost;
-import gritbus.hipchonbackend.Domain.QMypost;
-import gritbus.hipchonbackend.Domain.QPlace;
-import gritbus.hipchonbackend.Domain.QPost;
-import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.PostImageDto;
 import gritbus.hipchonbackend.Dto.QMypostDto;
@@ -29,8 +24,8 @@ public class MypostRepositoryImpl implements MypostRepositoryCustom {
 	@Override
 	public List<MypostDto> findMypost(Long userId) {
 		List<MypostDto> mypostList = getMypostDtoList(userId);
-		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory,toMyPostIdList(mypostList)));
-		mypostList.forEach(p-> p.setPostImage(getFirstImage(postImageMap,p.getPostId())));
+		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toMyPostIdList(mypostList)));
+		mypostList.forEach(p -> p.setPostImage(getFirstImage(postImageMap, p.getPostId())));
 		return mypostList;
 	}
 

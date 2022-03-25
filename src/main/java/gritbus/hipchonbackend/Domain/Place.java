@@ -22,8 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Place {
-	@Id @GeneratedValue
-	@Column(name= "place_id")
+	@Id
+	@GeneratedValue
+	@Column(name = "place_id")
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -40,7 +41,7 @@ public class Place {
 	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
 	private List<Myplace> myplaceList = new ArrayList<>();
 
-	@OneToMany(mappedBy = "place" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
 	private List<Post> postList = new ArrayList<>();
 
 	@Embedded
@@ -62,34 +63,34 @@ public class Place {
 	private Long viewCnt = 0L;
 	private Boolean hiple;
 
-	public boolean containHashtag(Long hashtagId){
+	public boolean containHashtag(Long hashtagId) {
 		List<Long> idList = placeHashtagList.stream()
 			.map(PlaceHashtag::getHashtag)
 			.map(Hashtag::getId)
 			.collect(Collectors.toList());
-		return isInList(idList,hashtagId);
+		return isInList(idList, hashtagId);
 	}
 
-	public int getPostCount(){
+	public int getPostCount() {
 		return postList.size();
 	}
 
-	public int getMyplaceCount(){
+	public int getMyplaceCount() {
 		return myplaceList.size();
 	}
 
-	public boolean isMyplace(Long userId){
+	public boolean isMyplace(Long userId) {
 		List<Long> idList = myplaceList.stream()
 			.map(Myplace::getUser)
 			.map(User::getId)
 			.collect(Collectors.toList());
-		return isInList(idList,userId);
+		return isInList(idList, userId);
 
 	}
 
-	private boolean isInList(List<Long> idList,Long target){
-		for(Long id : idList){
-			if (id.equals(target)){
+	private boolean isInList(List<Long> idList, Long target) {
+		for (Long id : idList) {
+			if (id.equals(target)) {
 				return true;
 			}
 		}

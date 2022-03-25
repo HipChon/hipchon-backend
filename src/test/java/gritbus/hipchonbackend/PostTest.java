@@ -25,7 +25,7 @@ public class PostTest {
 
 	@Test
 	@DisplayName("상세페이지 속 피드")
-	public void findByPlace() throws Exception{
+	public void findByPlace() throws Exception {
 		//given
 		Long placeId = 1L;
 		//when
@@ -35,7 +35,7 @@ public class PostTest {
 		for (PostDto postDto : postDtoList) {
 			System.out.println(postDto.toString());
 		}
-		PostDto post=postDtoList.get(3);
+		PostDto post = postDtoList.get(3);
 		assertThat(postDtoList.size())
 			.isEqualTo(4);
 		assertThat(post.getUserPostCnt()) // n번째 리뷰 확인
@@ -48,17 +48,17 @@ public class PostTest {
 
 	@Test
 	@DisplayName("전체 post 보여주기")
-	public void findAll() throws Exception{
+	public void findAll() throws Exception {
 		//given
 		Long userId = 1L;
 		String order = "recent";
 		//when
-		List<PostDto> postDtoList = postService.findAll(userId,order);
+		List<PostDto> postDtoList = postService.findAll(userId, order);
 		//then
 		for (PostDto postDto : postDtoList) {
 			System.out.println(postDto.toString());
 		}
-		PostDto post=postDtoList.get(3);
+		PostDto post = postDtoList.get(3);
 		// assertThat(postDtoList.size())
 		// 	.isEqualTo(4);
 		// assertThat(post.getUserPostCnt()) // n번째 리뷰 확인
