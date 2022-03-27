@@ -42,10 +42,10 @@ public class PlaceController {
 	@Operation(summary = "hashtag로 장소 검색 API", description = "order는 myplace일 때 저장순,\npost일때는 후기순입니다")
 	@GetMapping("/hashtag/{user_id}/{hashtag_id}/{order}")
 	public Result findAllByHashtag(
-		@Parameter(required = true, example = "1") @PathVariable("hashtag_id") Long hashtagId,
 		@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId,
+		@Parameter(required = true, example = "1") @PathVariable("hashtag_id") Long hashtagId,
 		@Parameter(required = true, example = "myplace") @PathVariable("order") String order) {
-		return new Result(placeService.findAllByHashtag(hashtagId, userId, order));
+		return new Result(placeService.findAllByHashtag(userId, hashtagId, order));
 	}
 
 	@Operation(summary = "힙플 검색 API", description = "")

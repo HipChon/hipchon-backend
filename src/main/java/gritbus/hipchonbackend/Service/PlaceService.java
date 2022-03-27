@@ -37,8 +37,8 @@ public class PlaceService {
 		return placeRepository.findAllByHiple(userId);
 	}
 
-	public List<PlaceListDto> findAllByHashtag(Long hashtagId, Long userId, String order) {
-		List<PlaceListDto> placeList = placeRepository.findAllByHashtag(new PlaceHashtagCondition(hashtagId, userId));
+	public List<PlaceListDto> findAllByHashtag(Long userId, Long hashtagId, String order) {
+		List<PlaceListDto> placeList = placeRepository.findAllByHashtag(new PlaceHashtagCondition(userId,hashtagId));
 		addTopKeyword(placeList);
 		return orderPlaceList(placeList, order);
 	}
