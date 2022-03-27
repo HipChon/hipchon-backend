@@ -119,14 +119,14 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 	}
 
 	private BooleanExpression categoryEq(Long categoryId) {
-		if (categoryId == null) {
+		if (categoryId == -1) {
 			return null;
 		}
 		return category.id.eq(categoryId);
 	}
 
 	private BooleanExpression cityEq(Long cityId) {
-		if (cityId == null) {
+		if (cityId == -1) {
 			return null;
 		}
 		return city.id.eq(cityId);
