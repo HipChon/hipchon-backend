@@ -28,7 +28,7 @@ public class PlaceService {
 	private final PlaceRepository placeRepository;
 	private final KeywordReviewRepository keywordReviewRepository;
 
-	public PlaceDto findById(Long placeId, Long userId) {
+	public PlaceDto findById(Long userId, Long placeId) {
 		Optional<Place> byId = placeRepository.findById(placeId);
 		return PlaceDto.of(byId.get(), userId);
 	}
