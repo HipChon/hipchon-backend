@@ -36,7 +36,7 @@ public class PostController {
 		return new Result(postService.findByUser(userid));
 	}
 
-	@Operation(summary = "모든 후기 API(피드 탭)", description = "피드 탭에 보여지는 모든 후기\norder에 like가 들어가면 좋아요순, 그 외에는 최신순")
+	@Operation(summary = "모든 후기 API(피드 탭)", description = "피드 탭에 보여지는 모든 후기\norder에 like가 들어가면 좋아요순, recent는 최신순")
 	@GetMapping("/all/{user_id}/{order}")
 	public Result findAll(
 		@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId,

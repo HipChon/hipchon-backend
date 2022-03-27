@@ -29,7 +29,7 @@ public class PlaceController {
 		return new Result(placeService.findById(userId, placeId));
 	}
 
-	@Operation(summary = "빠른검색 API", description = "order는 myplace일 때 저장순,\n그 외 다른 단어 일때는 후기순입니다")
+	@Operation(summary = "빠른검색 API", description = "order는 myplace일 때 저장순,\npost일때는 후기순입니다")
 	@GetMapping("/{user_id}/{city_id}/{category_id}/{order}")
 	public Result fastSearch(
 		@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId,
@@ -39,7 +39,7 @@ public class PlaceController {
 		return new Result(placeService.fastSearch(userId, cityId, categoryId, order));
 	}
 
-	@Operation(summary = "hashtag로 장소 검색 API", description = "order는 myplace일 때 저장순,\n그 외 다른 단어 일때는 후기순입니다")
+	@Operation(summary = "hashtag로 장소 검색 API", description = "order는 myplace일 때 저장순,\npost일때는 후기순입니다")
 	@GetMapping("/hashtag/{user_id}/{hashtag_id}/{order}")
 	public Result findAllByHashtag(
 		@Parameter(required = true, example = "1") @PathVariable("hashtag_id") Long hashtagId,
