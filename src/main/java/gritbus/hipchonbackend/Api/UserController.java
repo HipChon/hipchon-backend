@@ -24,7 +24,7 @@ public class UserController {
 	private final UserService userService;
 
 	@Operation(summary = "로그인 API", description = "login_type에는 kakao, naver, apple 적으시면 됩니다!")
-	@GetMapping("/{login_type}/{login_id}")
+	@GetMapping("/login/{login_type}/{login_id}")
 	public ResponseEntity<Long> login(
 		@PathVariable("login_type") String loginType,
 		@PathVariable("login_id") Long loginId
@@ -42,6 +42,15 @@ public class UserController {
 	@PutMapping("")
 	public ResponseEntity<Long> updateProfile(@RequestBody UserDto userDto) {
 		return ResponseEntity.ok(userService.updateProfile(userDto));
+	}
+
+	@Operation(summary = "유저 정보 조회 API", description = "")
+	@GetMapping("/{login_type}/{login_id}")
+	public ResponseEntity<UserDto> getUserInfo(
+		@PathVariable("login_type") String loginType,
+		@PathVariable("login_id") Long loginId
+	) {
+		return ResponseEntity.ok(userService.findByLoginTypeAndLoginId(loginType,loginId));
 	}
 
 

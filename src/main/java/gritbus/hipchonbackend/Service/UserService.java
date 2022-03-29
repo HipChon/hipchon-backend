@@ -22,10 +22,15 @@ public class UserService {
 	private final UserRepository userRepository;
 
 	public Long login(String loginType, Long loginId){
-		return userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(loginType), loginId)
-			.orElseThrow(()-> new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER))
-			.getLoginId();
+		return getUser(loginType, loginId).getLoginId();
 	}
+
+	private User getUser(String loginType, Long loginId) {
+		return userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(loginType), loginId)
+			.orElseThrow(
+				() -> new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER));
+	}
+
 	@Transactional
 	public Long save(UserDto userDto){
 		if ((userDto.getLoginType()) == null){
@@ -82,6 +87,10 @@ public class UserService {
 			ErrorCode errorCode = ErrorCode.USER_NAME_DUPLICATION;
 			throw new UserDuplicatedException(errorCode.getMessage(), errorCode);
 		}
+	}
+
+	public UserDto findByLoginTypeAndLoginId(String loginType,Long loginId){
+		return UserDto.of(getUser(loginType, loginId));
 	}
 
 }
