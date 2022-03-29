@@ -24,7 +24,7 @@ public class UserService {
 	public Long login(String loginType, Long loginId){
 		return userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(loginType), loginId)
 			.orElseThrow(()-> new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER))
-			.getId();
+			.getLoginId();
 	}
 	@Transactional
 	public Long save(UserDto userDto){
@@ -44,7 +44,7 @@ public class UserService {
 			.isMarketing(userDto.getIsMarketing())
 			.build();
 
-		return userRepository.save(user).getId();
+		return userRepository.save(user).getLoginId();
 	}
 
 }
