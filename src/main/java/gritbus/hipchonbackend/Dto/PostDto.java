@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.querydsl.core.annotations.QueryProjection;
 
+import gritbus.hipchonbackend.Domain.Post;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,13 +23,12 @@ public class PostDto {
 	private Long likeCnt;
 	private Long commentCnt;
 	private String detail;
-	private Long placeId;
-	private Boolean isMyplace;
+	private PostPlaceSummaryDto place;
 
 	@QueryProjection
 	public PostDto(Long postId, Long userId, String userName, String userImage, LocalDateTime postTime,
 		Long userPostCnt,
-		Long likeCnt, Long commentCnt, String detail, Long placeId, Boolean isMyplace) {
+		Long likeCnt, Long commentCnt, String detail, PostPlaceSummaryDto placeDto) {
 		this.postId = postId;
 		this.userId = userId;
 		this.userName = userName;
@@ -43,12 +43,7 @@ public class PostDto {
 		}
 		this.commentCnt = commentCnt;
 		this.detail = detail;
-		this.placeId = placeId;
-		this.isMyplace = isMyplace;
-	}
-
-	public void setIsMyplace(Boolean isMyplace) {
-		this.isMyplace = isMyplace;
+		this.place = placeDto;
 	}
 
 	public void setImageList(List<String> imageList) {

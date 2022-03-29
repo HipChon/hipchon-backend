@@ -1,6 +1,7 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
+import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QPost.*;
@@ -19,6 +20,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import gritbus.hipchonbackend.Domain.QCategory;
 import gritbus.hipchonbackend.Domain.QPost;
 import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
@@ -27,6 +29,7 @@ import gritbus.hipchonbackend.Dto.PostImageDto;
 import gritbus.hipchonbackend.Dto.QMypostDto;
 import gritbus.hipchonbackend.Dto.QPostDto;
 import gritbus.hipchonbackend.Dto.QPostImageDto;
+import gritbus.hipchonbackend.Dto.QPostPlaceSummaryDto;
 import gritbus.hipchonbackend.Repository.custom.PostRepositoryCustom;
 
 public class PostRepositoryImpl implements PostRepositoryCustom {
@@ -130,12 +133,19 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 				post.likeCnt,
 				getCommentCnt(subPost2), //post의 comment 갯수
 				post.detail,
-				place.id,
-				getIsMyplace(userId, place.id)
+				new QPostPlaceSummaryDto(
+					place.id,
+					place.name,
+					place.category.name,
+					place.address,
+					getIsMyplace(userId, place.id),
+					place.homepage
+				)
 			))
 			.from(post)
 			.join(post.user, user)
 			.join(post.place, place)
+			.join(place.category, category)
 			.where(placeEq(placeID))
 			.orderBy(post.id.desc())
 			.fetch();
