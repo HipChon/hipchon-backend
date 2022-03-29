@@ -1,5 +1,8 @@
 package gritbus.hipchonbackend.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,6 +88,11 @@ public class UserService {
 
 	public UserDto findByLoginTypeAndLoginId(String loginType,Long loginId){
 		return UserDto.of(getUser(loginType, loginId));
+	}
+	@Transactional
+	public void deleteUser(String loginType,Long loginId){
+		User user = getUser(loginType, loginId);
+		userRepository.delete(user);
 	}
 
 }

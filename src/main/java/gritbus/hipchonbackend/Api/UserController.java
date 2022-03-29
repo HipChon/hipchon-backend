@@ -1,15 +1,13 @@
 package gritbus.hipchonbackend.Api;
 
-import java.util.Map;
-
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Dto.UserDto;
@@ -51,6 +49,15 @@ public class UserController {
 		@PathVariable("login_id") Long loginId
 	) {
 		return ResponseEntity.ok(userService.findByLoginTypeAndLoginId(loginType,loginId));
+	}
+
+	@Operation(summary = "유저 정보 삭제 API", description = "")
+	@DeleteMapping("/{login_type}/{login_id}")
+	public void deleteUser(
+		@PathVariable("login_type") String loginType,
+		@PathVariable("login_id") Long loginId
+	) {
+		userService.deleteUser(loginType,loginId);
 	}
 
 
