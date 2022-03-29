@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Domain.user;
+package gritbus.hipchonbackend.Domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

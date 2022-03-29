@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import gritbus.hipchonbackend.Domain.user.LoginType;
+import gritbus.hipchonbackend.Domain.LoginType;
 import gritbus.hipchonbackend.Domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {

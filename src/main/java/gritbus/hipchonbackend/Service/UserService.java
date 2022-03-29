@@ -3,7 +3,7 @@ package gritbus.hipchonbackend.Service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import gritbus.hipchonbackend.Domain.user.LoginType;
+import gritbus.hipchonbackend.Domain.LoginType;
 import gritbus.hipchonbackend.Domain.User;
 import gritbus.hipchonbackend.Dto.UserDto;
 import gritbus.hipchonbackend.Repository.UserRepository;
