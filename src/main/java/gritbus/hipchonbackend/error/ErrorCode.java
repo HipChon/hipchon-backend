@@ -25,8 +25,8 @@ public enum ErrorCode {
 	// DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다"),
 
 
-	UNAUTHORIZED_USER(401,"USER-401","등록된 사용자가 아닙니다");
-	// EMAIL_DUPLICATION(400,"MEMBER-ERR-400","EMAIL DUPLICATED");
+	UNAUTHORIZED_USER(401,"USER-401","등록된 사용자가 아닙니다"),
+	USER_DUPLICATION(409,"USER-409","존재하는 사용자입니다");
 
 	private int status;
 	private String errorCode;
