@@ -9,5 +9,7 @@ import gritbus.hipchonbackend.Domain.user.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByLoginTypeAndLoginId(LoginType loginType, Long loginId);
+	Optional<User> findByLoginId(Long loginId);
 
+	Optional<User> findByName(String name);
 }

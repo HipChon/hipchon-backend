@@ -26,7 +26,8 @@ public enum ErrorCode {
 
 
 	UNAUTHORIZED_USER(401,"USER-401","등록된 사용자가 아닙니다"),
-	USER_DUPLICATION(409,"USER-409","존재하는 사용자입니다");
+	USER_DUPLICATION(409,"USER-409","존재하는 사용자입니다"),
+	USER_NAME_DUPLICATION(409,"USER-409","존재하는 이름입니다");
 
 	private int status;
 	private String errorCode;
