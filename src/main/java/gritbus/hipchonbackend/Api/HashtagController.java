@@ -14,9 +14,4 @@ import lombok.RequiredArgsConstructor;
 public class HashtagController {
 	private final HashtagService hashtagService;
 
-	@Data
-	@AllArgsConstructor
-	static class Result<T> {
-		private T data;
-	}
 }

@@ -14,9 +14,4 @@ import lombok.RequiredArgsConstructor;
 public class CityApiController {
 	private final CityService cityService;
 
-	@Data
-	@AllArgsConstructor
-	static class Result<T> {
-		private T data;
-	}
 }

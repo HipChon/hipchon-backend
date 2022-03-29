@@ -1,6 +1,8 @@
-user_id,email,name,profile_image
-1,,달,
-2,,휴이,
-3,,율리,
-4,,범수,
-5,,도도,
+user_id,email,is_marketing,login_id,login_type,name,profile_image
+1,mool1997@naver.com,true,876,kakao,달,qwe
+2,ㅁㄴㅇ@naver.com,false,8876,kakao,휴이,qwe
+3,ㅁㅁㅎㄴㅇ@naver.com,true,82876,kakao,도도,qwe
+4,ㅁㅁㅁㅎㄴㅇ@naver.com,true,82876,apple,율리,qwde
+5,asㅇ@naver.com,false,828176,naver,범수,12111
+6,,true,876,naver,문예완,qwfe
+7,1297@naver.com,true,1876,naver,rlaㅁㄴㅇ,111qwfe
