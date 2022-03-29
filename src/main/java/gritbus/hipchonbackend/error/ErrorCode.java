@@ -1,5 +1,6 @@
 package gritbus.hipchonbackend.error;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

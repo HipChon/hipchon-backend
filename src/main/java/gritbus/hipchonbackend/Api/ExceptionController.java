@@ -12,10 +12,16 @@ import gritbus.hipchonbackend.exception.NoUserException;
 @RestControllerAdvice
 public class ExceptionController {
 
-
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorResponse> handleException(Exception ex){
-		ErrorResponse response = new ErrorResponse(ErrorCode.UNAUTHORIZED_USER);
-		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	@ExceptionHandler(NoUserException.class)
+	public ResponseEntity<ErrorResponse> handleNoUserException(NoUserException ex){
+		ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+		return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
 	}
+
+	// @ExceptionHandler(RuntimeException.class)
+	// public ResponseEntity<ErrorResponse> handleException(ErrorCode code){
+	// 	ErrorResponse response = new ErrorResponse(code);
+	// 	return new ResponseEntity<>(response, HttpStatus.valueOf(code.getStatus()));
+	// }
+
 }

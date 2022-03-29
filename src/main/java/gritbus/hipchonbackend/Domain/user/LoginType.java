@@ -1,5 +1,10 @@
 package gritbus.hipchonbackend.Domain.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum LoginType {
 	kakao("카카오"),
 	naver("네이버"),
@@ -7,11 +12,4 @@ public enum LoginType {
 
 	private final String name;
 
-	LoginType(String name){
-		this.name=name;
-	}
-
-	public String getName() {
-		return name;
-	}
 }
