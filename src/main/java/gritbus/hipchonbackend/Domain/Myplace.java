@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import gritbus.hipchonbackend.Domain.user.User;
 import lombok.Getter;
 
 @Entity

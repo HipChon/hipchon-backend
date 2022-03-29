@@ -6,9 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum LoginType {
-	kakao("카카오"),
-	naver("네이버"),
-	apple("애플");
+	kakao("kakao"),
+	naver("naver"),
+	apple("apple");
 
 	private final String name;
 

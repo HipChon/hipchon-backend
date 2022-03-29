@@ -3,8 +3,10 @@ package gritbus.hipchonbackend.Dto;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class MyplaceDto {
 	private Long placeId;
 	private String name;

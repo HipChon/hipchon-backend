@@ -1,9 +1,13 @@
 package gritbus.hipchonbackend.Dto;
 
-import gritbus.hipchonbackend.Domain.user.User;
+import gritbus.hipchonbackend.Domain.User;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class UserDto {
 	private Long id;

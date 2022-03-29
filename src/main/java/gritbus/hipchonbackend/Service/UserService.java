@@ -1,13 +1,10 @@
 package gritbus.hipchonbackend.Service;
 
-import java.net.UnknownServiceException;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import gritbus.hipchonbackend.Domain.user.LoginType;
-import gritbus.hipchonbackend.Domain.user.User;
+import gritbus.hipchonbackend.Domain.User;
 import gritbus.hipchonbackend.Dto.UserDto;
 import gritbus.hipchonbackend.Repository.UserRepository;
 import gritbus.hipchonbackend.error.ErrorCode;
@@ -36,15 +33,12 @@ public class UserService {
 		if ((userDto.getLoginType()) == null){
 			throw new RuntimeException("로그인 타입 정보가 존재하지 않습니다");
 		}
-
 		User user1 = userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(userDto.getLoginType()), userDto.getLoginId())
 			.orElse(null);
-
 		if (user1!=null){
 			ErrorCode errorCode = ErrorCode.USER_DUPLICATION;
 			throw new UserDuplicatedException(errorCode.getMessage(),errorCode);
 		}
-
 		User user = User.builder()
 			.loginId(userDto.getLoginId())
 			.loginType(LoginType.valueOf(userDto.getLoginType()))

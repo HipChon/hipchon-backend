@@ -7,8 +7,10 @@ import java.util.List;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class PostDto {
 	private Long postId;
 	private Long userId;

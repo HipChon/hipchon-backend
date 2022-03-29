@@ -1,17 +1,11 @@
 package gritbus.hipchonbackend;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.Optional;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import gritbus.hipchonbackend.Domain.user.LoginType;
-import gritbus.hipchonbackend.Domain.user.User;
 import gritbus.hipchonbackend.Repository.UserRepository;
 import gritbus.hipchonbackend.Service.UserService;
 

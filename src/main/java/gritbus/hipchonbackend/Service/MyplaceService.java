@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import gritbus.hipchonbackend.Cond.MyplaceCondition;
 import gritbus.hipchonbackend.Domain.Myplace;
 import gritbus.hipchonbackend.Domain.Place;
-import gritbus.hipchonbackend.Domain.user.User;
+import gritbus.hipchonbackend.Domain.User;
 import gritbus.hipchonbackend.Dto.MyplaceDto;
 import gritbus.hipchonbackend.Repository.MyplaceRepository;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
