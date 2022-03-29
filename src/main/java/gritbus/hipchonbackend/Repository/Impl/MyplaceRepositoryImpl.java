@@ -36,6 +36,7 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 				userEq(condition.getUserId()),
 				placeEq(condition.getPlaceId())
 			)
+			.orderBy(myplace.id.desc())
 			.fetch();
 	}
 
@@ -56,6 +57,7 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 			.from(myplace)
 			.join(myplace.place, place)
 			.where(myplace.user.id.eq(userId))
+			.orderBy(myplace.id.desc())
 			.fetch();
 	}
 

@@ -43,6 +43,7 @@ public class MypostRepositoryImpl implements MypostRepositoryCustom {
 				post.id.eq(mypost.post.id),
 				place.id.eq(post.place.id)
 			)
+			.orderBy(post.id.desc())
 			.fetch();
 	}
 }

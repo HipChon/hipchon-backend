@@ -55,6 +55,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.join(place.city, city)
 			.join(placeHashtag.hashtag, hashtag)
 			.where(placeHashtag.hashtag.id.eq(condition.getHashtagId()))
+			.orderBy(place.id.desc())
 			.fetch();
 	}
 
@@ -78,6 +79,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.where(
 				cityEq(condition.getCityId()),
 				categoryEq(condition.getCategoryId()))
+			.orderBy(place.id.desc())
 			.fetch();
 	}
 
@@ -100,6 +102,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.join(place.city, city)
 			.where(
 				place.hiple.eq(true))
+			.orderBy(place.id.desc())
 			.fetch();
 	}
 
