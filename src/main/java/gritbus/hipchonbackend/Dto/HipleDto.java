@@ -3,9 +3,12 @@ package gritbus.hipchonbackend.Dto;
 import com.querydsl.core.annotations.QueryProjection;
 
 import gritbus.hipchonbackend.Domain.Place;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+
+@Data
 public class HipleDto {
 	private Long placeId;
 	private String name;
@@ -15,11 +18,11 @@ public class HipleDto {
 	private Long postCnt;
 	private Long myplaceCnt;
 	private Boolean isMyplace;
+	private KeywordDto keyword;
 
 	@QueryProjection
 	public HipleDto(Long placeId, String name, String city, String category, String placeImage, Long postCnt,
-		Long myplaceCnt,
-		Boolean isMyplace) {
+		Long myplaceCnt, Boolean isMyplace) {
 		this.placeId = placeId;
 		this.name = name;
 		this.category = category;
@@ -39,17 +42,5 @@ public class HipleDto {
 		}
 	}
 
-	public static HipleDto of(Place p, Long userId) {
-		return new HipleDto(
-			p.getId(),
-			p.getName(),
-			p.getCategory().getName(),
-			p.getCity().getName(),
-			p.getPlaceImage(),
-			Long.valueOf(p.getPostCount()),
-			Long.valueOf(p.getMyplaceCount()),
-			p.isMyplace(userId)
-		);
-	}
 }
 

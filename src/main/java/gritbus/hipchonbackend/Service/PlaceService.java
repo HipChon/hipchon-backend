@@ -34,7 +34,9 @@ public class PlaceService {
 	}
 
 	public List<HipleDto> findAllByHiple(Long userId) {
-		return placeRepository.findAllByHiple(userId);
+		List<HipleDto> allByHiple = placeRepository.findAllByHiple(userId);
+		addTopKeywordToHiple(allByHiple);
+		return allByHiple;
 	}
 
 	public List<PlaceListDto> findAllByHashtag(Long userId, Long hashtagId, String order) {
@@ -59,6 +61,14 @@ public class PlaceService {
 		// 	.sorted(Comparator.comparing(Place::getPostCount).reversed()) // 후기순으로 정렬 여기서도 쿼리 날린다
 		// 	.map(place -> PlaceListDto.of(place,userId))
 		// 	.collect(Collectors.toList());
+	}
+	private void addTopKeywordToHiple(List<HipleDto> placeList) {
+		for (HipleDto p : placeList) {
+			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getPlaceId());
+			if (top1.size() > 0) {
+				p.setKeyword(top1.get(0));
+			}
+		}
 	}
 
 	private void addTopKeyword(List<PlaceListDto> placeList) {
