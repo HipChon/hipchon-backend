@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import gritbus.hipchonbackend.Dto.HipleDto;
+
+import gritbus.hipchonbackend.Dto.LocalHipster.LocalHipsterDto;
 import gritbus.hipchonbackend.Dto.LocalHipster.LocalHipsterListDto;
-import gritbus.hipchonbackend.Dto.PlaceDto;
-import gritbus.hipchonbackend.Dto.PlaceListDto;
+
 import gritbus.hipchonbackend.Service.LocalHipsterService;
 import gritbus.hipchonbackend.Service.PlaceService;
 import io.swagger.annotations.ApiOperation;
@@ -33,5 +33,13 @@ public class LocalHipsterController {
 		return ResponseEntity.ok(localHipsterService.findAllAsList());
 	}
 
+	@Operation(summary = "로컬 힙스터 상세페이지 API", description = "")
+	@GetMapping("/{user_id}/{hipster_id}")
+	public ResponseEntity<LocalHipsterDto> findById(
+		@PathVariable("user_id") Long userId,
+		@PathVariable("hipster_id") Long hipsterId
+	) {
+		return ResponseEntity.ok(localHipsterService.findById(userId,hipsterId));
+	}
 
 }
