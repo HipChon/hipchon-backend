@@ -21,7 +21,7 @@ import lombok.Getter;
 public class LocalHipsterPost {
 	@Id
 	@GeneratedValue
-	@Column(name = "loacl_hipster_post_id")
+	@Column(name = "local_hipster_post_id")
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -32,7 +32,7 @@ public class LocalHipsterPost {
 	@JoinColumn(name = "place_id")
 	private Place place;
 
-	@OneToMany(mappedBy = "loacl_hipster_post", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "localHipsterPost", cascade = CascadeType.ALL)
 	private List<LocalHipsterPostImage> hipsterPostImageList = new ArrayList<>();
 
 	private String title;

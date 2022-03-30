@@ -16,7 +16,7 @@ import lombok.Getter;
 public class LocalHipsterPostImage {
 	@Id
 	@GeneratedValue
-	@Column(name = "loacl_hipster_post_image_id")
+	@Column(name = "local_hipster_post_image_id")
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)

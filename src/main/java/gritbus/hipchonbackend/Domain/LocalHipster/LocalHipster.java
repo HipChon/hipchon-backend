@@ -21,7 +21,7 @@ import lombok.Getter;
 public class LocalHipster {
 	@Id
 	@GeneratedValue
-	@Column(name = "loacl_hipster_id")
+	@Column(name = "local_hipster_id")
 	private Long id;
 
 	private String title;
@@ -30,7 +30,7 @@ public class LocalHipster {
 	@JoinColumn(name = "city_id")
 	private City city;
 
-	@OneToMany(mappedBy = "local_hipster", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "localHipster", cascade = CascadeType.ALL)
 	private List<LocalHipsterPost> hipsterPostList = new ArrayList<>();
 
 
