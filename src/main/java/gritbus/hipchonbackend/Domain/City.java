@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import gritbus.hipchonbackend.Domain.LocalHipster.LocalHipster;
 import lombok.Getter;
 
 @Entity
@@ -24,5 +25,8 @@ public class City {
 
 	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
 	private List<Place> placeList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+	private List<LocalHipster> LocalHipsterList = new ArrayList<>();
 
 }
