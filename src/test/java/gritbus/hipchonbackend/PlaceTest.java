@@ -82,7 +82,7 @@ public class PlaceTest {
 			System.out.print(" /getMyplaceCnt() = " + place.getMyplaceCnt());
 			;
 			System.out.print(" /getKeyword() = " + place.getKeyword());
-			System.out.println(" /place.getKeywordEmoji() = " + place.getKeywordEmoji());
+			System.out.println(" /place.getKeywordEmoji() = " + place.getKeyword().getEmoji());
 
 		}
 		//then

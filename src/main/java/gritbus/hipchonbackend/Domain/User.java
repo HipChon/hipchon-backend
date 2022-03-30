@@ -31,7 +31,7 @@ public class User {
 	@GeneratedValue
 	@Column(name = "user_id")
 	private Long id;
-	private Long loginId;
+	private String loginId;
 	private String name;
 	private String profileImage;
 	private String email;

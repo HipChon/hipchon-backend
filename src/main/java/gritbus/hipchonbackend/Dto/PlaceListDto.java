@@ -1,5 +1,7 @@
 package gritbus.hipchonbackend.Dto;
 
+import java.util.List;
+
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Data;
@@ -10,22 +12,19 @@ public class PlaceListDto {
 	private String name;
 	private String category;
 	private String city;
-	private String placeImage;
 	private Long postCnt;
 	private Long myplaceCnt;
-	private String keyword;
-	private String keywordEmoji;
-	private String keywordCategory;
 	private Boolean isMyplace;
+	private KeywordDto keyword;
+	private List<String> imageList;
 
 	@QueryProjection
-	public PlaceListDto(Long placeId, String name, String category, String city, String placeImage, Long postCnt,
+	public PlaceListDto(Long placeId, String name, String category, String city, Long postCnt,
 		Long myplaceCnt, Boolean isMyplace) {
 		this.placeId = placeId;
 		this.name = name;
 		this.category = category;
 		this.city = city;
-		this.placeImage = placeImage;
 		this.postCnt = postCnt;
 		if (postCnt == null) {
 			this.postCnt = 0L;
@@ -34,13 +33,9 @@ public class PlaceListDto {
 		if (myplaceCnt == null) {
 			this.myplaceCnt = 0L;
 		}
-		this.keyword = "키워드 리뷰가 없습니다!";
-		this.keywordEmoji = "";
-		this.keywordCategory = "";
 		this.isMyplace = isMyplace;
 		if (isMyplace == null) {
 			this.isMyplace = false;
 		}
 	}
-
 }

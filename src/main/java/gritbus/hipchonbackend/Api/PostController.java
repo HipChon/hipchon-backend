@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Dto.BestPostDto;
 import gritbus.hipchonbackend.Dto.MypostDto;
-import gritbus.hipchonbackend.Dto.PostDto;
+import gritbus.hipchonbackend.Dto.Post.PostDto;
 import gritbus.hipchonbackend.Service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

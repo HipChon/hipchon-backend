@@ -21,13 +21,12 @@ public class HipleDto {
 	private KeywordDto keyword;
 
 	@QueryProjection
-	public HipleDto(Long placeId, String name, String city, String category, String placeImage, Long postCnt,
+	public HipleDto(Long placeId, String name, String category, String city,Long postCnt,
 		Long myplaceCnt, Boolean isMyplace) {
 		this.placeId = placeId;
 		this.name = name;
 		this.category = category;
 		this.city = city;
-		this.placeImage = placeImage;
 		this.myplaceCnt = myplaceCnt;
 		if (myplaceCnt == null) {
 			this.myplaceCnt = 0L;

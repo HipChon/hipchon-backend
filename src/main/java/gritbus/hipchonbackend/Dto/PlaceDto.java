@@ -1,21 +1,24 @@
 package gritbus.hipchonbackend.Dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import gritbus.hipchonbackend.Domain.Hashtag;
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Domain.PlaceHashtag;
+import gritbus.hipchonbackend.Domain.PlaceImage;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 @AllArgsConstructor
-@Getter
+@Data
 public class PlaceDto {
 	//상세페이지
 	// 맨 위 정보 화면
 	private Long placeId;
-	private String placeImage;
+
 	private String name;
 	private String contact;
 	private int postCnt;
@@ -34,17 +37,17 @@ public class PlaceDto {
 	private Double latitude;
 	private Double longitude;
 	private String address;
-
+	private List<String> imageList;
+	private List<KeywordDto> keywordList;
 	// 미정
-	private String city;
-	private Boolean hiple;
-	private Boolean animal;
-	private List<String> hashtag;
+	// private String city;
+	// private Boolean hiple;
+	// private Boolean animal;
+	// private List<String> hashtag;
 
 	public static PlaceDto of(Place p, Long userId) {
 		return new PlaceDto(
 			p.getId(),
-			p.getPlaceImage(),
 			p.getName(),
 			p.getContact(),
 			p.getPostCount(),
@@ -60,14 +63,17 @@ public class PlaceDto {
 			p.getGps().getLatitude(),
 			p.getGps().getLongitude(),
 			p.getAddress(),
-
-			p.getCity().getName(),
-			p.getHiple(),
-			p.getAnimal(),
-			p.getPlaceHashtagList().stream()
-				.map(PlaceHashtag::getHashtag)
-				.map(Hashtag::getName)
-				.collect(Collectors.toList())
+			p.getPlaceImageList().stream()
+			.map(PlaceImage::getImage)
+			.collect(Collectors.toList()),
+			new ArrayList<>()
+			// p.getCity().getName(),
+			// p.getHiple(),
+			// p.getAnimal(),
+			// p.getPlaceHashtagList().stream()
+			// 	.map(PlaceHashtag::getHashtag)
+			// 	.map(Hashtag::getName)
+			// 	.collect(Collectors.toList())
 		);
 	}
 

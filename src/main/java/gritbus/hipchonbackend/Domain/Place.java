@@ -44,13 +44,15 @@ public class Place {
 	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
 	private List<Post> postList = new ArrayList<>();
 
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+	private List<PlaceImage> placeImageList;
+
 	@Embedded
 	private Gps gps;
 
 	private String name;
 	private String address;
 
-	private String placeImage;
 	private String markerImage;
 
 	private String contact;

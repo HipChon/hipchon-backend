@@ -3,12 +3,14 @@ package gritbus.hipchonbackend.Repository.Impl;
 import static com.querydsl.jpa.JPAExpressions.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
+import static gritbus.hipchonbackend.Domain.QPlaceImage.*;
 import static gritbus.hipchonbackend.Domain.QUser.*;
 import static gritbus.hipchonbackend.Repository.Impl.PlaceRepositoryImpl.*;
 
 import java.util.List;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -49,7 +51,10 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 				place.name,
 				place.category.name,
 				place.address,
-				place.placeImage,
+				JPAExpressions
+					.select(placeImage.image)
+					.from(placeImage)
+					.where(placeImage.place.eq(place)),
 				getMyplaceCnt(subMypalce),
 				getPostCnt()
 				//comm

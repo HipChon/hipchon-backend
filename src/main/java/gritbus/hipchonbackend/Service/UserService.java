@@ -21,18 +21,18 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 	private final UserRepository userRepository;
 
-	public Long login(String loginType, Long loginId){
+	public String login(String loginType, String loginId){
 		return getUser(loginType, loginId).getLoginId();
 	}
 
-	private User getUser(String loginType, Long loginId) {
+	private User getUser(String loginType, String loginId) {
 		return userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(loginType), loginId)
 			.orElseThrow(
 				() -> new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER));
 	}
 
 	@Transactional
-	public Long save(UserDto userDto){
+	public String save(UserDto userDto){
 		if ((userDto.getLoginType()) == null){
 			throw new RuntimeException("로그인 타입 정보가 존재하지 않습니다");
 		}
@@ -55,7 +55,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public Long updateProfile(UserDto userDto){
+	public String updateProfile(UserDto userDto){
 		String newName = userDto.getName();
 		String newImage = userDto.getProfileImage();
 
@@ -86,11 +86,11 @@ public class UserService {
 		}
 	}
 
-	public UserDto findByLoginTypeAndLoginId(String loginType,Long loginId){
+	public UserDto findByLoginTypeAndLoginId(String loginType,String loginId){
 		return UserDto.of(getUser(loginType, loginId));
 	}
 	@Transactional
-	public void deleteUser(String loginType,Long loginId){
+	public void deleteUser(String loginType,String loginId){
 		User user = getUser(loginType, loginId);
 		userRepository.delete(user);
 	}

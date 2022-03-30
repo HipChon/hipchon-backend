@@ -23,13 +23,7 @@ public class KeywordReviewController {
 	@Operation(summary = "해당 장소의 키워드 Top3(상세페이지)", description = "장소 상세페이지의 키워드 부분용 API입니다")
 	@GetMapping("/top3/{place_id}")
 	public ResponseEntity<List<KeywordDto>> getTop3(@Parameter(required = true, example = "1") @PathVariable("place_id") Long placeId) {
-		return ResponseEntity.ok(keywordReviewService.getTop3(placeId));
-	}
-
-	@Operation(summary = "해당 장소의 키워드 Top1)", description = "지금 프론트에서 쓰이진 않습니다")
-	@GetMapping("/top1/{place_id}")
-	public ResponseEntity<List<KeywordDto>> getTop1(@Parameter(required = true, example = "1") @PathVariable("place_id") Long placeId) {
-		return ResponseEntity.ok(keywordReviewService.getTop1(placeId));
+		return ResponseEntity.ok(keywordReviewService.getTop(placeId,3));
 	}
 
 

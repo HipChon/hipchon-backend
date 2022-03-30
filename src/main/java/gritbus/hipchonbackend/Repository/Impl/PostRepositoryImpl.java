@@ -20,16 +20,17 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.QCategory;
 import gritbus.hipchonbackend.Domain.QPost;
 import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
-import gritbus.hipchonbackend.Dto.PostDto;
-import gritbus.hipchonbackend.Dto.PostImageDto;
+import gritbus.hipchonbackend.Dto.Post.PostDto;
+import gritbus.hipchonbackend.Dto.Post.PostImageDto;
+
+import gritbus.hipchonbackend.Dto.Post.QPostDto;
+import gritbus.hipchonbackend.Dto.Post.QPostImageDto;
+import gritbus.hipchonbackend.Dto.Post.QPostPlaceSummaryDto;
+import gritbus.hipchonbackend.Dto.Post.QPostUserDto;
 import gritbus.hipchonbackend.Dto.QMypostDto;
-import gritbus.hipchonbackend.Dto.QPostDto;
-import gritbus.hipchonbackend.Dto.QPostImageDto;
-import gritbus.hipchonbackend.Dto.QPostPlaceSummaryDto;
 import gritbus.hipchonbackend.Repository.custom.PostRepositoryCustom;
 
 public class PostRepositoryImpl implements PostRepositoryCustom {
@@ -125,14 +126,16 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		return queryFactory
 			.select(new QPostDto(
 				post.id,
-				user.id,
-				user.name,
-				user.profileImage,
 				post.postTime,
-				getUserPostCnt(subUser, subPost),
 				post.likeCnt,
 				getCommentCnt(subPost2), //post의 comment 갯수
 				post.detail,
+				new QPostUserDto(
+					user.id,
+					user.name,
+					user.profileImage,
+					getUserPostCnt(subUser, subPost)
+				),
 				new QPostPlaceSummaryDto(
 					place.id,
 					place.name,

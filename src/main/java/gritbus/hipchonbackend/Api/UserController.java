@@ -23,22 +23,22 @@ public class UserController {
 
 	@Operation(summary = "로그인 API", description = "login_type에는 kakao, naver, apple 적으시면 됩니다!")
 	@GetMapping("/login/{login_type}/{login_id}")
-	public ResponseEntity<Long> login(
+	public ResponseEntity<String> login(
 		@PathVariable("login_type") String loginType,
-		@PathVariable("login_id") Long loginId
+		@PathVariable("login_id") String loginId
 		) {
 		return ResponseEntity.ok(userService.login(loginType,loginId));
 	}
 
 	@Operation(summary = "회원가입 API", description = "")
 	@PostMapping("")
-	public ResponseEntity<Long> signUp(@RequestBody UserDto userDto) {
+	public ResponseEntity<String> signUp(@RequestBody UserDto userDto) {
 		return ResponseEntity.ok(userService.save(userDto));
 	}
 
 	@Operation(summary = "프로필 변경 API", description = "기존에 있는 이름이면 에러를 일으킴(본인 이름이 또 똑같이 들어오는 경우는 에러 X)")
 	@PutMapping("")
-	public ResponseEntity<Long> updateProfile(@RequestBody UserDto userDto) {
+	public ResponseEntity<String> updateProfile(@RequestBody UserDto userDto) {
 		return ResponseEntity.ok(userService.updateProfile(userDto));
 	}
 
@@ -46,7 +46,7 @@ public class UserController {
 	@GetMapping("/{login_type}/{login_id}")
 	public ResponseEntity<UserDto> getUserInfo(
 		@PathVariable("login_type") String loginType,
-		@PathVariable("login_id") Long loginId
+		@PathVariable("login_id") String loginId
 	) {
 		return ResponseEntity.ok(userService.findByLoginTypeAndLoginId(loginType,loginId));
 	}
@@ -55,10 +55,9 @@ public class UserController {
 	@DeleteMapping("/{login_type}/{login_id}")
 	public void deleteUser(
 		@PathVariable("login_type") String loginType,
-		@PathVariable("login_id") Long loginId
+		@PathVariable("login_id") String loginId
 	) {
 		userService.deleteUser(loginType,loginId);
 	}
-
 
 }

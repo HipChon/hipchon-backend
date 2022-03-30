@@ -10,9 +10,7 @@ import lombok.Getter;
 public class BestPostDto {
 	private Long postId;
 	private String title;
-	private Long hashtagId;
-	private String hashtagName;
-	private String hashtagImage;
+	private HashtagDto hashtag;
 
 	public static BestPostDto of(Post p) {
 		Hashtag hashtag = p.getPlace().getPlaceHashtagList().get(0).getHashtag();
@@ -20,9 +18,11 @@ public class BestPostDto {
 		return new BestPostDto(
 			p.getId(),
 			p.getTitle(),
-			hashtag.getId(),
-			hashtag.getName(),
-			hashtag.getImage()
+			new HashtagDto(
+				hashtag.getId(),
+				hashtag.getName(),
+				hashtag.getImage()
+			)
 		);
 	}
 

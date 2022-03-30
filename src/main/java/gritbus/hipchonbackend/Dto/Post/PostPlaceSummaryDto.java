@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Dto;
+package gritbus.hipchonbackend.Dto.Post;
 
 import com.querydsl.core.annotations.QueryProjection;
 

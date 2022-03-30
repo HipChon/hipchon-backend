@@ -1,5 +1,6 @@
 package gritbus.hipchonbackend.Service;
 
+import static gritbus.hipchonbackend.error.ErrorCode.*;
 import static java.util.Comparator.*;
 
 import java.util.List;
@@ -19,6 +20,8 @@ import gritbus.hipchonbackend.Dto.PlaceDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Repository.KeywordReviewRepository;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
+import gritbus.hipchonbackend.error.ErrorCode;
+import gritbus.hipchonbackend.exception.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -29,8 +32,11 @@ public class PlaceService {
 	private final KeywordReviewRepository keywordReviewRepository;
 
 	public PlaceDto findById(Long userId, Long placeId) {
-		Optional<Place> byId = placeRepository.findById(placeId);
-		return PlaceDto.of(byId.get(), userId);
+		PlaceDto placeDto = PlaceDto.of(placeRepository.findById(placeId)
+			.orElseThrow(() -> new NoSuchElementException(PLACE_NOT_FOUND.getMessage(), PLACE_NOT_FOUND)), userId);
+		List<KeywordDto> top3 = keywordReviewRepository.getTop(placeId,3);
+		placeDto.setKeywordList(top3);
+		return placeDto;
 	}
 
 	public List<HipleDto> findAllByHiple(Long userId) {
@@ -64,7 +70,7 @@ public class PlaceService {
 	}
 	private void addTopKeywordToHiple(List<HipleDto> placeList) {
 		for (HipleDto p : placeList) {
-			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getPlaceId());
+			List<KeywordDto> top1 = keywordReviewRepository.getTop(p.getPlaceId(),1);
 			if (top1.size() > 0) {
 				p.setKeyword(top1.get(0));
 			}
@@ -73,11 +79,9 @@ public class PlaceService {
 
 	private void addTopKeyword(List<PlaceListDto> placeList) {
 		for (PlaceListDto p : placeList) {
-			List<KeywordDto> top1 = keywordReviewRepository.getTop1(p.getPlaceId());
+			List<KeywordDto> top1 = keywordReviewRepository.getTop(p.getPlaceId(),1);
 			if (top1.size() > 0) {
-				p.setKeyword(top1.get(0).getKeyword());
-				p.setKeywordCategory(top1.get(0).getCategory());
-				p.setKeywordEmoji(top1.get(0).getEmoji());
+				p.setKeyword(top1.get(0));
 			}
 		}
 	}

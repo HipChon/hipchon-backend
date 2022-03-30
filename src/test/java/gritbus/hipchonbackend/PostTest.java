@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import gritbus.hipchonbackend.Dto.PostDto;
+import gritbus.hipchonbackend.Dto.Post.PostDto;
 import gritbus.hipchonbackend.Repository.PostRepository;
 import gritbus.hipchonbackend.Service.PostService;
 

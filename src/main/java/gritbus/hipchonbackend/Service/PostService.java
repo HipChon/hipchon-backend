@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import gritbus.hipchonbackend.Dto.BestPostDto;
 import gritbus.hipchonbackend.Dto.MypostDto;
-import gritbus.hipchonbackend.Dto.PostDto;
+import gritbus.hipchonbackend.Dto.Post.PostDto;
 import gritbus.hipchonbackend.Repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 

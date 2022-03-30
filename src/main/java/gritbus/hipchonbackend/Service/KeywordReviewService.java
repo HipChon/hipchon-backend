@@ -15,11 +15,8 @@ import lombok.RequiredArgsConstructor;
 public class KeywordReviewService {
 	private final KeywordReviewRepository keywordReviewRepository;
 
-	public List<KeywordDto> getTop3(Long placeId) {
-		return keywordReviewRepository.getTop3(placeId);
+	public List<KeywordDto> getTop(Long placeId,int n) {
+		return keywordReviewRepository.getTop(placeId,n);
 	}
 
-	public List<KeywordDto> getTop1(Long placeId) {
-		return keywordReviewRepository.getTop1(placeId);
-	}
 }

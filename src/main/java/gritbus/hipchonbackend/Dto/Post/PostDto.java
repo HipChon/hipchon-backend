@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Dto;
+package gritbus.hipchonbackend.Dto.Post;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.querydsl.core.annotations.QueryProjection;
 
-import gritbus.hipchonbackend.Domain.Post;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,35 +13,32 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostDto {
 	private Long postId;
-	private Long userId;
-	private String userName;
-	private String userImage;
 	private LocalDate postTime;
-	private Long userPostCnt;
 	private List<String> imageList;
 	private Long likeCnt;
 	private Long commentCnt;
 	private String detail;
+	private PostUserDto user;
 	private PostPlaceSummaryDto place;
 
 	@QueryProjection
-	public PostDto(Long postId, Long userId, String userName, String userImage, LocalDateTime postTime,
-		Long userPostCnt,
-		Long likeCnt, Long commentCnt, String detail, PostPlaceSummaryDto placeDto) {
+	public PostDto(Long postId, LocalDateTime postTime, Long likeCnt, Long commentCnt,
+		String detail, PostUserDto userDto,PostPlaceSummaryDto placeDto) {
 		this.postId = postId;
-		this.userId = userId;
-		this.userName = userName;
-		this.userImage = userImage;
+		this.postTime = null;
 		if (postTime != null) {
 			this.postTime = postTime.toLocalDate();
 		}
-		this.userPostCnt = userPostCnt;
 		this.likeCnt = likeCnt;
 		if (likeCnt == null) {
 			this.likeCnt = 0L;
 		}
 		this.commentCnt = commentCnt;
+		if (commentCnt == null) {
+			this.likeCnt = 0L;
+		}
 		this.detail = detail;
+		this.user = userDto;
 		this.place = placeDto;
 	}
 
