@@ -1,6 +1,4 @@
-package gritbus.hipchonbackend.Domain;
-
-import java.time.LocalDateTime;
+package gritbus.hipchonbackend.Domain.Post;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,23 +12,15 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class PostComment {
+public class PostImage {
 	@Id
 	@GeneratedValue
-	@Column(name = "post_comment_id")
+	@Column(name = "post_image_id")
 	private Long id;
 
-	private String detail;
-	private LocalDateTime commentTime;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	private String image;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "post_id")
 	private Post post;
-
-	private Boolean isRemoved = false;
-
 }

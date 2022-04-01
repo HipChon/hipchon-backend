@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Domain;
+package gritbus.hipchonbackend.Domain.Post;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import gritbus.hipchonbackend.Domain.User;
 import lombok.Getter;
 
 @Entity

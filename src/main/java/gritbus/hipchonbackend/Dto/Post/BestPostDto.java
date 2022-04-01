@@ -1,7 +1,7 @@
 package gritbus.hipchonbackend.Dto.Post;
 
 import gritbus.hipchonbackend.Domain.Hashtag;
-import gritbus.hipchonbackend.Domain.Post;
+import gritbus.hipchonbackend.Domain.Post.Post;
 import gritbus.hipchonbackend.Dto.HashtagDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import gritbus.hipchonbackend.Domain.Post.PostKeywordReview;
 import lombok.Getter;
 
 @Entity

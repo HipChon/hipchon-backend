@@ -12,6 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import gritbus.hipchonbackend.Domain.Post.Mypost;
+import gritbus.hipchonbackend.Domain.Post.Post;
+import gritbus.hipchonbackend.Domain.Post.PostComment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

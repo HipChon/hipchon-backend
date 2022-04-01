@@ -1,4 +1,4 @@
-package gritbus.hipchonbackend.Domain;
+package gritbus.hipchonbackend.Domain.Post;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import gritbus.hipchonbackend.Domain.Place;
+import gritbus.hipchonbackend.Domain.User;
 import lombok.Getter;
 
 @Entity

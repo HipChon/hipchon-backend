@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import gritbus.hipchonbackend.Domain.Post.Post;
 import lombok.Getter;
 import lombok.Setter;
 

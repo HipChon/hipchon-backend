@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import gritbus.hipchonbackend.Domain.Post;
+import gritbus.hipchonbackend.Domain.Post.Post;
 import gritbus.hipchonbackend.Dto.Post.CommentDto;
 import gritbus.hipchonbackend.Repository.PostCommentRepository;
 import gritbus.hipchonbackend.Repository.PostRepository;

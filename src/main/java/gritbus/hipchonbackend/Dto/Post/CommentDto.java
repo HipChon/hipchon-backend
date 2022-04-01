@@ -1,10 +1,7 @@
 package gritbus.hipchonbackend.Dto.Post;
 
 import java.time.LocalDateTime;
-
 import com.querydsl.core.annotations.QueryProjection;
-
-import gritbus.hipchonbackend.Domain.PostComment;
 import lombok.Data;
 
 @Data
