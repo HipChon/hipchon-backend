@@ -1,8 +1,10 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
-import static gritbus.hipchonbackend.Domain.QMypost.*;
+
+
+import static gritbus.hipchonbackend.Domain.Post.QMypost.*;
+import static gritbus.hipchonbackend.Domain.Post.QPost.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
-import static gritbus.hipchonbackend.Domain.QPost.*;
 import static gritbus.hipchonbackend.Repository.Impl.PostRepositoryImpl.*;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.Map;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import gritbus.hipchonbackend.Domain.Post.QPost;
+import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostImageDto;
 import gritbus.hipchonbackend.Dto.QMypostDto;

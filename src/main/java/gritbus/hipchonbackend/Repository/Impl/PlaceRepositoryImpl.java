@@ -1,6 +1,7 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
+import static gritbus.hipchonbackend.Domain.Post.QPost.*;
 import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QCity.*;
 import static gritbus.hipchonbackend.Domain.QHashtag.*;
@@ -8,7 +9,6 @@ import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QPlaceHashtag.*;
 import static gritbus.hipchonbackend.Domain.QPlaceImage.*;
-import static gritbus.hipchonbackend.Domain.QPost.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,14 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import gritbus.hipchonbackend.Cond.PlaceFastSearchCondition;
 import gritbus.hipchonbackend.Cond.PlaceHashtagCondition;
-import gritbus.hipchonbackend.Domain.QPlaceImage;
+import gritbus.hipchonbackend.Domain.Post.QPost;
+import gritbus.hipchonbackend.Domain.QCategory;
+import gritbus.hipchonbackend.Domain.QCity;
+import gritbus.hipchonbackend.Domain.QHashtag;
+import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceImageDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
-import gritbus.hipchonbackend.Dto.Post.PostImageDto;
 import gritbus.hipchonbackend.Dto.QHipleDto;
 import gritbus.hipchonbackend.Dto.QPlaceImageDto;
 import gritbus.hipchonbackend.Dto.QPlaceListDto;

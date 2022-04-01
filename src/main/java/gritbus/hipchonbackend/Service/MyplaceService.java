@@ -1,6 +1,9 @@
 package gritbus.hipchonbackend.Service;
 
+import static gritbus.hipchonbackend.error.ErrorCode.*;
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +16,10 @@ import gritbus.hipchonbackend.Dto.MyplaceDto;
 import gritbus.hipchonbackend.Repository.MyplaceRepository;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
 import gritbus.hipchonbackend.Repository.UserRepository;
+import gritbus.hipchonbackend.error.ErrorCode;
+import gritbus.hipchonbackend.exception.ElementDuplicatedException;
+import gritbus.hipchonbackend.exception.NoSuchElementException;
+import gritbus.hipchonbackend.exception.UserDuplicatedException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -25,13 +32,25 @@ public class MyplaceService {
 
 	@Transactional
 	public Long add(Long userId, Long placeId) {
-		Place place = placeRepository.findById(placeId).get();
-		User user = userRepository.findById(userId).get();
+		Place place = placeRepository.findById(placeId).orElseThrow(()-> new NoSuchElementException(
+			PLACE_NOT_FOUND.getErrorCode(), PLACE_NOT_FOUND));
+		User user = userRepository.findById(userId).orElseThrow(()-> new NoSuchElementException(
+			UNAUTHORIZED_USER.getErrorCode(), UNAUTHORIZED_USER
+		));
+
 		if (myplaceRepository.existsByUserAndPlace(user, place)) {
-			return null;
+			throw new ElementDuplicatedException(ELEMENT_DUPLICATION.getErrorCode(), ELEMENT_DUPLICATION);
 		}
-		Myplace save = myplaceRepository.save(Myplace.createMyplace(user, place));
-		return save.getId();
+
+		return myplaceRepository.save(Myplace.createMyplace(user, place)).getId();
+	}
+
+	@Transactional
+	public void delete(Long userId, Long placeId) {
+		Myplace myplace = myplaceRepository.findByUserIdAndPlaceId(userId, placeId)
+			.orElseThrow(() -> new NoSuchElementException(ELEMENT_NOT_FOUND.getErrorCode(), ELEMENT_NOT_FOUND));
+
+		myplaceRepository.delete(myplace);
 	}
 
 	public List<MyplaceDto> findAllMyplace(Long userId) {

@@ -27,9 +27,11 @@ public enum ErrorCode {
 
 	UNAUTHORIZED_USER(401,"USER-401","등록된 사용자가 아닙니다"),
 	USER_DUPLICATION(409,"USER-409","존재하는 사용자입니다"),
+	ELEMENT_DUPLICATION(409,"ELEMENT-409","존재하는 요소입니다"),
 	USER_NAME_DUPLICATION(409,"USER-409","존재하는 이름입니다"),
 	PLACE_NOT_FOUND(404, "PLACE-404","존재하지 않는 장소입니다"),
-	POST_NOT_FOUND(404, "POST-404","존재하지 않는 후기입니다");
+	POST_NOT_FOUND(404, "POST-404","존재하지 않는 후기입니다"),
+	ELEMENT_NOT_FOUND(404, "ELEMENT-404","존재하지 않는 요소입니다");
 
 	private int status;
 	private String errorCode;

@@ -1,12 +1,12 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
+import static gritbus.hipchonbackend.Domain.Post.QPost.*;
+import static gritbus.hipchonbackend.Domain.Post.QPostComment.*;
+import static gritbus.hipchonbackend.Domain.Post.QPostImage.*;
 import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
-import static gritbus.hipchonbackend.Domain.QPost.*;
-import static gritbus.hipchonbackend.Domain.QPostComment.*;
-import static gritbus.hipchonbackend.Domain.QPostImage.*;
 import static gritbus.hipchonbackend.Domain.QUser.*;
 
 import java.util.ArrayList;
@@ -20,12 +20,13 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.QPost;
+import gritbus.hipchonbackend.Domain.Post.QPost;
+import gritbus.hipchonbackend.Domain.QCategory;
+import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostDto;
 import gritbus.hipchonbackend.Dto.Post.PostImageDto;
-
 import gritbus.hipchonbackend.Dto.Post.QPostDto;
 import gritbus.hipchonbackend.Dto.Post.QPostImageDto;
 import gritbus.hipchonbackend.Dto.Post.QPostPlaceSummaryDto;

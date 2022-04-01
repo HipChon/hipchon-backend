@@ -7,7 +7,6 @@ import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QCity.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
-import static gritbus.hipchonbackend.Domain.QPlaceImage.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +17,17 @@ import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.LocalHipster.QLocalHipsterPostImage;
+
 import gritbus.hipchonbackend.Dto.LocalHipster.LocalHipsterDto;
 import gritbus.hipchonbackend.Dto.LocalHipster.LocalHipsterListDto;
 import gritbus.hipchonbackend.Dto.LocalHipster.LocalHipsterPostDto;
+
 import gritbus.hipchonbackend.Dto.LocalHipster.QLocalHipsterDto;
 import gritbus.hipchonbackend.Dto.LocalHipster.QLocalHipsterListDto;
 import gritbus.hipchonbackend.Dto.LocalHipster.QLocalHipsterPostDto;
-import gritbus.hipchonbackend.Dto.PlaceImageDto;
 import gritbus.hipchonbackend.Dto.Post.PostImageDto;
 import gritbus.hipchonbackend.Dto.Post.QPostImageDto;
 import gritbus.hipchonbackend.Dto.Post.QPostPlaceSummaryDto;
-import gritbus.hipchonbackend.Dto.QPlaceImageDto;
 import gritbus.hipchonbackend.Repository.custom.LocalHipsterRepositoryCustom;
 import lombok.RequiredArgsConstructor;
 

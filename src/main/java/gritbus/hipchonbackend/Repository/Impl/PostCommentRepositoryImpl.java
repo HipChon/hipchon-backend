@@ -1,9 +1,8 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
-import static gritbus.hipchonbackend.Domain.QKeywordReview.*;
-import static gritbus.hipchonbackend.Domain.QPost.*;
-import static gritbus.hipchonbackend.Domain.QPostComment.*;
-import static gritbus.hipchonbackend.Domain.QPostKeywordReview.*;
+
+
+import static gritbus.hipchonbackend.Domain.Post.QPostComment.*;
 import static gritbus.hipchonbackend.Domain.QUser.*;
 
 import java.util.List;
@@ -12,13 +11,10 @@ import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.QPostComment;
 import gritbus.hipchonbackend.Domain.QUser;
-import gritbus.hipchonbackend.Dto.KeywordDto;
 import gritbus.hipchonbackend.Dto.Post.CommentDto;
 import gritbus.hipchonbackend.Dto.Post.QCommentDto;
 import gritbus.hipchonbackend.Dto.Post.QCommentUserDto;
-import gritbus.hipchonbackend.Dto.QKeywordDto;
 import gritbus.hipchonbackend.Repository.custom.KeywordReviewRepositoryCustom;
 import gritbus.hipchonbackend.Repository.custom.PostCommentRepositoryCustom;
 import lombok.RequiredArgsConstructor;

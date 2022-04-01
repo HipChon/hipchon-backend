@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import gritbus.hipchonbackend.error.ErrorCode;
 import gritbus.hipchonbackend.error.ErrorResponse;
+import gritbus.hipchonbackend.exception.ElementDuplicatedException;
 import gritbus.hipchonbackend.exception.NoSuchElementException;
 import gritbus.hipchonbackend.exception.NoUserException;
 import gritbus.hipchonbackend.exception.UserDuplicatedException;
@@ -21,6 +22,11 @@ public class ExceptionController {
 
 	@ExceptionHandler(UserDuplicatedException.class)
 	public ResponseEntity<ErrorResponse> handleUserDuplicatedException(UserDuplicatedException ex){
+		return new ResponseEntity<>(new ErrorResponse(ex.getErrorCode()), HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+	}
+
+	@ExceptionHandler(ElementDuplicatedException.class)
+	public ResponseEntity<ErrorResponse> handleElementDuplicatedException(ElementDuplicatedException ex){
 		return new ResponseEntity<>(new ErrorResponse(ex.getErrorCode()), HttpStatus.valueOf(ex.getErrorCode().getStatus()));
 	}
 
