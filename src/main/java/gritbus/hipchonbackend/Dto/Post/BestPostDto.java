@@ -9,6 +9,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class BestPostDto {
+	//베스트후기 추가할떄 title따로 넣기
+	// 기존 post는 title 없음
 	private Long postId;
 	private String title;
 	private HashtagDto hashtag;
