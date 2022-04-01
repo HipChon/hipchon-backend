@@ -15,10 +15,13 @@ import lombok.Getter;
 public class EventImage {
 	@Id
 	@GeneratedValue
-	@Column(name = "event_imgae_id")
+	@Column(name = "event_image_id")
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "event_id")
 	private Event event;
+
+	private String image;
+
 }

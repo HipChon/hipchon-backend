@@ -13,13 +13,15 @@ public class AnnounceDto {
 	private String title;
 	private LocalDateTime postTime;
 	private String detail;
+	private String thumbnail;
 
 	public static AnnounceDto of(Announce a) {
 		return new AnnounceDto(
 			a.getId(),
 			a.getTitle(),
 			a.getPostTime(),
-			a.getDetail()
+			a.getDetail(),
+			a.getThumbnail()
 		);
 	}
 }

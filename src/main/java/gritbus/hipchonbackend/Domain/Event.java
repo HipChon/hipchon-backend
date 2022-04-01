@@ -18,7 +18,7 @@ import lombok.Getter;
 public class Event {
 	@Id
 	@GeneratedValue
-	@Column(name = "event")
+	@Column(name = "event_id")
 	private Long id;
 	private String title;
 	private LocalDateTime postTime;

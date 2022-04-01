@@ -15,9 +15,10 @@ import lombok.Getter;
 public class Announce {
 	@Id
 	@GeneratedValue
-	@Column(name = "announce")
+	@Column(name = "announce_id")
 	private Long id;
 	private String title;
 	private LocalDateTime postTime;
 	private String detail;
+	private String thumbnail;
 }

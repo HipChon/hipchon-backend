@@ -38,8 +38,6 @@ public class PostTest {
 		PostDto post = postDtoList.get(3);
 		assertThat(postDtoList.size())
 			.isEqualTo(4);
-		assertThat(post.getUserPostCnt()) // n번째 리뷰 확인
-			.isEqualTo(4);
 		assertThat(post.getImageList().size())
 			.isEqualTo(3);
 		assertThat(post.getCommentCnt())
