@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import gritbus.hipchonbackend.Dto.BestPostDto;
+import gritbus.hipchonbackend.Dto.Post.BestPostDto;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostDto;
 import gritbus.hipchonbackend.Repository.PostRepository;

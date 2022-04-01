@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import gritbus.hipchonbackend.Dto.BestPostDto;
+import gritbus.hipchonbackend.Dto.Post.BestPostDto;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostDto;
 import gritbus.hipchonbackend.Service.PostService;
