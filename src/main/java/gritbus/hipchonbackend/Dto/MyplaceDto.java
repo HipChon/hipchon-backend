@@ -1,5 +1,7 @@
 package gritbus.hipchonbackend.Dto;
 
+import java.util.List;
+
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Data;
@@ -18,18 +20,21 @@ public class MyplaceDto {
 	private String memo;
 
 	@QueryProjection
-	public MyplaceDto(Long placeId, String name, String category, String address, String image, Long myplaceCnt,
+	public MyplaceDto(Long placeId, String name, String category, String address,Long myplaceCnt,
 		Long postCnt) {
 		this.placeId = placeId;
 		this.name = name;
 		this.category = category;
 		this.address = address;
-		this.image = image;
 		this.myplaceCnt = myplaceCnt;
 		this.postCnt = postCnt;
 	}
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

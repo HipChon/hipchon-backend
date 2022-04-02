@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.querydsl.core.QueryFactory;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -48,14 +49,14 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.where(post.place.eq(place));
 	}
 
-	private String getFirstImage(Map<Long, List<PlaceImageDto>> placeImageDto, Long placeId) {
+	public static String getFirstImage(Map<Long, List<PlaceImageDto>> placeImageDto, Long placeId) {
 		if (hasImage(placeImageDto, placeId) && (placeImageDto != null) && (placeImageDto.get(placeId) != null)) {
 			return placeImageDto.get(placeId).get(0).getImage();
 		}
 		return null;
 	}
 
-	private List<String> mapToImage(Map<Long, List<PlaceImageDto>> placeImageMap, Long placeId) {
+	public static List<String> mapToImage(Map<Long, List<PlaceImageDto>> placeImageMap, Long placeId) {
 		if (hasImage(placeImageMap, placeId) && (placeImageMap != null) && (placeImageMap.get(placeId) != null)) {
 			return placeImageMap.get(placeId).stream()
 				.map(PlaceImageDto::getImage)
@@ -70,16 +71,16 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.collect(Collectors.toList());
 	}
 
-	private Map<Long, List<PlaceImageDto>> groupById(List<PlaceImageDto> imageList) {
+	public static Map<Long, List<PlaceImageDto>> groupById(List<PlaceImageDto> imageList) {
 		return imageList.stream()
 			.collect(Collectors.groupingBy(p -> p.getPlaceId()));
 	}
 
-	private boolean hasImage(Map<Long, List<PlaceImageDto>> placeImageMap, Long placeId) {
+	public static boolean hasImage(Map<Long, List<PlaceImageDto>> placeImageMap, Long placeId) {
 		return placeImageMap.keySet().contains(placeId);
 	}
 
-	private List<PlaceImageDto> getImageList(List<Long> placeIdList) {
+	public static List<PlaceImageDto> getImageList(JPAQueryFactory queryFactory,List<Long> placeIdList) {
 		return queryFactory.select(new QPlaceImageDto(
 			placeImage.place.id,
 			placeImage.image
@@ -90,7 +91,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 	}
 
 	private void setDtoImageList(List<PlaceListDto> placeListDtos){
-		Map<Long, List<PlaceImageDto>> longListMap = groupById(getImageList(toPlaceIdList(placeListDtos)));
+		Map<Long, List<PlaceImageDto>> longListMap = groupById(getImageList(queryFactory,toPlaceIdList(placeListDtos)));
 		placeListDtos.forEach(p->p.setImageList(mapToImage(longListMap,p.getPlaceId())));
 	}
 
@@ -167,7 +168,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 			.orderBy(place.id.desc())
 			.fetch();
 		Map<Long, List<PlaceImageDto>> longListMap = groupById(
-			getImageList(
+			getImageList(queryFactory,
 				hipleDtos.stream()
 				.map(HipleDto::getPlaceId)
 				.collect(Collectors.toList())));

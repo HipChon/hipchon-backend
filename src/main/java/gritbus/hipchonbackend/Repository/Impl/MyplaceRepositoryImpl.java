@@ -2,24 +2,31 @@ package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
 
+import static gritbus.hipchonbackend.Domain.QCategory.*;
 import static gritbus.hipchonbackend.Domain.QMyplace.*;
 import static gritbus.hipchonbackend.Domain.QPlace.*;
 import static gritbus.hipchonbackend.Domain.QPlaceImage.*;
 import static gritbus.hipchonbackend.Repository.Impl.PlaceRepositoryImpl.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import gritbus.hipchonbackend.Cond.MyplaceCondition;
 import gritbus.hipchonbackend.Domain.Myplace;
+import gritbus.hipchonbackend.Domain.QCategory;
 import gritbus.hipchonbackend.Domain.QMyplace;
 import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Dto.MyplaceDto;
+import gritbus.hipchonbackend.Dto.PlaceImageDto;
+import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Dto.QMyplaceDto;
 import gritbus.hipchonbackend.Repository.custom.MyplaceRepositoryCustom;
 
@@ -71,31 +78,41 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 	@Override
 	public List<MyplaceDto> findAllMyplace(Long userId) {
 		QMyplace subMypalce = new QMyplace("subMyplace");
-		return queryFactory
+		List<MyplaceDto> myplaceList = queryFactory
 			.select(new QMyplaceDto(
 				place.id,
 				place.name,
 				place.category.name,
 				place.address,
-				JPAExpressions
-					.select(placeImage.image)
-					.from(placeImage)
-					.where(placeImage.place.eq(place)),
-				getMyplaceCnt(subMypalce),
+				getMyplaceCnt(subMypalce,place.id),
 				getPostCnt()
-				//comm
 			))
 			.from(myplace)
 			.join(myplace.place, place)
+			.join(place.category, category)
 			.where(myplace.user.id.eq(userId))
 			.orderBy(myplace.id.desc())
 			.fetch();
+		setDtoImageList(myplaceList);
+		return myplaceList;
 	}
 
-	private JPQLQuery<Long> getMyplaceCnt(QMyplace subMypalce) {
+	private void setDtoImageList(List<MyplaceDto> myplaceList){
+		Map<Long, List<PlaceImageDto>> longListMap = groupById(getImageList(queryFactory,toPlaceIdList(myplaceList)));
+		myplaceList.forEach(p->p.setImage(getFirstImage(longListMap,p.getPlaceId())));
+	}
+
+	private List<Long> toPlaceIdList(List<MyplaceDto> myplaceList) {
+		return myplaceList.stream()
+			.map(MyplaceDto::getPlaceId)
+			.collect(Collectors.toList());
+	}
+
+	private JPQLQuery<Long> getMyplaceCnt(QMyplace subMypalce,
+		NumberPath<Long> placeId) {
 		return select(subMypalce.place.count())
 			.from(subMypalce)
-			.where(subMypalce.place.eq(place));
+			.where(subMypalce.place.id.eq(placeId));
 	}
 
 	private BooleanExpression userEq(Long userId) {
