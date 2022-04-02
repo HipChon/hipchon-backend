@@ -96,6 +96,31 @@ public class MyplaceRepositoryImpl implements MyplaceRepositoryCustom {
 		setDtoImageList(myplaceList);
 		return myplaceList;
 	}
+	//이거 위에꺼랑 합쳐서 동적쿼리 만들기
+	@Override
+	public List<MyplaceDto> findAllMyplaceByCategoryId(Long userId, Long categoryId) {
+		QMyplace subMypalce = new QMyplace("subMyplace");
+		List<MyplaceDto> myplaceList = queryFactory
+			.select(new QMyplaceDto(
+				place.id,
+				place.name,
+				place.category.name,
+				place.address,
+				getMyplaceCnt(subMypalce,place.id),
+				getPostCnt()
+			))
+			.from(myplace)
+			.join(myplace.place, place)
+			.join(place.category, category)
+			.where(
+				myplace.user.id.eq(userId),
+				place.category.id.eq(categoryId)
+			)
+			.orderBy(myplace.id.desc())
+			.fetch();
+		setDtoImageList(myplaceList);
+		return myplaceList;
+	}
 
 	private void setDtoImageList(List<MyplaceDto> myplaceList){
 		Map<Long, List<PlaceImageDto>> longListMap = groupById(getImageList(queryFactory,toPlaceIdList(myplaceList)));

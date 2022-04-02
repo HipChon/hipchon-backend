@@ -42,4 +42,12 @@ public class MyplaceController {
 		return ResponseEntity.ok(myplaceService.findAllMyplace(userId));
 	}
 
+	@Operation(summary = "마이플레이스 카테고리별 조회 API", description = "")
+	@GetMapping("/{user_id}/{category_id}")
+	public ResponseEntity<List<MyplaceDto>> findAllMyplaceByCategoryId(
+		@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId,
+		@Parameter(required = true, example = "1") @PathVariable("category_id") Long categoryId) {
+		return ResponseEntity.ok(myplaceService.findAllMyplaceByCategoryId(userId,categoryId));
+	}
+
 }

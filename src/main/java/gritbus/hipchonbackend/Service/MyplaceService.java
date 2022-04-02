@@ -56,7 +56,9 @@ public class MyplaceService {
 	public List<MyplaceDto> findAllMyplace(Long userId) {
 		return myplaceRepository.findAllMyplace(userId);
 	}
-
+	public List<MyplaceDto> findAllMyplaceByCategoryId(Long userId, Long categoryId){
+		return myplaceRepository.findAllMyplaceByCategoryId(userId,categoryId);
+	}
 	public Long getMyplaceCntByUser(Long userId) {
 		return Long.valueOf(myplaceRepository.findAllBy(new MyplaceCondition(userId, null)).size());
 	}

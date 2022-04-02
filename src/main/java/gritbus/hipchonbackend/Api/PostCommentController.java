@@ -3,12 +3,16 @@ package gritbus.hipchonbackend.Api;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Dto.Post.CommentDto;
+import gritbus.hipchonbackend.Dto.Requset.CommentRequest;
 import gritbus.hipchonbackend.Service.PostCommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,6 +31,17 @@ public class PostCommentController {
 		return ResponseEntity.ok(postCommentService.findALlByPostId(postId));
 	}
 
+	@Operation(summary = "댓글 작성 API", description = "")
+	@PostMapping("")
+	public ResponseEntity<Long> addMypost(@RequestBody CommentRequest commentRequest) {
+		return ResponseEntity.ok(postCommentService.add(commentRequest));
+	}
+
+	@Operation(summary = "댓글 삭제 API", description = "댓글 존재하지 않을 시")
+	@DeleteMapping("/{commentID}")
+	public void delete(@PathVariable("commentID") Long commentId) {
+		postCommentService.delete(commentId);
+	}
 
 
 }

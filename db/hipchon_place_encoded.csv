@@ -1,0 +1,30 @@
+﻿place_id,address,animal,contact,latitude,longitude,hiple,holiday,homepage,marker_image,name,one_line_intro,open_time,place_image,view_cnt,category_id,city_id
+1,경기 이천시 부발읍 경충대로 1758 파발역,,0507-1343-8504,0.1,,True,,https://www.instagram.com/pabalyeok.inc/,,파발역 카페,"현대인을 위한 자동차 복합공간
+셀프세차 라운지&루프탑",매일 10:30 ~ 20:30,https://ldb-phinf.pstatic.net/20210902_261/16305926963398FT3D_JPEG/XubITIYMHCA3PDmt2eXhx7cr.jpg?type=f804_408_60_sharpen,1,1,2
+2,경기 이천시 부발읍 부발중앙로221번길 89 더반 올가닉,,0507-1355-1987,0.1,,,,https://www.instagram.com/thebarnorganic/,,더반올가닉,"직접 재배하는 유기농 블루베리
+농장에서 운영하는 카페","매일 10:30 ~ 20:00
+(Break Time: 월~금 15:00~16:00,  
+라스트오더: 19:00)",https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg,2,1,2
+3,경기 이천시 경충대로2481번길 94,,,0.1,,,"매주 월요일 
+정기휴무",https://www.instagram.com/cafe.jinri/,,카페 진리,수제 디저트와 논밭뷰로 힐링하는 카페,화~일 12:00 ~ 21:00,https://ldb-phinf.pstatic.net/20210902_261/16305926963398FT3D_JPEG/XubITIYMHCA3PDmt2eXhx7cr.jpg?type=f804_408_60_sharpen,3,1,2
+4,속초시 번영로 105번길 13,,0507-1310-7524,0.1,,True,"매주 화요일
+정기휴무",https://www.instagram.com/seorak_gelato,,설악젤라또," 국내 1호 친환경 인증 범산목장 유기농우유로
+강원도 원재료로 만든 '세.젤.쫀' 젤라또","월, 수~일
+11:00 ~ 19:00",https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg,4,1,6
+5,인천 강화군 강화읍 향나무길5번길 12 조양방직,,0507-1307-2192,0.1,,,연중무휴,http://naver.me/xIh2dUUI,,조양방직,"조양방직 폐공장을 리모델링하여
+만든 강화도 감성 카페 ","평일 11:00~20:00
+주말 11:00~21:00",https://ldb-phinf.pstatic.net/20210902_261/16305926963398FT3D_JPEG/XubITIYMHCA3PDmt2eXhx7cr.jpg?type=f804_408_60_sharpen,5,1,9
+6,제주특별자치도 제주시 첨단로 330 A동 2층 6호,,070-5224-1828,0.1,,,,http://haenyeokitchen.com/BLOG,,해녀의부엌,해녀의 삶을 담은 연극 공연과 직접 잡아온 해산물을 식사로 제공,"(매주 금,토,일 12:00 / 17:30 - 2타임 운영)",https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg,6,2,1
+7,"대전광역시 중구 산서로 50번길 19, 1층 102호",, 010-6340-0360 ,0.1,,True,"매주 일요일
+월요일 휴무",https://kongdeshu.modoo.at/,,콩드슈,"어머니를 이어, 두자매가 대전의 지역음식 콩부각 판매","매주 화~토 
+10:30 ~ 18:00",https://ldb-phinf.pstatic.net/20210902_261/16305926963398FT3D_JPEG/XubITIYMHCA3PDmt2eXhx7cr.jpg?type=f804_408_60_sharpen,7,2,5
+8, 제주시 한림읍 금능농공길 62-11 3층,,064-798-9872 ,0.1,,True,,https://jejubeer.co.kr/brewery-program,,제주맥주,제주 지역자원을 활용한 크래프트 맥주와 양조장,,https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg,8,3,1
+9,강원도 양양군 현북면 하조대해안길 119,,1522-2729,0.1,,,,http://www.surfyy.com/,,주식회사라온서피리조트,"서핑 전용 해변과 스위밍존, 빈백존, 해먹존, 힐링존 등 온전한 휴식을 즐길 수 있는 공간",,https://ldb-phinf.pstatic.net/20210902_261/16305926963398FT3D_JPEG/XubITIYMHCA3PDmt2eXhx7cr.jpg?type=f804_408_60_sharpen,9,3,6
+10,경남 함안군 가야읍 함안대로 598,,055-583-6100,0.1,,True,,http://hfarmerscoop.com/bbs/board.php?bo_table=gallery,,별별농부,지역 청년 농부를 위한 공동 체험장,,https://www.jeongdong.or.kr/static/portal/img/HKPU_04_04_pic1.jpg,10,3,12
+11,경남 통영시 도남로 195 통영리스타트플랫폼 4층 02,,055-646-2025,0.1,,True,,https://erang87.modoo.at/?link=dwo6jvjx,,통영이랑,토박이 청년들과 함께하는 비밀스러운 통영이야기,,https://file.mk.co.kr/meet/neds/2020/09/image_readtop_2020_914923_15991920034343519.jpg,11,3,12
+12,강원도 속초시 수복로259번길 11 Soho259,,0507-1333-0259,0.1,,,,http://soho259.co.kr/program,,소호259,"나'만의 라이프스타일을
+자연스럽게 만들어가는 공간, Soho259",,https://file.mk.co.kr/meet/neds/2020/09/image_readtop_2020_914923_15991920034343519.jpg,12,3,6
+13,강원도 고성군 죽왕면 삼포리 239-27 1층,,033-636-0328,0.1,,True,,https://romantrip.co.kr/product-category/play/,,낭만여행 고성,고성에서 당신의 취향을 여행하다. ‘로컬 취향 여행(Local Taste Trip)’,,"https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/7f40bcc6-7d31-4e77-ac4b-1a5dd7932d7c.jpeg",13,3,6
+14,부산 해운대구 해운대해변로 84,,1599-1789,0.1,,,,https://www.yachttale.com/,,요트탈래,"수영강 최초의 스마트 관광 유람선, 해운대리버크루즈",,https://file.mk.co.kr/meet/neds/2020/09/image_readtop_2020_914923_15991920034343519.jpg,14,4,4
+15,제주 제주시 조천읍 북촌리 (북촌15길),,010-6778-9199,0.1,,True,,https://www.jejugrapher.com/,,제주그래퍼,"제주 바닷가, 과수원, 숲 3가지 컨셉의 라이트페인팅 야간관광 프로그램",,"https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/7f40bcc6-7d31-4e77-ac4b-1a5dd7932d7c.jpeg",15,4,1
+16,"제주특별자치도 제주시 중앙로 217, 4층(이도이동, 제주벤처마루)",,064-799-9333,0.1,,,,https://www.yourfarm.kr/,,당신의 과수원,과수원 연결을 통한 감성 멤버십 서비스,,https://file.mk.co.kr/meet/neds/2020/09/image_readtop_2020_914923_15991920034343519.jpg,16,4,1
