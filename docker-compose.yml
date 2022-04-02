@@ -4,7 +4,7 @@ services:
   db:
     image: mariadb:10.5.11
     ports:
-      - 3306:3306
+      - 3366:3366
     volumes:
       - ./db/conf.d:/etc/mysql/conf.d
       - ./db/data:/var/lib/mysql
