@@ -49,7 +49,7 @@ public class LocalHipsterRepositoryImpl implements LocalHipsterRepositoryCustom 
 			.fetch();
 
 		Map<Long, List<Tuple>> map = queryFactory
-			.select(
+			.selectDistinct(
 				localHipster.id,
 				localHipsterPost.id,
 				localHipsterPost.title,
@@ -92,7 +92,7 @@ public class LocalHipsterRepositoryImpl implements LocalHipsterRepositoryCustom 
 
 		//힙스터의 post들
 		List<LocalHipsterPostDto> hipsterpostList = queryFactory
-			.select(
+			.selectDistinct(
 				new QLocalHipsterPostDto(
 					localHipsterPost.id,
 					localHipsterPost.title,
