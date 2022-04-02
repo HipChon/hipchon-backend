@@ -9,10 +9,15 @@ import static gritbus.hipchonbackend.Repository.Impl.PostRepositoryImpl.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import gritbus.hipchonbackend.Domain.Myplace;
+import gritbus.hipchonbackend.Domain.Post.Mypost;
+import gritbus.hipchonbackend.Domain.Post.QMypost;
 import gritbus.hipchonbackend.Domain.Post.QPost;
+import gritbus.hipchonbackend.Domain.QMyplace;
 import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostImageDto;
@@ -30,6 +35,21 @@ public class MypostRepositoryImpl implements MypostRepositoryCustom {
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toMyPostIdList(mypostList)));
 		mypostList.forEach(p -> p.setPostImage(getFirstImage(postImageMap, p.getPostId())));
 		return mypostList;
+	}
+
+	@Override
+	public Optional<Mypost> findByUserIdAndPostId(Long userId, Long postId) {
+		Mypost mypost = queryFactory
+			.select(QMypost.mypost)
+			.from(QMypost.mypost)
+			.where(
+				QMypost.mypost.user.id.eq(userId),
+				QMypost.mypost.post.id.eq(postId)
+			)
+			.fetchFirst();
+
+		return Optional.ofNullable(mypost);
+
 	}
 
 	private List<MypostDto> getMypostDtoList(Long userId) {

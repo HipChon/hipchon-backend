@@ -41,5 +41,8 @@ public class HipleDto {
 		}
 	}
 
+	public void setPlaceImage(String placeImage) {
+		this.placeImage = placeImage;
+	}
 }
 

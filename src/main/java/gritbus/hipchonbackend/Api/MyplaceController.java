@@ -24,13 +24,13 @@ import lombok.RequiredArgsConstructor;
 public class MyplaceController {
 	private final MyplaceService myplaceService;
 
-	@Operation(summary = "마이플레이스에 저장 API", description = "중복시 null 반환\n저장 성공시 myplaceId 반환(프론트에서 당장은 사용할 일 없음)")
+	@Operation(summary = "마이플레이스에 저장 API", description = "중복시 오류\n저장 성공시 myplaceId 반환(프론트에서 당장은 사용할 일 없음)")
 	@PostMapping("/{user_id}/{place_id}")
 	public ResponseEntity<Long> addMyplace(@PathVariable("user_id") Long userId, @PathVariable("place_id") Long placeId) {
 		return ResponseEntity.ok(myplaceService.add(userId, placeId));
 	}
 
-	@Operation(summary = "마이플레이스 삭제 API", description = "중복시 null 반환//이거 오류뜨도록 설정해놓을게요!\n저장 성공시 myplaceId 반환(프론트에서 당장은 사용할 일 없음)")
+	@Operation(summary = "마이플레이스 삭제 API", description = "myplace 없을 때 오류")
 	@DeleteMapping("/{user_id}/{place_id}")
 	public void delete(@PathVariable("user_id") Long userId, @PathVariable("place_id") Long placeId) {
 		myplaceService.delete(userId, placeId);
