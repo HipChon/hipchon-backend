@@ -24,6 +24,7 @@ public class Event {
 	private LocalDateTime postTime;
 	private String detail;
 	private String thumbnail;
+	private String url;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<EventImage> eventImageList = new ArrayList<>();

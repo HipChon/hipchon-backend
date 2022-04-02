@@ -21,4 +21,5 @@ public class Announce {
 	private LocalDateTime postTime;
 	private String detail;
 	private String thumbnail;
+	private String url;
 }

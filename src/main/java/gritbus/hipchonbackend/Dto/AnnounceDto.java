@@ -14,6 +14,7 @@ public class AnnounceDto {
 	private LocalDateTime postTime;
 	private String detail;
 	private String thumbnail;
+	private String url;
 
 	public static AnnounceDto of(Announce a) {
 		return new AnnounceDto(
@@ -21,7 +22,8 @@ public class AnnounceDto {
 			a.getTitle(),
 			a.getPostTime(),
 			a.getDetail(),
-			a.getThumbnail()
+			a.getThumbnail(),
+			a.getUrl()
 		);
 	}
 }

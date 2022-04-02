@@ -14,6 +14,7 @@ public class EventDto {
 	private String detail;
 	private String thumbnail;
 	private LocalDateTime postTime;
+	private String url;
 
 	public static EventDto of(Event e) {
 		return new EventDto(
@@ -21,7 +22,8 @@ public class EventDto {
 			e.getTitle(),
 			e.getDetail(),
 			e.getThumbnail(),
-			e.getPostTime()
+			e.getPostTime(),
+			e.getUrl()
 		);
 	}
 }
