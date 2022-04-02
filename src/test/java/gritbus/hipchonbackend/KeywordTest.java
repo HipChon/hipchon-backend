@@ -28,7 +28,7 @@ public class KeywordTest {
 		Long placeId = 1L;
 
 		//when
-		List<KeywordDto> top3 = keywordReviewRepository.getTop3(placeId);
+		List<KeywordDto> top3 = keywordReviewRepository.getTop(placeId,3);
 		for (KeywordDto keywordDto : top3) {
 			System.out.print("keyword = " + keywordDto.getKeyword());
 			System.out.println("  postCnt = " + keywordDto.getPostCnt());
@@ -46,7 +46,7 @@ public class KeywordTest {
 		Long placeId = 1L;
 
 		//when
-		List<KeywordDto> top1 = keywordReviewRepository.getTop1(placeId);
+		List<KeywordDto> top1 = keywordReviewRepository.getTop(placeId,1);
 		System.out.println(top1.size());
 		for (KeywordDto keywordDto : top1) {
 			System.out.print("keyword = " + keywordDto.getKeyword());

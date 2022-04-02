@@ -55,4 +55,9 @@ public class Post {
 
 	private Boolean isBest;
 
+	public int getPostLikeCnt(){
+		return this.mypostList.size();
+	}
+
+
 }

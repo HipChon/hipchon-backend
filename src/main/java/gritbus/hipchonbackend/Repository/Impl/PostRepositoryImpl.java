@@ -1,6 +1,7 @@
 package gritbus.hipchonbackend.Repository.Impl;
 
 import static com.querydsl.jpa.JPAExpressions.*;
+import static gritbus.hipchonbackend.Domain.Post.QMypost.*;
 import static gritbus.hipchonbackend.Domain.Post.QPost.*;
 import static gritbus.hipchonbackend.Domain.Post.QPostComment.*;
 import static gritbus.hipchonbackend.Domain.Post.QPostImage.*;
@@ -20,6 +21,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import gritbus.hipchonbackend.Domain.Post.QMypost;
 import gritbus.hipchonbackend.Domain.Post.QPost;
 import gritbus.hipchonbackend.Domain.QCategory;
 import gritbus.hipchonbackend.Domain.QPlace;
@@ -125,10 +127,10 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
 	private List<PostDto> getPostDtoList(Long userId, Long placeID, QUser subUser, QPost subPost, QPost subPost2) {
 		return queryFactory
-			.select(new QPostDto(
+			.selectDistinct(new QPostDto(
 				post.id,
 				post.postTime,
-				post.likeCnt,
+				getPostCnt(post.id),
 				getCommentCnt(subPost2), //post의 comment 갯수
 				post.detail,
 				new QPostUserDto(
@@ -150,9 +152,17 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.join(post.user, user)
 			.join(post.place, place)
 			.join(place.category, category)
+			.leftJoin(post.mypostList, mypost)
 			.where(placeEq(placeID))
 			.orderBy(post.id.desc())
 			.fetch();
+	}
+
+	private JPQLQuery<Long> getPostCnt(NumberPath<Long> postId) {
+		return JPAExpressions
+			.select(mypost.id.count())
+			.from(mypost)
+			.where(mypost.post.id.eq(postId));
 	}
 
 	private JPQLQuery<Long> getUserPostCnt(QUser subUser, QPost subPost) {
