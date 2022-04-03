@@ -63,7 +63,7 @@ public class PostController {
 		return ResponseEntity.ok(postService.findOneById(userId, postId));
 	}
 
-	@Operation(summary = "후기작성", description = "post라는 key로 json파일 보내주셔야합니다\n"
+	@Operation(summary = "후기작성", description = "form-data, json 형태 key는 post입니다\"\n"
 		+ "{\n"
 		+ " \"detail\": \"string\",\n"
 		+ " \"keywordIdList\": [\n"

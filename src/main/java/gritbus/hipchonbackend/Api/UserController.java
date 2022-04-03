@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import gritbus.hipchonbackend.Dto.UserDto;
 import gritbus.hipchonbackend.Service.UserService;
+import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
@@ -38,9 +39,17 @@ public class UserController {
 		return ResponseEntity.ok(userService.save(userDto));
 	}
 
-	@Operation(summary = "프로필 변경 API", description = "loginId,loginType, 새로운 이름, 새로운 프로필사진만 넣어주셔도 됩니다\n기존에 있는 이름이면 에러를 일으킴(본인 이름이 또 똑같이 들어오는 경우는 에러 X)")
+	@Operation(summary = "프로필 변경 API", description = "form-data, json형태 key는 user입니다"
+		+ "{\n"
+		+ "    \"loginId\" : String,\n"
+		+ "    \"loginType\" : String,\n"
+		+ "    \"name\" : String\n"
+		+ "}"
+		+ "\nloginId,loginType, 새로운 이름, 프로필 사진 만 넣어주셔도 됩니다\n기존에 있는 이름이면 에러를 일으킴(본인 이름이 또 똑같이 들어오는 경우는 에러 X)")
 	@PutMapping("")
-	public ResponseEntity<String> updateProfile(@RequestPart UserDto user,@RequestPart(value = "file") MultipartFile multipartFile) {
+	public ResponseEntity<String> updateProfile(
+		@ApiParam(value = "user") @RequestPart(value = "user") UserDto user,
+		@ApiParam(value = "file") @RequestPart(value = "file") MultipartFile multipartFile) {
 		return ResponseEntity.ok(userService.updateProfile(user,multipartFile));
 	}
 
