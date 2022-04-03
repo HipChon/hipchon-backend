@@ -9,14 +9,14 @@ import lombok.Data;
 @Data
 public class MyCommentDto {
 	private Long commentId;
-	private LocalDateTime time;
+	private String time;
 	private String detail;
 	private PostImageDto post;
 
 	@QueryProjection
 	public MyCommentDto(Long commentId,LocalDateTime time, String detail,PostImageDto post) {
 		this.commentId = commentId;
-		this.time = time;
+		this.time = time.toString();
 		this.detail = detail;
 		this.post = post;
 	}

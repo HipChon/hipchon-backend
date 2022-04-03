@@ -15,18 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.querydsl.core.QueryFactory;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import gritbus.hipchonbackend.Cond.PlaceFastSearchCondition;
 import gritbus.hipchonbackend.Cond.PlaceHashtagCondition;
-import gritbus.hipchonbackend.Domain.Post.QPost;
-import gritbus.hipchonbackend.Domain.QCategory;
-import gritbus.hipchonbackend.Domain.QCity;
-import gritbus.hipchonbackend.Domain.QHashtag;
-import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Dto.HipleDto;
 import gritbus.hipchonbackend.Dto.PlaceImageDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
@@ -172,7 +166,7 @@ public class PlaceRepositoryImpl implements PlaceRepositoryCustom {
 				hipleDtos.stream()
 				.map(HipleDto::getPlaceId)
 				.collect(Collectors.toList())));
-		hipleDtos.forEach(p->p.setPlaceImage(getFirstImage(longListMap,p.getPlaceId())));
+		hipleDtos.forEach(p->p.setImage(getFirstImage(longListMap,p.getPlaceId())));
 		return hipleDtos;
 	}
 

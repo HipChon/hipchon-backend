@@ -21,10 +21,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.Post.QMypost;
 import gritbus.hipchonbackend.Domain.Post.QPost;
-import gritbus.hipchonbackend.Domain.QCategory;
-import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostDto;
@@ -92,7 +89,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 	public List<MypostDto> findByUser(Long userId) {
 		List<MypostDto> mypostList = getMypostList(userId);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toMyPostIdList(mypostList)));
-		mypostList.forEach(p -> p.setPostImage(getFirstImage(postImageMap, p.getPostId())));
+		mypostList.forEach(p -> p.setImage(getFirstImage(postImageMap, p.getPostId())));
 		return mypostList;
 	}
 

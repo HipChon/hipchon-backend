@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostUserDto {
 	private Long userId;
-	private String userName;
-	private String userImage;
-	private Long userPostCnt;
+	private String name;
+	private String image;
+	private Long postCnt;
 
 	@QueryProjection
-	public PostUserDto(Long userId, String userName, String userImage, Long userPostCnt) {
+	public PostUserDto(Long userId, String name, String image, Long postCnt) {
 		this.userId = userId;
-		this.userName = userName;
-		this.userImage = userImage;
-		this.userPostCnt = userPostCnt;
+		this.name = name;
+		this.image = image;
+		this.postCnt = postCnt;
 	}
 }

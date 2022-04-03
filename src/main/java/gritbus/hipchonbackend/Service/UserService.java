@@ -1,8 +1,5 @@
 package gritbus.hipchonbackend.Service;
 
-import java.util.NoSuchElementException;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,7 +44,7 @@ public class UserService {
 			.loginType(LoginType.valueOf(userDto.getLoginType()))
 			.name(userDto.getName())
 			.email(userDto.getEmail())
-			.profileImage(userDto.getProfileImage())
+			.profileImage(userDto.getImage())
 			.isMarketing(userDto.getIsMarketing())
 			.build();
 
@@ -57,7 +54,7 @@ public class UserService {
 	@Transactional
 	public String updateProfile(UserDto userDto){
 		String newName = userDto.getName();
-		String newImage = userDto.getProfileImage();
+		String newImage = userDto.getImage();
 
 		User user = userRepository.findByLoginId(userDto.getLoginId())
 			.orElseThrow(

@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserDto {
-	private Long id;
+	private Long userId;
 	private String loginId;
 	private String name;
 	private String email;
-	private String profileImage;
+	private String image;
 	private String loginType;
 	private Boolean isMarketing;
 

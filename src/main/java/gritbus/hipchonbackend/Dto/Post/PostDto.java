@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostDto {
 	private Long postId;
-	private LocalDate postTime;
+	private String time;
 	private List<String> imageList;
 	private Long likeCnt;
 	private Long commentCnt;
@@ -22,13 +22,10 @@ public class PostDto {
 	private PostPlaceSummaryDto place;
 
 	@QueryProjection
-	public PostDto(Long postId, LocalDateTime postTime, Long likeCnt, Long commentCnt,
+	public PostDto(Long postId, LocalDateTime time, Long likeCnt, Long commentCnt,
 		String detail, PostUserDto userDto,PostPlaceSummaryDto placeDto) {
 		this.postId = postId;
-		this.postTime = null;
-		if (postTime != null) {
-			this.postTime = postTime.toLocalDate();
-		}
+		this.time = time.toString();
 		this.likeCnt = likeCnt;
 		if (likeCnt == null) {
 			this.likeCnt = 0L;

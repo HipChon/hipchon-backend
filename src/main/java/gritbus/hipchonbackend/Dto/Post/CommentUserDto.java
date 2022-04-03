@@ -6,13 +6,13 @@ import lombok.Data;
 
 @Data
 public class CommentUserDto {
-	private Long id;
+	private Long userId;
 	private String name;
 	private String image;
 
 	@QueryProjection
-	public CommentUserDto(Long id, String name, String image) {
-		this.id = id;
+	public CommentUserDto(Long userId, String name, String image) {
+		this.userId = userId;
 		this.name = name;
 		this.image = image;
 	}

@@ -7,16 +7,16 @@ import lombok.Data;
 @Data
 public class MypostDto {
 	private Long postId;
-	private String placeName;
-	private String postImage;
+	private String name;
+	private String image;
 
 	@QueryProjection
-	public MypostDto(Long postId, String placeName) {
+	public MypostDto(Long postId, String name) {
 		this.postId = postId;
-		this.placeName = placeName;
+		this.name = name;
 	}
 
-	public void setPostImage(String postImage) {
-		this.postImage = postImage;
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

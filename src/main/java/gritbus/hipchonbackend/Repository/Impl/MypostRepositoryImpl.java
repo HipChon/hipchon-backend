@@ -13,12 +13,8 @@ import java.util.Optional;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import gritbus.hipchonbackend.Domain.Myplace;
 import gritbus.hipchonbackend.Domain.Post.Mypost;
 import gritbus.hipchonbackend.Domain.Post.QMypost;
-import gritbus.hipchonbackend.Domain.Post.QPost;
-import gritbus.hipchonbackend.Domain.QMyplace;
-import gritbus.hipchonbackend.Domain.QPlace;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostImageDto;
 import gritbus.hipchonbackend.Dto.QMypostDto;
@@ -33,7 +29,7 @@ public class MypostRepositoryImpl implements MypostRepositoryCustom {
 	public List<MypostDto> findMypost(Long userId) {
 		List<MypostDto> mypostList = getMypostDtoList(userId);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toMyPostIdList(mypostList)));
-		mypostList.forEach(p -> p.setPostImage(getFirstImage(postImageMap, p.getPostId())));
+		mypostList.forEach(p -> p.setImage(getFirstImage(postImageMap, p.getPostId())));
 		return mypostList;
 	}
 

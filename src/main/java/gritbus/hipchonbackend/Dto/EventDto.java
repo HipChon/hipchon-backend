@@ -13,7 +13,7 @@ public class EventDto {
 	private String title;
 	private String detail;
 	private String thumbnail;
-	private LocalDateTime postTime;
+	private String time;
 	private String url;
 
 	public static EventDto of(Event e) {
@@ -22,7 +22,7 @@ public class EventDto {
 			e.getTitle(),
 			e.getDetail(),
 			e.getThumbnail(),
-			e.getPostTime(),
+			e.getPostTime().toString(),
 			e.getUrl()
 		);
 	}

@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LocalHipsterDto {
 
-	private Long id;
+	private Long hipsterId;
 	private String title;
 	private List<LocalHipsterPostDto> postList = new ArrayList<>();
 
 	@QueryProjection
-	public LocalHipsterDto(Long id, String title) {
-		this.id = id;
+	public LocalHipsterDto(Long hipsterId, String title) {
+		this.hipsterId = hipsterId;
 		this.title = title;
 	}
 

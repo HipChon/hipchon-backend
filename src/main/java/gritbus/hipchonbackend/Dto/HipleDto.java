@@ -2,11 +2,7 @@ package gritbus.hipchonbackend.Dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 
-import gritbus.hipchonbackend.Domain.Place;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 
 @Data
 public class HipleDto {
@@ -14,7 +10,7 @@ public class HipleDto {
 	private String name;
 	private String category;
 	private String city;
-	private String placeImage;
+	private String image;
 	private Long postCnt;
 	private Long myplaceCnt;
 	private Boolean isMyplace;
@@ -41,8 +37,8 @@ public class HipleDto {
 		}
 	}
 
-	public void setPlaceImage(String placeImage) {
-		this.placeImage = placeImage;
+	public void setImage(String image) {
+		this.image = image;
 	}
 }
 

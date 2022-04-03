@@ -11,7 +11,7 @@ import lombok.Getter;
 public class AnnounceDto {
 	private Long announceId;
 	private String title;
-	private LocalDateTime postTime;
+	private String time;
 	private String detail;
 	private String thumbnail;
 	private String url;
@@ -20,7 +20,7 @@ public class AnnounceDto {
 		return new AnnounceDto(
 			a.getId(),
 			a.getTitle(),
-			a.getPostTime(),
+			a.getPostTime().toString(),
 			a.getDetail(),
 			a.getThumbnail(),
 			a.getUrl()

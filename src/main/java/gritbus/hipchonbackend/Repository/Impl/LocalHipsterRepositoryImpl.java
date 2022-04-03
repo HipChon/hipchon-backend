@@ -65,8 +65,8 @@ public class LocalHipsterRepositoryImpl implements LocalHipsterRepositoryCustom 
 			.collect(Collectors.groupingBy(h -> h.get(localHipster.id)));
 
 		hipsterList.forEach(h->{
-			if (map.containsKey(h.getId())){
-				List<Tuple> tuples = map.get(h.getId());
+			if (map.containsKey(h.getHipsterId())){
+				List<Tuple> tuples = map.get(h.getHipsterId());
 				Tuple firstPost = tuples.get(0);
 				h.setImage(firstPost.get(localHipsterPostImage.image));
 				String summary = h.getCity()+" "+firstPost.get(localHipsterPost.title)+" 등 "+tuples.size()+"곳";
@@ -137,7 +137,7 @@ public class LocalHipsterRepositoryImpl implements LocalHipsterRepositoryCustom 
 
 	private List<Long> toPostIdList(List<LocalHipsterPostDto> postDtoList) {
 		return postDtoList.stream()
-			.map(LocalHipsterPostDto::getId)
+			.map(LocalHipsterPostDto::getHipsterPostId)
 			.collect(Collectors.toList());
 	}
 
@@ -167,6 +167,6 @@ public class LocalHipsterRepositoryImpl implements LocalHipsterRepositoryCustom 
 
 	private void setDtoImageList(List<LocalHipsterPostDto> postDtoList){
 		Map<Long, List<PostImageDto>> longListMap = groupById(getImageList(toPostIdList(postDtoList)));
-		postDtoList.forEach(p->p.setImageList(mapToImage(longListMap,p.getId())));
+		postDtoList.forEach(p->p.setImageList(mapToImage(longListMap,p.getHipsterPostId())));
 	}
 }

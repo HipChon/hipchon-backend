@@ -11,16 +11,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class LocalHipsterPostDto {
-	private Long id;
+	private Long hipsterPostId;
 	private String title;
 	private String detail;
 	private PostPlaceSummaryDto place;
 	private List<String> imageList;
 
 	@QueryProjection
-	public LocalHipsterPostDto(Long id, String title, String detail,
+	public LocalHipsterPostDto(Long hipsterPostId, String title, String detail,
 		PostPlaceSummaryDto place) {
-		this.id = id;
+		this.hipsterPostId = hipsterPostId;
 		this.title = title;
 		this.detail = detail;
 		this.place = place;
