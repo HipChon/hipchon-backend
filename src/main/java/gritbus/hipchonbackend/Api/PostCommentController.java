@@ -46,7 +46,7 @@ public class PostCommentController {
 
 	@Operation(summary = "내 댓글 조회 API", description = "")
 	@GetMapping("/mycomment/{user_id}")
-	public ResponseEntity<List<MyCommentDto>>  findAllMycomment(@PathVariable("user_id") Long userId) {
+	public ResponseEntity<List<MyCommentDto>>  findAllMycomment(@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId) {
 		return ResponseEntity.ok(postCommentService.findAllMycomment(userId));
 	}
 }
