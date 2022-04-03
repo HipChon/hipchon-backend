@@ -63,7 +63,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 	}
 
 	public static boolean hasImage(Map<Long, List<PostImageDto>> postImageMap, Long postId) {
-		return postImageMap.keySet().contains(postId);
+		return postImageMap.containsKey(postId);
 	}
 
 	public static List<PostImageDto> getImageList(JPAQueryFactory queryFactory, List<Long> postIdList) {

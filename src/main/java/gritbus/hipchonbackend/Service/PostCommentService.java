@@ -7,11 +7,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import gritbus.hipchonbackend.Domain.Post.Mypost;
 import gritbus.hipchonbackend.Domain.Post.Post;
 import gritbus.hipchonbackend.Domain.Post.PostComment;
 import gritbus.hipchonbackend.Domain.User;
 import gritbus.hipchonbackend.Dto.Post.CommentDto;
+import gritbus.hipchonbackend.Dto.Post.MyCommentDto;
 import gritbus.hipchonbackend.Dto.Requset.CommentRequest;
 import gritbus.hipchonbackend.Repository.PostCommentRepository;
 import gritbus.hipchonbackend.Repository.PostRepository;
@@ -51,6 +51,15 @@ public class PostCommentService {
 			.orElseThrow(() -> new NoSuchElementException(ELEMENT_NOT_FOUND.getErrorCode(), ELEMENT_NOT_FOUND));
 
 		postCommentRepository.delete(postComment);
+	}
+
+	public List<MyCommentDto> findAllMycomment(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(()-> new NoSuchElementException(
+			UNAUTHORIZED_USER.getErrorCode(), UNAUTHORIZED_USER
+		));
+
+		return postCommentRepository.findAllMyComment(userId);
+
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gritbus.hipchonbackend.Dto.Post.CommentDto;
+import gritbus.hipchonbackend.Dto.Post.MyCommentDto;
 import gritbus.hipchonbackend.Dto.Requset.CommentRequest;
 import gritbus.hipchonbackend.Service.PostCommentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,10 +39,14 @@ public class PostCommentController {
 	}
 
 	@Operation(summary = "댓글 삭제 API", description = "댓글 존재하지 않을 시")
-	@DeleteMapping("/{commentID}")
-	public void delete(@PathVariable("commentID") Long commentId) {
+	@DeleteMapping("/{comment_id}")
+	public void delete(@PathVariable("comment_id") Long commentId) {
 		postCommentService.delete(commentId);
 	}
 
-
+	@Operation(summary = "내 댓글 조회 API", description = "")
+	@GetMapping("/mycomment/{user_id}")
+	public ResponseEntity<List<MyCommentDto>>  findAllMycomment(@PathVariable("user_id") Long userId) {
+		return ResponseEntity.ok(postCommentService.findAllMycomment(userId));
+	}
 }

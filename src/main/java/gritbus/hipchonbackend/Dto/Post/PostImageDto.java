@@ -14,4 +14,14 @@ public class PostImageDto {
 		this.postId = postId;
 		this.image = image;
 	}
+
+	@QueryProjection
+	public PostImageDto(Long postId) {
+		this.postId = postId;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }
