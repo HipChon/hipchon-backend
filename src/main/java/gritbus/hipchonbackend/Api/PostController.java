@@ -48,6 +48,13 @@ public class PostController {
 		return ResponseEntity.ok(postService.findAll(userId, order));
 	}
 
+	@Operation(summary = "후기 상세페이지 조회(베스트 후기에서 사용)", description = "")
+	@GetMapping("/{user_id}/{post_id}")
+	public ResponseEntity<PostDto> findOneById(
+		@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId,
+		@Parameter(required = true, example = "1") @PathVariable("post_id") Long postId) {
+		return ResponseEntity.ok(postService.findOneById(userId, postId));
+	}
 
 
 }

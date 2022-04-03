@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.JPAExpressions;
@@ -79,7 +80,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		QPost subPost = new QPost("subPost");
 		QPost subPost2 = new QPost("subPost2");
 
-		List<PostDto> postDtoList = getPostDtoList(userId, placeID, subUser, subPost, subPost2);
+		List<PostDto> postDtoList = getPostDtoList(userId, placeID, -1L,subUser, subPost, subPost2);
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toPostIdList(postDtoList)));
 		postDtoList.forEach(p -> p.setImageList(mapToImage(postImageMap, p.getPostId())));
 		return postDtoList;
@@ -91,6 +92,19 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toMyPostIdList(mypostList)));
 		mypostList.forEach(p -> p.setImage(getFirstImage(postImageMap, p.getPostId())));
 		return mypostList;
+	}
+
+	@Override
+	public List<PostDto> findOneById(Long userId,Long postId) {
+		QUser subUser = new QUser("subUser");
+		QPost subPost = new QPost("subPost");
+		QPost subPost2 = new QPost("subPost2");
+
+		List<PostDto> postDtoList = getPostDtoList(userId, -1L, postId,subUser, subPost, subPost2);
+		Map<Long, List<PostImageDto>> postImageMap = groupById(getImageList(queryFactory, toPostIdList(postDtoList)));
+		postDtoList.forEach(p -> p.setImageList(mapToImage(postImageMap, p.getPostId())));
+
+		return postDtoList;
 	}
 
 	private List<MypostDto> getMypostList(Long userID) {
@@ -122,7 +136,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.collect(Collectors.toList());
 	}
 
-	private List<PostDto> getPostDtoList(Long userId, Long placeID, QUser subUser, QPost subPost, QPost subPost2) {
+	private List<PostDto> getPostDtoList(Long userId, Long placeID, Long postId,QUser subUser, QPost subPost, QPost subPost2) {
 		return queryFactory
 			.selectDistinct(new QPostDto(
 				post.id,
@@ -150,10 +164,14 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.join(post.place, place)
 			.join(place.category, category)
 			.leftJoin(post.mypostList, mypost)
-			.where(placeEq(placeID))
+			.where(
+				placeEq(placeID),
+				postEq(postId))
 			.orderBy(post.id.desc())
 			.fetch();
 	}
+
+
 
 	private JPQLQuery<Long> getPostCnt(NumberPath<Long> postId) {
 		return JPAExpressions
@@ -194,4 +212,12 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 		}
 		return post.place.id.eq(placeId);
 	}
+
+	private BooleanExpression postEq(Long postId) {
+		if (postId == -1) {
+			return null;
+		}
+		return post.id.eq(postId);
+	}
+
 }
