@@ -34,9 +34,28 @@ public class S3Service {
 	private String bucketName;
 
 	public String uploadFile(String category,String loginId, MultipartFile multipartFile){
+
+		String fileName = uploadS3(category, loginId, multipartFile);
+
+		return amazonS3Client.getUrl(bucketName, fileName).toString();
+	}
+
+	public List<String> uploadFileList(String category,String loginId, List<MultipartFile> multipartFileList){
+
+		List<String> urlList = new ArrayList<>();
+
+		for (MultipartFile multipartFile : multipartFileList) {
+			String fileName = uploadS3(category, loginId, multipartFile);
+			urlList.add(amazonS3Client.getUrl(bucketName, fileName).toString());
+		}
+
+		return urlList;
+	}
+
+	private String uploadS3(String category, String loginId, MultipartFile multipartFile) {
 		validateFileExists(multipartFile);
 
-		String fileName = buildFileName(category, loginId,multipartFile.getOriginalFilename());
+		String fileName = buildFileName(category, loginId, multipartFile.getOriginalFilename());
 
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType(multipartFile.getContentType());
@@ -47,8 +66,7 @@ public class S3Service {
 		} catch (IOException e) {
 			throw new FileUploadException(FILE_BAD_REQUEST.getErrorCode(), FILE_BAD_REQUEST);
 		}
-
-		return amazonS3Client.getUrl(bucketName, fileName).toString();
+		return fileName;
 	}
 
 	private void validateFileExists(MultipartFile multipartFile) {

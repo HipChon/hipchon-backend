@@ -5,13 +5,20 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import gritbus.hipchonbackend.Dto.Post.BestPostDto;
 import gritbus.hipchonbackend.Dto.MypostDto;
 import gritbus.hipchonbackend.Dto.Post.PostDto;
+import gritbus.hipchonbackend.Dto.Requset.PostRequest;
+import gritbus.hipchonbackend.Dto.UserDto;
 import gritbus.hipchonbackend.Service.PostService;
+import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
@@ -56,5 +63,20 @@ public class PostController {
 		return ResponseEntity.ok(postService.findOneById(userId, postId));
 	}
 
+	@Operation(summary = "후기작성", description = "post라는 key로 json파일 보내주셔야합니다\n"
+		+ "{\n"
+		+ " \"detail\": \"string\",\n"
+		+ " \"keywordIdList\": [\n"
+		+ " 0\n"
+		+ " ],\n"
+		+ " \"placeId\": 0,\n"
+		+ " \"userId\": 0\n"
+		+ "}")
+	@PostMapping("")
+	public ResponseEntity<Long> addPost(
+		@ApiParam(value = "post") @RequestPart(value = "post") PostRequest post,
+		@ApiParam(value = "file") @RequestPart(value = "file") List<MultipartFile> multipartFileList) {
+		return ResponseEntity.ok(postService.add(post,multipartFileList));
+	}
 
 }

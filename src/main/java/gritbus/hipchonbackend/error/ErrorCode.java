@@ -33,6 +33,7 @@ public enum ErrorCode {
 	USER_NAME_DUPLICATION(409,"USER-409","존재하는 이름입니다"),
 	PLACE_NOT_FOUND(404, "PLACE-404","존재하지 않는 장소입니다"),
 	POST_NOT_FOUND(404, "POST-404","존재하지 않는 후기입니다"),
+	KEYWORDREVIEW_NOT_FOUND(404, "KEYWORDREVIEW-404","존재하지 않는 키워드 후기 입니다"),
 	ELEMENT_NOT_FOUND(404, "ELEMENT-404","존재하지 않는 요소입니다"),
 	FILE_BAD_REQUEST(400,"FILE-400", "업로드에 실패하였습니다");
 

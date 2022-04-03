@@ -16,10 +16,15 @@ import javax.persistence.OneToMany;
 
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Domain.User;
+import gritbus.hipchonbackend.Dto.Requset.PostRequest;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
 	@Id
 	@GeneratedValue
@@ -50,14 +55,31 @@ public class Post {
 	private Long viewCnt = 0L;
 	private String detail;
 	private LocalDateTime postTime;
-	private Long rate;
+	private Long rate = 0L;
 	private Long likeCnt = 0L;
 
-	private Boolean isBest;
+	private Boolean isBest = Boolean.FALSE;
 
-	public int getPostLikeCnt(){
-		return this.mypostList.size();
+	public Post(String detail) {
+		this.detail = detail;
+		this.postTime = LocalDateTime.now();
 	}
 
+	public static Post createPost(User user,Place place, String detail){
+		Post post = new Post(detail);
+		post.setUser(user);
+		post.setPlace(place);
+		return post;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
+		place.getPostList().add(this);
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+		user.getPostList().add(this);
+	}
 
 }
