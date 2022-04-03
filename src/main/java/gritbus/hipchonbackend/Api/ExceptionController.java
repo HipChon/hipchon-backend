@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import gritbus.hipchonbackend.error.ErrorCode;
 import gritbus.hipchonbackend.error.ErrorResponse;
 import gritbus.hipchonbackend.exception.ElementDuplicatedException;
+import gritbus.hipchonbackend.exception.FileUploadException;
 import gritbus.hipchonbackend.exception.NoSuchElementException;
 import gritbus.hipchonbackend.exception.NoUserException;
 import gritbus.hipchonbackend.exception.UserDuplicatedException;
@@ -32,6 +33,11 @@ public class ExceptionController {
 
 	@ExceptionHandler(NoSuchElementException.class)
 	public ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException ex){
+		return new ResponseEntity<>(new ErrorResponse(ex.getErrorCode()), HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+	}
+
+	@ExceptionHandler(FileUploadException.class)
+	public ResponseEntity<ErrorResponse> handleFileUploadException(FileUploadException ex){
 		return new ResponseEntity<>(new ErrorResponse(ex.getErrorCode()), HttpStatus.valueOf(ex.getErrorCode().getStatus()));
 	}
 

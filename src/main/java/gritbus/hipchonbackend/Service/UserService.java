@@ -2,6 +2,7 @@ package gritbus.hipchonbackend.Service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import gritbus.hipchonbackend.Domain.LoginType;
 import gritbus.hipchonbackend.Domain.User;
@@ -17,15 +18,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
 	private final UserRepository userRepository;
+	private final S3Service s3Service;
 
 	public String login(String loginType, String loginId){
-		return getUser(loginType, loginId).getLoginId();
-	}
-
-	private User getUser(String loginType, String loginId) {
-		return userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(loginType), loginId)
-			.orElseThrow(
-				() -> new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER));
+		return validateUser(loginType, loginId).getLoginId();
 	}
 
 	@Transactional
@@ -52,20 +48,28 @@ public class UserService {
 	}
 
 	@Transactional
-	public String updateProfile(UserDto userDto){
-		String newName = userDto.getName();
-		String newImage = userDto.getImage();
+	public String updateProfile(UserDto userDto, MultipartFile multipartFile){
+		User user = validateUser(userDto.getLoginType(),userDto.getLoginId());
 
-		User user = userRepository.findByLoginId(userDto.getLoginId())
+		String newName = userDto.getName();
+		String image = s3Service.uploadFile("profileImage",userDto.getLoginId(), multipartFile);
+
+		updateName(newName, user);
+		user.setProfileImage(image);
+		return userRepository.save(user).getLoginId();
+	}
+
+	private User validateUser(String loginType, String loginId) {
+		try{
+			LoginType.valueOf(loginType);
+		} catch (Exception e){
+			throw new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER);
+		}
+
+		User user = userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(loginType), loginId)
 			.orElseThrow(
 				() -> new NoUserException(ErrorCode.UNAUTHORIZED_USER.getMessage(), ErrorCode.UNAUTHORIZED_USER));
-
-		if (newImage !=null){
-			user.setProfileImage(newImage);
-		}
-		updateName(newName, user);
-
-		return userRepository.save(user).getLoginId();
+		return user;
 	}
 
 	private void updateName(String newName, User user) {
@@ -84,11 +88,12 @@ public class UserService {
 	}
 
 	public UserDto findByLoginTypeAndLoginId(String loginType,String loginId){
-		return UserDto.of(getUser(loginType, loginId));
+		return UserDto.of(validateUser(loginType, loginId));
 	}
+
 	@Transactional
 	public void deleteUser(String loginType,String loginId){
-		User user = getUser(loginType, loginId);
+		User user = validateUser(loginType, loginId);
 		userRepository.delete(user);
 	}
 

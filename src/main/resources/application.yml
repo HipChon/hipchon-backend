@@ -5,6 +5,10 @@ spring:
     password: hipchon
     driver-class-name: org.mariadb.jdbc.Driver
 
+  profiles:
+    include:
+      - aws
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
@@ -19,3 +23,8 @@ logging:
     #logger로 찍음
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+#    com:
+#      amazonaws:
+#        util:
+#          EC2MetadataUtils: error
+

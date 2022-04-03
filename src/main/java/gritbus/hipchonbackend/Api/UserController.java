@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import gritbus.hipchonbackend.Dto.UserDto;
 import gritbus.hipchonbackend.Service.UserService;
@@ -36,10 +38,10 @@ public class UserController {
 		return ResponseEntity.ok(userService.save(userDto));
 	}
 
-	@Operation(summary = "프로필 변경 API", description = "기존에 있는 이름이면 에러를 일으킴(본인 이름이 또 똑같이 들어오는 경우는 에러 X)")
+	@Operation(summary = "프로필 변경 API", description = "loginId,loginType, 새로운 이름, 새로운 프로필사진만 넣어주셔도 됩니다\n기존에 있는 이름이면 에러를 일으킴(본인 이름이 또 똑같이 들어오는 경우는 에러 X)")
 	@PutMapping("")
-	public ResponseEntity<String> updateProfile(@RequestBody UserDto userDto) {
-		return ResponseEntity.ok(userService.updateProfile(userDto));
+	public ResponseEntity<String> updateProfile(@RequestPart UserDto user,@RequestPart(value = "file") MultipartFile multipartFile) {
+		return ResponseEntity.ok(userService.updateProfile(user,multipartFile));
 	}
 
 	@Operation(summary = "유저 정보 조회 API", description = "")
