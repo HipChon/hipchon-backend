@@ -37,9 +37,11 @@ public class PostController {
 	}
 
 	@Operation(summary = "장소별 후기 API(장소 상세페이지)", description = "장소 상세페이지 아래에 들어가는 후기 피드용 API")
-	@GetMapping("/place/{place_id}")
-	public ResponseEntity<List<PostDto>> findByPlace(@Parameter(required = true, example = "1") @PathVariable("place_id") Long placeId) {
-		return ResponseEntity.ok(postService.findByPlace(placeId));
+	@GetMapping("/place/{user_id}/{place_id}")
+	public ResponseEntity<List<PostDto>> findByPlace(
+		@Parameter(required = true, example = "1") @PathVariable("user_id") Long userId,
+		@Parameter(required = true, example = "1") @PathVariable("place_id") Long placeId) {
+		return ResponseEntity.ok(postService.findByPlace(userId,placeId));
 	}
 
 	@Operation(summary = "본인이 올린 후기 API", description = "")

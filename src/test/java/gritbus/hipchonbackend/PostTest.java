@@ -34,8 +34,9 @@ public class PostTest {
 	public void findByPlace() throws Exception {
 		//given
 		Long placeId = 1L;
+		Long userId = 1L;
 		//when
-		List<PostDto> postDtoList = postService.findByPlace(placeId);
+		List<PostDto> postDtoList = postService.findByPlace(userId,placeId);
 		//then
 
 		for (PostDto postDto : postDtoList) {

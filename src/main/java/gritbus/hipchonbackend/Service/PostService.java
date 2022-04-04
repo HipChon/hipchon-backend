@@ -56,8 +56,8 @@ public class PostService {
 			.collect(Collectors.toList());
 	}
 
-	public List<PostDto> findByPlace(Long placeID) {
-		List<PostDto> postDtoList = findAllOrByPlace(-1L, placeID);
+	public List<PostDto> findByPlace(Long userId,Long placeID) {
+		List<PostDto> postDtoList = findAllOrByPlace(userId, placeID);
 		return postDtoList;
 	}
 

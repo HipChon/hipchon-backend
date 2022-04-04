@@ -19,11 +19,12 @@ public class PostDto {
 	private Long commentCnt;
 	private String detail;
 	private PostUserDto user;
+	private Boolean isMypost;
 	private PostPlaceSummaryDto place;
 
 	@QueryProjection
 	public PostDto(Long postId, LocalDateTime time, Long likeCnt, Long commentCnt,
-		String detail, PostUserDto userDto,PostPlaceSummaryDto placeDto) {
+		String detail, PostUserDto userDto,Boolean isMypost,PostPlaceSummaryDto placeDto) {
 		this.postId = postId;
 		this.time = time.toString();
 		this.likeCnt = likeCnt;
@@ -36,6 +37,7 @@ public class PostDto {
 		}
 		this.detail = detail;
 		this.user = userDto;
+		this.isMypost = isMypost;
 		this.place = placeDto;
 	}
 

@@ -22,6 +22,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+import gritbus.hipchonbackend.Domain.Post.QMypost;
 import gritbus.hipchonbackend.Domain.Post.QPost;
 import gritbus.hipchonbackend.Domain.QUser;
 import gritbus.hipchonbackend.Dto.MypostDto;
@@ -150,6 +151,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 					user.profileImage,
 					getUserPostCnt(subUser, subPost)
 				),
+				getIsMypost(userId, post.id),
 				new QPostPlaceSummaryDto(
 					place.id,
 					place.name,
@@ -171,7 +173,17 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 			.fetch();
 	}
 
-
+	private BooleanExpression getIsMypost(Long userId, NumberPath<Long> postId) {
+		QMypost subMypost = new QMypost("subMypost");
+		return JPAExpressions
+			.select(subMypost.id)
+			.from(subMypost)
+			.where(
+				subMypost.post.id.eq(postId),
+				subMypost.user.id.eq(userId)
+			)
+			.exists();
+	}
 
 	private JPQLQuery<Long> getPostCnt(NumberPath<Long> postId) {
 		return JPAExpressions
