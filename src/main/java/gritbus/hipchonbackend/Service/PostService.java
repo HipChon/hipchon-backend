@@ -31,6 +31,7 @@ import gritbus.hipchonbackend.Repository.UserRepository;
 import gritbus.hipchonbackend.error.ErrorCode;
 import gritbus.hipchonbackend.exception.ElementDuplicatedException;
 import gritbus.hipchonbackend.exception.NoSuchElementException;
+import gritbus.hipchonbackend.exception.NoUserException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -72,6 +73,35 @@ public class PostService {
 		}
 		return oneById.get(0);
 
+	}
+	@Transactional
+	public void delete(Long userId,Long postId){
+		Post post = validatePost(postId);
+		validateUserAction(userId, post);
+		List<String> imageList = getImageList(post).stream()
+			.map(image->image.split(".com/",2)[1])
+			.collect(Collectors.toList());
+
+		s3Service.deleteFileList(imageList);
+		postRepository.delete(post);
+
+	}
+
+	private List<String> getImageList(Post post) {
+		return post.getPostImageList().stream()
+			.map(PostImage::getImage)
+			.collect(Collectors.toList());
+	}
+
+	private void validateUserAction(Long userId, Post post) {
+		if (post.getUser().getId() != userId){
+			throw new NoUserException(INVALID_USER_ACTION.getErrorCode(),INVALID_USER_ACTION);
+		}
+	}
+
+	private Post validatePost(Long postId) {
+		return postRepository.findById(postId).orElseThrow(() ->
+			new NoSuchElementException(ELEMENT_NOT_FOUND.getErrorCode(), ELEMENT_NOT_FOUND));
 	}
 
 	@Transactional

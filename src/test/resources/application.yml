@@ -4,6 +4,9 @@ spring:
     username: hipchon
     password: hipchon
     driver-class-name: org.mariadb.jdbc.Driver
+  profiles:
+    include:
+      - aws
   jpa:
     hibernate:
       ddl-auto: none

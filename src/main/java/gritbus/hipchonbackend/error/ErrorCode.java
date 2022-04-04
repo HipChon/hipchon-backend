@@ -28,6 +28,7 @@ public enum ErrorCode {
 
 
 	UNAUTHORIZED_USER(401,"USER-401","등록된 사용자가 아닙니다"),
+	INVALID_USER_ACTION(401, "USER-401","권한이 없는 사용자입니다"),
 	USER_DUPLICATION(409,"USER-409","존재하는 사용자입니다"),
 	ELEMENT_DUPLICATION(409,"ELEMENT-409","존재하는 요소입니다"),
 	USER_NAME_DUPLICATION(409,"USER-409","존재하는 이름입니다"),

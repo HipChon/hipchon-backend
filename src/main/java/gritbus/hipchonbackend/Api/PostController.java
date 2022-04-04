@@ -3,6 +3,7 @@ package gritbus.hipchonbackend.Api;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,5 +79,13 @@ public class PostController {
 		@ApiParam(value = "file") @RequestPart(value = "file") List<MultipartFile> multipartFileList) {
 		return ResponseEntity.ok(postService.add(post,multipartFileList));
 	}
+
+	@DeleteMapping("/{user_id}/{post_id}")
+	public void delete(
+		@PathVariable("user_id")Long userId,
+		@PathVariable("post_id")Long postId){
+		postService.delete(userId, postId);
+	}
+
 
 }
