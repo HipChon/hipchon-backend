@@ -94,7 +94,7 @@ public class PostService {
 	}
 
 	private void validateUserAction(Long userId, Post post) {
-		if (post.getUser().getId() != userId){
+		if (!(post.getUser().getId().equals(userId))){
 			throw new NoUserException(INVALID_USER_ACTION.getErrorCode(),INVALID_USER_ACTION);
 		}
 	}
