@@ -35,8 +35,11 @@ public class UserController {
 
 	@Operation(summary = "회원가입 API", description = "")
 	@PostMapping("")
-	public ResponseEntity<String> signUp(@RequestBody UserDto userDto) {
-		return ResponseEntity.ok(userService.save(userDto));
+	public ResponseEntity<String> signUp(
+		@ApiParam(value = "user") @RequestPart(value = "user") UserDto user,
+		@ApiParam(value = "file") @RequestPart(value = "file") MultipartFile multipartFile)
+	{
+		return ResponseEntity.ok(userService.save(user,multipartFile));
 	}
 
 	@Operation(summary = "프로필 변경 API", description = "form-data, json형태 key는 user입니다"

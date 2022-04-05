@@ -1,5 +1,7 @@
 package gritbus.hipchonbackend.Service;
 
+import static gritbus.hipchonbackend.error.ErrorCode.*;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,17 +27,30 @@ public class UserService {
 	}
 
 	@Transactional
-	public String save(UserDto userDto){
+	public String save(UserDto userDto,MultipartFile multipartFile){
 		if ((userDto.getLoginType()) == null){
 			throw new RuntimeException("로그인 타입 정보가 존재하지 않습니다");
 		}
-		User user1 = userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(userDto.getLoginType()), userDto.getLoginId())
+
+		User check = userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(userDto.getLoginType()), userDto.getLoginId())
 			.orElse(null);
-		if (user1!=null){
-			ErrorCode errorCode = ErrorCode.USER_DUPLICATION;
-			throw new UserDuplicatedException(errorCode.getMessage(),errorCode);
+
+		if (check!=null){
+			throw new UserDuplicatedException(USER_DUPLICATION.getMessage(), USER_DUPLICATION);
 		}
-		User user = User.builder()
+
+		User user = createUser(userDto,multipartFile);
+
+		return userRepository.save(user).getLoginId();
+	}
+
+	private User createUser(UserDto userDto,MultipartFile multipartFile) {
+
+		if (!multipartFile.isEmpty()){
+			userDto.setImage(s3Service.uploadFile("profileImage",userDto.getLoginId(),multipartFile));
+		}
+
+		return User.builder()
 			.loginId(userDto.getLoginId())
 			.loginType(LoginType.valueOf(userDto.getLoginType()))
 			.name(userDto.getName())
@@ -43,8 +58,6 @@ public class UserService {
 			.profileImage(userDto.getImage())
 			.isMarketing(userDto.getIsMarketing())
 			.build();
-
-		return userRepository.save(user).getLoginId();
 	}
 
 	@Transactional
