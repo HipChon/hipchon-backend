@@ -2,6 +2,8 @@ package gritbus.hipchonbackend.Service;
 
 import static gritbus.hipchonbackend.error.ErrorCode.*;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,11 +66,17 @@ public class UserService {
 	public String updateProfile(UserDto userDto, MultipartFile multipartFile){
 		User user = validateUser(userDto.getLoginType(),userDto.getLoginId());
 
-		String newName = userDto.getName();
-		String image = s3Service.uploadFile("profileImage",userDto.getLoginId(), multipartFile);
+		updateName(userDto.getName(), user);
 
-		updateName(newName, user);
-		user.setProfileImage(image);
+		if (!multipartFile.isEmpty()){
+			String image = s3Service.uploadFile("profileImage",userDto.getLoginId(), multipartFile);
+			user.setProfileImage(image);
+		}
+
+		if (userDto.getEmail()!=null){
+			user.setEmail(userDto.getEmail());
+		}
+
 		return userRepository.save(user).getLoginId();
 	}
 
@@ -93,7 +101,7 @@ public class UserService {
 	}
 
 	private void validateName(String originalName,String newName) {
-		User user = userRepository.findByName(newName).orElse(null);
+		List<User> user = userRepository.findAllByName(newName);
 		if (user!= null && !(originalName.equals(newName))){
 			ErrorCode errorCode = ErrorCode.USER_NAME_DUPLICATION;
 			throw new UserDuplicatedException(errorCode.getMessage(), errorCode);
