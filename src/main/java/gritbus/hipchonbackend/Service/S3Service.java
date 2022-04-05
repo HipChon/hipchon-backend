@@ -48,8 +48,10 @@ public class S3Service {
 		List<String> urlList = new ArrayList<>();
 
 		for (MultipartFile multipartFile : multipartFileList) {
-			String fileName = uploadS3(category, loginId, multipartFile);
-			urlList.add(amazonS3Client.getUrl(bucketName, fileName).toString());
+			if (!multipartFileList.isEmpty()){
+				String fileName = uploadS3(category, loginId, multipartFile);
+				urlList.add(amazonS3Client.getUrl(bucketName, fileName).toString());
+			}
 		}
 
 		return urlList;
