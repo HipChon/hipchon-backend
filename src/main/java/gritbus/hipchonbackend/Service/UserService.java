@@ -36,11 +36,11 @@ public class UserService {
 
 		User check = userRepository.findByLoginTypeAndLoginId(LoginType.valueOf(userDto.getLoginType()), userDto.getLoginId())
 			.orElse(null);
-
 		if (check!=null){
 			throw new UserDuplicatedException(USER_DUPLICATION.getMessage(), USER_DUPLICATION);
 		}
 
+		validateName(userDto.getName()+"for fake comparison",userDto.getName());
 		User user = createUser(userDto,multipartFile);
 
 		return userRepository.save(user).getLoginId();
@@ -102,9 +102,8 @@ public class UserService {
 
 	private void validateName(String originalName,String newName) {
 		List<User> user = userRepository.findAllByName(newName);
-		if (user!= null && !(originalName.equals(newName))){
-			ErrorCode errorCode = ErrorCode.USER_NAME_DUPLICATION;
-			throw new UserDuplicatedException(errorCode.getMessage(), errorCode);
+		if (user.size()!=0 && !(originalName.equals(newName))){
+			throw new UserDuplicatedException(USER_NAME_DUPLICATION.getMessage(), USER_NAME_DUPLICATION);
 		}
 	}
 
