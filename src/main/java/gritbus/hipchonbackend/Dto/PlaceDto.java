@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import gritbus.hipchonbackend.Domain.Hashtag;
+import gritbus.hipchonbackend.Domain.Menu;
 import gritbus.hipchonbackend.Domain.Place;
 import gritbus.hipchonbackend.Domain.PlaceHashtag;
 import gritbus.hipchonbackend.Domain.PlaceImage;
@@ -31,6 +32,7 @@ public class PlaceDto {
 	private String homepage;
 
 	// 메뉴 들어가야 함
+	private List<MenuDto> menuList;
 
 	//지도
 	private String markerImage; //이거 필요한거 맞나?
@@ -58,7 +60,7 @@ public class PlaceDto {
 			p.getHoliday(),
 			p.getOneLineIntro(),
 			p.getHomepage(),
-			//메뉴 추가 필요
+			new ArrayList<>(), // 메뉴
 			p.getMarkerImage(),
 			p.getGps().getLatitude(),
 			p.getGps().getLongitude(),
@@ -66,14 +68,7 @@ public class PlaceDto {
 			p.getPlaceImageList().stream()
 			.map(PlaceImage::getImage)
 			.collect(Collectors.toList()),
-			new ArrayList<>()
-			// p.getCity().getName(),
-			// p.getHiple(),
-			// p.getAnimal(),
-			// p.getPlaceHashtagList().stream()
-			// 	.map(PlaceHashtag::getHashtag)
-			// 	.map(Hashtag::getName)
-			// 	.collect(Collectors.toList())
+			new ArrayList<>() // 키워드
 		);
 	}
 

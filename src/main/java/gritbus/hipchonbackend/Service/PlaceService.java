@@ -19,6 +19,7 @@ import gritbus.hipchonbackend.Dto.KeywordDto;
 import gritbus.hipchonbackend.Dto.PlaceDto;
 import gritbus.hipchonbackend.Dto.PlaceListDto;
 import gritbus.hipchonbackend.Repository.KeywordReviewRepository;
+import gritbus.hipchonbackend.Repository.MenuRepository;
 import gritbus.hipchonbackend.Repository.PlaceRepository;
 import gritbus.hipchonbackend.error.ErrorCode;
 import gritbus.hipchonbackend.exception.NoSuchElementException;
@@ -30,12 +31,13 @@ import lombok.RequiredArgsConstructor;
 public class PlaceService {
 	private final PlaceRepository placeRepository;
 	private final KeywordReviewRepository keywordReviewRepository;
+	private final MenuRepository menuRepository;
 
 	public PlaceDto findById(Long userId, Long placeId) {
 		PlaceDto placeDto = PlaceDto.of(placeRepository.findById(placeId)
 			.orElseThrow(() -> new NoSuchElementException(PLACE_NOT_FOUND.getMessage(), PLACE_NOT_FOUND)), userId);
-		List<KeywordDto> top3 = keywordReviewRepository.getTop(placeId,3);
-		placeDto.setKeywordList(top3);
+		placeDto.setMenuList(menuRepository.findByPlaceId(placeId));
+		placeDto.setKeywordList(keywordReviewRepository.getTop(placeId,3));
 		return placeDto;
 	}
 

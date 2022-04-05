@@ -48,6 +48,9 @@ public class Place {
 	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
 	private List<PlaceImage> placeImageList;
 
+	@OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+	private List<Menu> menuList;
+
 	@Embedded
 	private Gps gps;
 
