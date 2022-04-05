@@ -48,7 +48,7 @@ public class S3Service {
 		List<String> urlList = new ArrayList<>();
 
 		for (MultipartFile multipartFile : multipartFileList) {
-			if (!multipartFileList.isEmpty()){
+			if (!multipartFile.isEmpty()){
 				String fileName = uploadS3(category, loginId, multipartFile);
 				urlList.add(amazonS3Client.getUrl(bucketName, fileName).toString());
 			}
