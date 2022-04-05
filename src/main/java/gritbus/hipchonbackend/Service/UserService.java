@@ -41,6 +41,11 @@ public class UserService {
 		}
 
 		validateName(userDto.getName()+"for fake comparison",userDto.getName());
+
+		if (userDto.getEmail()!=null){
+			validateEmail(userDto.getEmail()+"for fake comparison",userDto.getEmail());
+		}
+
 		User user = createUser(userDto,multipartFile);
 
 		return userRepository.save(user).getLoginId();
@@ -66,15 +71,17 @@ public class UserService {
 	public String updateProfile(UserDto userDto, MultipartFile multipartFile){
 		User user = validateUser(userDto.getLoginType(),userDto.getLoginId());
 
-		updateName(userDto.getName(), user);
+		if (userDto.getName()!=null){
+			updateName(userDto.getName(), user);
+		}
+
+		if (userDto.getEmail()!=null){
+			updateEmail(userDto.getEmail(), user);
+		}
 
 		if (!multipartFile.isEmpty()){
 			String image = s3Service.uploadFile("profileImage",userDto.getLoginId(), multipartFile);
 			user.setProfileImage(image);
-		}
-
-		if (userDto.getEmail()!=null){
-			user.setEmail(userDto.getEmail());
 		}
 
 		return userRepository.save(user).getLoginId();
@@ -100,10 +107,24 @@ public class UserService {
 		}
 	}
 
+	private void updateEmail(String newEmail, User user) {
+		if (newEmail !=null){
+			validateName(user.getName(),newEmail);
+			user.setEmail(newEmail);
+		}
+	}
+
 	private void validateName(String originalName,String newName) {
 		List<User> user = userRepository.findAllByName(newName);
 		if (user.size()!=0 && !(originalName.equals(newName))){
 			throw new UserDuplicatedException(USER_NAME_DUPLICATION.getMessage(), USER_NAME_DUPLICATION);
+		}
+	}
+
+	private void validateEmail(String originalEmail,String newEmail) {
+		List<User> user = userRepository.findAllByEmail(newEmail);
+		if (user.size()!=0 && !(originalEmail.equals(newEmail))){
+			throw new UserDuplicatedException(USER_EMAIL_DUPLICATION.getMessage(), USER_EMAIL_DUPLICATION);
 		}
 	}
 
