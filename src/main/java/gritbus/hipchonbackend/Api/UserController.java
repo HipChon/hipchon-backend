@@ -39,12 +39,14 @@ public class UserController {
 		@ApiParam(value = "user") @RequestPart(value = "user") UserDto user,
 		@ApiParam(value = "file") @RequestPart(value = "file") MultipartFile multipartFile)
 	{
-		try {
-			return ResponseEntity.ok(userService.save(user,multipartFile));
-		} catch (Exception e){
-			return ResponseEntity.ok(userService.save(user,null));
-		}
+		return ResponseEntity.ok(userService.save(user,multipartFile));
+	}
 
+	@Operation(summary = "회원가입 API temp for ios", description = "")
+	@PostMapping("")
+	public ResponseEntity<String> signUp_temp(
+		@ApiParam(value = "user") @RequestPart(value = "user") UserDto user) {
+		return ResponseEntity.ok(userService.save(user,null));
 	}
 
 	@Operation(summary = "프로필 변경 API", description = "form-data, json형태 key는 user입니다"
